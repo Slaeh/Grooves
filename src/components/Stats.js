@@ -23,8 +23,13 @@ const Stats = () => {
         })
     
         return (
-        <div>We made it to this page!
-            
+        <div>
+            We made it to this page!
+            <Link to="/Discover">
+              <Button label="Discover">
+                Discover  
+              </Button>             
+            </Link>
         </div>
 )}
 
