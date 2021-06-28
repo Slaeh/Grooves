@@ -1,7 +1,7 @@
 import './App.css';
 import Home from './components/Home'
 import Stats from './components/Stats/Stats';
-import Discover from './components/Discover'
+import Discover from './components/Discover/Discover'
 import Playlist from './components/Playlist/Playlist'
 import React, { useState } from 'react';
 import AppContext from './components/AppContext';

@@ -10,11 +10,11 @@ import {
 export default function ArtistCard({ artist, artists, setArtists }) {
 
     const handleMouse = () => {
-        console.log(`hovered ${artist.name}`)
+        console.log(`hovered ${artist.artistName}`)
     }
 
     const handleClick = (event) => {
-        console.log(`clicked ${artist.name}`)
+        console.log(`clicked ${artist.artistName}`)
     }
 
     const removeArtist = (event) => {
@@ -33,13 +33,13 @@ export default function ArtistCard({ artist, artists, setArtists }) {
                 onMouseOver={handleMouse}
             >
                 <Center>
-                    <Text>{artist.name}</Text>
+                    <Text>{artist.artistName}</Text>
                 </Center>
                 <Image
                     _hover={{ background: '#1DB954', opacity: '50%' }}
                     maxWidth={'360px'}
                     maxHeight={'360px'}
-                    src={artist.images[0].url}
+                    src={artist.artistImage}
                 />
                 <Button onClick={removeArtist}>Remove Artist</Button>
             </Box>
