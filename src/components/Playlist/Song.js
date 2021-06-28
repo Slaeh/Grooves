@@ -10,7 +10,6 @@ const Song = ({ image, title, artist, album, year }) => {
 
     return (
         <>
-        <Divider  orientation="horizontal" colorScheme="primary"/>
         <HStack spacing="80px" p="10px">
             <Image
                 src="https://upload.wikimedia.org/wikipedia/en/b/b2/Metallica_-_Master_of_Puppets_cover.jpg" 
@@ -21,7 +20,7 @@ const Song = ({ image, title, artist, album, year }) => {
             <Text fontWeight="bold" fontSize="14px">Metallica</Text>
             <Text fontWeight="bold" fontSize="14px">Master of Puppets (Remastered)</Text>
             <Text fontWeight="bold" fontSize="14px">1986</Text>
-            <IconButton bg="lightgray"icon={<FaTrash />}/>
+            <IconButton bg="white"icon={<FaTrash />}/>
         </HStack>
         <Center>
             <Divider size="50px"width="80%"borderColor="gray.400" orientation="horizontal"/>
