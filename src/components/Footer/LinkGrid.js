@@ -1,23 +1,22 @@
 import { Box, Link, SimpleGrid, Stack } from '@chakra-ui/react'
 import * as React from 'react'
 import { FooterHeading } from './FooterHeading'
+import { SocialMediaLinks } from './SocialMediaLinks'
 
 export const LinkGrid = (props) => (
-  <SimpleGrid columns={2} {...props}>
+  <SimpleGrid columns={2} {...props} pt={20}>
     <Box minW="130px">
-      <FooterHeading mb="4">Product</FooterHeading>
+      <FooterHeading mb="4" textColor='#919496' fontWeight="bold">Application</FooterHeading>
       <Stack>
-        <Link>How it works</Link>
-        <Link>Pricing</Link>
-        <Link>Use Cases</Link>
+        <Link textColor='white'>About</Link>
+        <Link textColor='white'>Contact</Link>
       </Stack>
     </Box>
     <Box minW="130px">
-      <FooterHeading mb="4">Legal</FooterHeading>
+      <FooterHeading mb="4" textColor='#919496' fontWeight="bold">Source Code</FooterHeading>
+      <SocialMediaLinks />
       <Stack>
-        <Link>Privacy</Link>
-        <Link>Terms</Link>
-        <Link>License</Link>
+        
       </Stack>
     </Box>
   </SimpleGrid>
