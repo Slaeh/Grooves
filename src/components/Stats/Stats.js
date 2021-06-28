@@ -1,34 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios'
+import AppContext from '../AppContext';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Button } from '@chakra-ui/button';
 
 const Stats = () => {
+    const { 
+        display,
+        setDisplay,
+        user,
+        setUser,
+        track,
+        setTrack,
+        artist,
+        setArtist,
+    } 
+    = useContext(AppContext);
 
-    //States to hold user information - display name & user id
-    const [displayName, setDisplayName] = useState('')
-    const [userId, setUserId] = useState('')
-
-    //States to hold user's top artists and tracks
-    const [tracks, setTracks] = useState([])
-    const [artists, setArtists] = useState([])
-
-
-    //Parses the querystring in the browser and store it into the session storage
+    //Parses the querystring in the browser and store it into the state
     const hash = window.location.hash.substring(1).split("&")
-    const accessToken = hash[0].substring(13)
-    window.sessionStorage.setItem("accessToken", accessToken)
+    const token = hash[0].substring(13)
+    window.sessionStorage.setItem("accessToken", token)
 
     //Api request to get users information - User Id & Display name and stores them in states
     useEffect(() => {
         axios.get(`https://api.spotify.com/v1/me`, {
             headers: {
-                'Authorization': 'Bearer ' + accessToken,
+                'Authorization': 'Bearer ' + token,
             }
         })
             .then(response => {
-                setDisplayName(response.data.display_name)
-                setUserId(response.data.id)
+                setDisplay(response.data.display_name)
+                setUser(response.data.id)
             })
             .catch(err => {
                 console.log(err)
@@ -36,28 +39,27 @@ const Stats = () => {
     }, [])
 
     //Set userId & displayName to session storage - will be used in playlist component
-    window.sessionStorage.setItem("userId", userId)
-    window.sessionStorage.setItem("displayName", displayName)
+    window.sessionStorage.setItem("userId", user)
+    window.sessionStorage.setItem("displayName", display)
 
     //Make API get request to get user's top artists and store them in state
     useEffect(() => {
         axios.get(`https://api.spotify.com/v1/me/top/artists`, {
             headers: {
-                'Authorization': 'Bearer ' + accessToken,
+                'Authorization': 'Bearer ' + token,
             }
         })
             .then(response => {
-                console.log(response)
                 const artistArr = []
-                for(let i = 0; i < 5; i++){
-                    const artistObject = { 
+                for (let i = 0; i < 5; i++) {
+                    const artistObject = {
                         artistName: response.data.items[i].name,
                         artistImage: response.data.items[i].images[0].url,
                         artistId: response.data.items[i].id,
                     }
                     artistArr.push(artistObject)
                 }
-                setArtists(artistArr)
+                setArtist(artistArr)
             })
             .catch(err => {
                 console.log(err)
@@ -68,14 +70,13 @@ const Stats = () => {
     useEffect(() => {
         axios.get(`https://api.spotify.com/v1/me/top/tracks`, {
             headers: {
-                'Authorization': 'Bearer ' + accessToken,
+                'Authorization': 'Bearer ' + token,
             }
         })
             .then(response => {
-                console.log(response)
                 const tracksArr = []
-                for(let i = 0; i < 5; i++){
-                    const trackObject = { 
+                for (let i = 0; i < 5; i++) {
+                    const trackObject = {
                         trackName: response.data.items[i].name,
                         trackArtist: response.data.items[i].artists[0].name,
                         trackImage: response.data.items[i].album.images[0].url,
@@ -83,8 +84,7 @@ const Stats = () => {
                     }
                     tracksArr.push(trackObject)
                 }
-                setTracks(tracksArr)
-                console.log(tracksArr)
+                setTrack(tracksArr)
             })
             .catch(err => {
                 console.log(err)

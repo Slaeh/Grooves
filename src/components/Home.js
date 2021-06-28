@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, Flex, Heading, Box, Center, Text, Stack } from "@chakra-ui/react"
 import { useStyles } from '@chakra-ui/system';
+import AppContext from './AppContext';
 const REACT_APP_CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 const REACT_APP_CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
 
 
 const Home = () =>  {
-
+    const { 
+        display,
+        setDisplay,
+        user,
+        setUser,
+        track,
+        setTrack,
+        artist,
+        setArtist,
+        userPlaylist,
+        setUserPlaylist, 
+    } 
+    = useContext(AppContext);
     return (
         <Box>
             <Stack spacing="-30px">
