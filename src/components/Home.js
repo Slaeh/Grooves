@@ -5,7 +5,8 @@ const REACT_APP_CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 const REACT_APP_CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
 
 
-const Home = () => {
+const Home = () =>  {
+
     return (
         <Box>
             <Stack spacing="-30px">

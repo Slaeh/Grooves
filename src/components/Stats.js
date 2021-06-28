@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import {BrowserRouter as Router ,Switch, Route, Link} from "react-router-dom";
+import { Button } from '@chakra-ui/button';
 
 const Stats = () => {
     //Parses the querystring in the browser and store it into the session storage
@@ -22,8 +23,13 @@ const Stats = () => {
         })
     
         return (
-        <div>We made it to this page!
-            
+        <div>
+            We made it to this page!
+            <Link to="/Discover">
+              <Button label="Discover">
+                Discover  
+              </Button>             
+            </Link>
         </div>
 )}
 
