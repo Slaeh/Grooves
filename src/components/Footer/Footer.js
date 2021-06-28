@@ -4,7 +4,6 @@ import { Copyright } from './Copyright'
 import { LinkGrid } from './LinkGrid'
 import { Logo } from './Logo'
 import { SocialMediaLinks } from './SocialMediaLinks'
-import { SubscribeForm } from './SubscribeForm'
 
 const Footer = () => {
     return (
@@ -15,6 +14,7 @@ const Footer = () => {
             pl={20}
             pr={20}
             pt={20}
+            bg='black'
         >
             <Stack spacing="10" divider={<StackDivider />}>
                 <Stack
@@ -59,7 +59,6 @@ const Footer = () => {
                     alignItems="center"
                 >
                     <Copyright />
-                    <SocialMediaLinks />
                 </Stack>
             </Stack>
         </Box>
