@@ -10,8 +10,8 @@ const Song = ({ image, title, artist, album, year }) => {
 
     return (
         <>
-        <Divider sizes="small"orientation="horizontal" colorScheme="primary"/>
-        <HStack spacing="75px" p="10px">
+        <Divider  orientation="horizontal" colorScheme="primary"/>
+        <HStack spacing="80px" p="10px">
             <Image
                 src="https://upload.wikimedia.org/wikipedia/en/b/b2/Metallica_-_Master_of_Puppets_cover.jpg" 
                 alt="album"

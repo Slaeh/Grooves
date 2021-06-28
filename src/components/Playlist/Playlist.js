@@ -14,7 +14,11 @@ const Playlist = () => {
                     <Heading color="green" mb="20px" ml="20">
                         <Text>Your New Playlist</Text>
                     </Heading>
-                    <Flex p="20px"direction="column"  justify="">
+                    <Flex overflowX="hidden"overflowY="scroll" maxHeight="500px"p="20px"direction="column"  borderRadius="20px" bg="white">
+                        <Song />
+                        <Song />
+                        <Song />
+                        <Song />
                         <Song />
                         <Song />
                         <Song />
@@ -31,7 +35,5 @@ const Playlist = () => {
         </>
     )
 }
-
-
 
 export default Playlist
