@@ -60,7 +60,7 @@ const Discover = () => {
         .then(response => {
             setUserPlaylist(response.data.tracks)
         })
-    })
+    }, [])
 
     // const generatePlaylist = (event) => {
     //     event.preventDefault()
@@ -85,23 +85,27 @@ const Discover = () => {
 
     return (
         <div>
-            <Center>
+            <div>
+
                 <Link to="/CreatePlaylist">
                     <Button label="CreatePlaylist">
                         MAKE A PLAYLIST
                     </Button>
                 </Link>
-            </Center>
+
+            </div>
             
+            <div>
             <Center>
                 <SimpleGrid py={6} columns={3} spacingX="15px" spacingY="15px">
                     {artist.map(a =>
-                        <div key={a.id}>
-                            <ArtistCard artist={a} artists={artist} setArtists={setArtist} />
+                        <div key={a.artistId}>
+                            <ArtistCard a={a} artists={artist} setArtists={setArtist} />
                         </div>
                     )}
                 </SimpleGrid>
             </Center>
+            </div>
 
             {userPlaylist.length ? (
                     userPlaylist.map(song => 
