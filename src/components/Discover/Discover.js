@@ -4,6 +4,7 @@ import axios from 'axios';
 import { SimpleGrid, Center } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/button';
 import AppContext from '../AppContext';
+import { Link } from 'react-router-dom';
 
 const Discover = () => {
     // const [artists, setArtists] = useState([])
@@ -44,12 +45,9 @@ const Discover = () => {
     //         })
     // }, [])
 
-    const generatePlaylist = (event) => {
-        event.preventDefault()
-        const artistIDs = artist.map(a => a.id)
-        console.log(artistIDs)
+    useEffect(() => {
+        const artistIDs = artist.map(a => a.artistId)
         const seeds = artistIDs.join(",")
-        console.log(seeds)
         axios.get("https://api.spotify.com/v1/recommendations", {
             params: {
                 'seed_artists': seeds,
@@ -60,18 +58,39 @@ const Discover = () => {
             }
         })
         .then(response => {
-            console.log(response.data.tracks)
             setUserPlaylist(response.data.tracks)
         })
-        window.location.href='/CreatePlaylist';
-    }
+    })
+
+    // const generatePlaylist = (event) => {
+    //     event.preventDefault()
+    //     const artistIDs = artist.map(a => a.id)
+    //     console.log(artistIDs)
+    //     const seeds = artistIDs.join(",")
+    //     console.log(seeds)
+    //     axios.get("https://api.spotify.com/v1/recommendations", {
+    //         params: {
+    //             'seed_artists': seeds,
+    //             'limit': 20
+    //         },
+    //         headers: {
+    //             'Authorization': 'Bearer ' + accessToken,
+    //         }
+    //     })
+    //     .then(response => {
+    //         console.log(response.data.tracks)
+    //         setUserPlaylist(response.data.tracks)
+    //     })
+    // }
 
     return (
         <div>
             <Center>
-                    <Button onClick={generatePlaylist} label="CreatePlaylist">
+                <Link to="/CreatePlaylist">
+                    <Button label="CreatePlaylist">
                         MAKE A PLAYLIST
                     </Button>
+                </Link>
             </Center>
             
             <Center>
