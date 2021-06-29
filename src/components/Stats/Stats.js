@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios'
 import AppContext from '../AppContext';
+import ArtistCard from './ArtistCard';
+import TrackCard from './TrackCard';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Button } from '@chakra-ui/button';
+import { Button, Text, Box, Flex, Center } from '@chakra-ui/react';
+import Flicking from "@egjs/react-flicking";
+import "@egjs/react-flicking/dist/flicking.css";
 
 const Stats = () => {
-    const { 
+    const {
         display,
         setDisplay,
         user,
@@ -14,10 +18,10 @@ const Stats = () => {
         setTrack,
         artist,
         setArtist,
-    } 
-    = useContext(AppContext);
+    }
+        = useContext(AppContext)
 
-    //Parses the querystring in the browser and store it into the state
+    //Parses the querystring in the browser and store it into the session
     const hash = window.location.hash.substring(1).split("&")
     const token = hash[0].substring(13)
     window.sessionStorage.setItem("accessToken", token)
@@ -37,10 +41,6 @@ const Stats = () => {
                 console.log(err)
             })
     }, [])
-
-    //Set userId & displayName to session storage - will be used in playlist component
-    // window.sessionStorage.setItem("userId", user)
-    // window.sessionStorage.setItem("displayName", display)
 
     //Make API get request to get user's top artists and store them in state
     useEffect(() => {
@@ -91,16 +91,64 @@ const Stats = () => {
             })
     }, [])
 
-    return (
-        <div>
-            We made it to this page!
-            <Link to="/Discover">
-                <Button label="Discover">
-                    Discover
-                </Button>
-            </Link>
-        </div>
-    )
+    { console.log(track) }
+    //Make sure we have atleast track data before we render
+    if (track.length !== 5 || artist.length !== 5) {
+        return (
+            <div>
+                Still Loading
+            </div>
+        )
+    }
+    else {
+        return (
+            <Box>
+                {/* Return top tracks */}
+                <Center>
+                    <Text mb={4}
+                        mt={10}
+                        bgClip="text" fontSize="70px"
+                        bgGradient="linear(to-l, #20bf55, #01baef )"
+                        fontWeight="bold">
+                        Your Top Tracks</Text>
+                </Center>
+                <Flicking renderOnlyVisible={false}>
+                    {track.slice(0).reverse().map(song =>
+                        <div className="flicking-panel" key={song.trackId}>
+                            <TrackCard class='panel' data={song} />
+                        </div>
+
+                    )}
+                </Flicking>
+
+                {/* Return top artists */}
+                <Center>
+                    <Text mb={4}
+                        mt={10}
+                        bgClip="text" fontSize="70px"
+                        bgGradient="linear(to-l, #01baef, #20bf55)"
+                        fontWeight="bold">
+                        Your Top Artists
+                    </Text>
+                </Center>
+                <Flicking renderOnlyVisible={false}>
+                    {artist.slice(0).reverse().map(artists =>
+                        <div className="flicking-panel" key={artists.artistId} >
+                            <ArtistCard class='panel' data={artists} />
+                        </div>
+
+                    )}
+                </Flicking>
+                <Center pt={10} pb={10}>
+                    <Link to="/Discover">
+                        <Button label="Discover" bgGradient="linear(to-l, #01baef, #20bf55)" fontWeight="bold">
+                            Discover
+                        </Button>
+                    </Link>
+                </Center>
+            </Box>
+        )
+    }
 }
 
 export default Stats;
