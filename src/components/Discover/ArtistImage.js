@@ -6,10 +6,11 @@ import {
     Heading,
     Button
 } from '@chakra-ui/react';
+import axios from 'axios';
 import AppContext from '../AppContext';
 import React, { useState, useEffect, useContext } from 'react';
 
-export default function ArtistCard({ a, artists, setArtists }) {
+export default function ArtistImage({ a }) {
 
     const { 
         display,
@@ -35,8 +36,12 @@ export default function ArtistCard({ a, artists, setArtists }) {
 
     const removeArtist = (event) => {
         event.preventDefault()
-        console.log(artists.filter(artist => artist.artistId !== a.artistId))
-        setArtist(artists.filter(artist => artist.artistId !== a.artistId))
+        if (artist.length === 1) {
+            alert("Must have one artist")
+            return
+        }
+        console.log(artist.filter(art => art.artistId !== a.artistId))
+        setArtist(artist.filter(art => art.artistId !== a.artistId))
     }
 
     return (
@@ -58,7 +63,10 @@ export default function ArtistCard({ a, artists, setArtists }) {
                     src={a.artistImage}
                 />
             </Box>
-            <Button onClick={removeArtist}>Remove Artist</Button>
+            <br></br>
+            <Center>
+                <Button onClick={removeArtist}>Remove Artist</Button>
+            </Center>
         </div>
     );
 }
