@@ -1,14 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ArtistCard from './ArtistCard';
 import axios from 'axios';
-import { SimpleGrid, Center } from '@chakra-ui/layout';
+import { SimpleGrid, Center, Box, Container, Heading } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/button';
 import AppContext from '../AppContext';
 import { Link } from 'react-router-dom';
+import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '@chakra-ui/slider';
 
 const Discover = () => {
     // const [artists, setArtists] = useState([])
     // const [ playlist, setPlaylist ] = useState([])
+
+    const [value, setValue] = useState(20)
+    const handleChange = (value) => setValue(value)
 
     const { 
         display,
@@ -58,7 +62,6 @@ const Discover = () => {
             }
         })
         .then(response => {
-            console.log(response.data.tracks)
             setUserPlaylist(response.data.tracks)
         })
     }, [])
@@ -106,6 +109,16 @@ const Discover = () => {
                     )}
                 </SimpleGrid>
             </Center>
+
+            <Container centerContent>
+            <Heading>Select Amount of Songs</Heading>
+            <Slider flex="1" defaultValue={20} min={20} max={100} step={10} onChange={handleChange}>
+                <SliderTrack bg="lightgreen">
+                    <SliderFilledTrack bg="green" />
+                </SliderTrack>
+                <SliderThumb boxSize={6} children={value} />
+            </Slider>
+            </Container>
             </div>
 
             {userPlaylist.length ? (
