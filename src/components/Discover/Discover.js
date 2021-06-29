@@ -58,6 +58,7 @@ const Discover = () => {
             }
         })
         .then(response => {
+            console.log(response.data.tracks)
             setUserPlaylist(response.data.tracks)
         })
     }, [])

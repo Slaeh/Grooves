@@ -34,11 +34,12 @@ const Playlist = () => {
                     <Flex overflowX="hidden"overflowY="scroll" maxHeight="500px"p="20px"direction="column"  borderRadius="20px" bg="white">
                     <Divider borderColor="gray.400" orientation="horizontal" colorScheme="primary"/>
                         { userPlaylist.map(song => {
-                            const albumImage = song.album.images
+                            const albumImage = song.album.images[0]
+                            {console.log(albumImage)}
                             const albumName = song.name
-                            const artistName = song.artist[0].name
+                            const artistName = song.artists[0].name
                             const songName = song.album.name
-                            const yearReleased = song.release_date.slice(0, 4)
+                            const yearReleased = song.album.release_date.slice(0, 4)
 
                             return <Song image={albumImage} title={songName} artist={artistName} album={albumName} year={yearReleased}/>
                         })}

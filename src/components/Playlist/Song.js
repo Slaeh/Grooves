@@ -12,7 +12,7 @@ const Song = ({ image, title, artist, album, year }) => {
         <>
         <HStack spacing="80px" p="10px">
             <Image
-                src={image[0].url} 
+                src={image.url} 
                 alt="album"
                 boxSize="79px"
             />
