@@ -15,6 +15,7 @@ const Song = ({ image, title, artist, album, year }) => {
                 src={image.url} 
                 alt="album"
                 boxSize="79px"
+                draggable="false"
             />
             <Text fontWeight="bold" fontSize="14px">{title}</Text>
             <Text fontWeight="bold" fontSize="14px">{artist}</Text>
