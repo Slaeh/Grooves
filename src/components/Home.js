@@ -5,8 +5,8 @@ import AppContext from './AppContext';
 const REACT_APP_CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 const REACT_APP_CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
 
-
 const Home = () =>  {
+    
     const { 
         display,
         setDisplay,
