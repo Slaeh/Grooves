@@ -12,14 +12,14 @@ const Song = ({ image, title, artist, album, year }) => {
         <>
         <HStack spacing="80px" p="10px">
             <Image
-                src="https://upload.wikimedia.org/wikipedia/en/b/b2/Metallica_-_Master_of_Puppets_cover.jpg" 
+                src={image[0].url} 
                 alt="album"
                 boxSize="79px"
             />
-            <Text fontWeight="bold" fontSize="14px">Master of Puppets (Remastered)</Text>
-            <Text fontWeight="bold" fontSize="14px">Metallica</Text>
-            <Text fontWeight="bold" fontSize="14px">Master of Puppets (Remastered)</Text>
-            <Text fontWeight="bold" fontSize="14px">1986</Text>
+            <Text fontWeight="bold" fontSize="14px">{title}</Text>
+            <Text fontWeight="bold" fontSize="14px">{artist}</Text>
+            <Text fontWeight="bold" fontSize="14px">{album}</Text>
+            <Text fontWeight="bold" fontSize="14px">{year}</Text>
             <IconButton bg="white"icon={<FaTrash />}/>
         </HStack>
         <Center>
