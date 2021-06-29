@@ -39,8 +39,8 @@ const Stats = () => {
     }, [])
 
     //Set userId & displayName to session storage - will be used in playlist component
-    window.sessionStorage.setItem("userId", user)
-    window.sessionStorage.setItem("displayName", display)
+    // window.sessionStorage.setItem("userId", user)
+    // window.sessionStorage.setItem("displayName", display)
 
     //Make API get request to get user's top artists and store them in state
     useEffect(() => {
