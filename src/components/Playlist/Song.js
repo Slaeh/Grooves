@@ -4,25 +4,32 @@ import { IconButton } from "@chakra-ui/react"
 import { FaTrash } from 'react-icons/fa'
 import { Center, Square, Circle } from "@chakra-ui/react"
 import { Stack, HStack, VStack, StackDivider } from "@chakra-ui/react"
-import { Image } from "@chakra-ui/react"
+import { Image, Box } from "@chakra-ui/react"
+import { Flex, Spacer } from "@chakra-ui/react"
 
 const Song = ({ image, title, artist, album, year }) => {
 
     return (
         <>
-        <HStack spacing="80px" p="10px">
+        {/* <HStack spacing={['5px','80px']} p="10px"> */}
+        <Flex p="10px"align="center">
             <Image
                 src={image.url} 
                 alt="album"
                 boxSize="79px"
                 draggable="false"
             />
-            <Text fontWeight="bold" fontSize="14px">{title}</Text>
-            <Text fontWeight="bold" fontSize="14px">{artist}</Text>
-            <Text fontWeight="bold" fontSize="14px">{album}</Text>
-            <Text fontWeight="bold" fontSize="14px">{year}</Text>
-            <IconButton bg="white"icon={<FaTrash />}/>
-        </HStack>
+            <Box m={['5px', '5px']}width='100px' textAlign="left"><Text fontWeight="bold" fontSize="14px">{title}</Text></Box>
+            <Spacer />
+            <Box  m={['5px', '5px']}width="100px" textAlign="left"><Text fontWeight="bold" fontSize="14px">{artist}</Text></Box>
+            <Spacer />
+            <Box  m={['5px', '5px']}width="100px" textAlign="left"><Text fontWeight="bold" fontSize="14px">{album}</Text></Box>
+            <Spacer />
+            <Box  m={['5px', '5px']}width="100px" textAlign="left"><Text fontWeight="bold" fontSize="14px">{year}</Text></Box>
+            <Spacer />
+            <Box  mr={['5px', '5px']}textAlign="center"width="100px"><IconButton bg="white"icon={<FaTrash />}/></Box>
+            </Flex>
+        {/* </HStack> */}
         <Center>
             <Divider size="50px"width="80%"borderColor="gray.400" orientation="horizontal"/>
         </Center>

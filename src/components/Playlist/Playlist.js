@@ -21,17 +21,22 @@ import {
   } from "@chakra-ui/react"
 
 const Playlist = () => {
-	const [ playlistName, setPlaylistName ] = useState('')
+	const REACT_APP_CLIENT_ID = process.env.REACT_APP_CLIENT_ID
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { user, setUser, userPlaylist, setUserPlaylist } = useContext(AppContext)
+    const { playlistName, setPlaylistName, user, setUser, userPlaylist, setUserPlaylist } = useContext(AppContext)
 	const accessToken = window.sessionStorage.getItem('accessToken')
+    
+	//Parses the querystring in the browser and store it into the session
+    const hash = window.location.hash.substring(1).split("&")
+    const playlistToken = hash[0].substring(13)
+    
     // onClick function for Create Playlist button to send API request to create a user playlist
     const handleCreatePlaylist = () => {
         axios({
 			method: 'post',
 			url: `https://api.spotify.com/v1/users/${user}/playlists`,
 			headers: {
-				'Authorization' : `Bearer ${accessToken}`
+				'Authorization' : `Bearer ${playlistToken}`
 			},
 			data: {
 				name: playlistName
@@ -55,12 +60,12 @@ const Playlist = () => {
     return (
         <>
             <Center>
-                <Box bg="" width="60%" mt="75px">
+                <Box width={["100%", "95%", "95%", "90%", "50%"]} mt="75px">
                     <Heading color="green" mb="20px" ml="20">
                         <Text>Your New Playlist</Text>
                     </Heading>
-                    <Flex overflowX="hidden"overflowY="scroll" maxHeight="500px"p="20px"direction="column"  borderRadius="20px" bg="white">
-                    <Divider borderColor="gray.400" orientation="horizontal" colorScheme="primary"/>
+                    <Flex justify="space-between"overflowX="hidden"overflowY="scroll" maxHeight="500px"p="20px"direction="column"  borderRadius="20px" bg="white">
+                        <Divider borderColor="gray.400" orientation="horizontal" colorScheme="primary"/>
                         { userPlaylist.map(song => {
                             const albumImage = song.album.images[0]
                             // console.log(albumImage)
@@ -69,7 +74,7 @@ const Playlist = () => {
                             const songName = song.album.name
                             const yearReleased = song.album.release_date.slice(0, 4)
 
-                            return <Song image={albumImage} title={songName} artist={artistName} album={albumName} year={yearReleased}/>
+                            return <Song key={song.id} image={albumImage} title={songName} artist={artistName} album={albumName} year={yearReleased}/>
                         })}
                     </Flex>
                 </Box>
@@ -90,12 +95,15 @@ const Playlist = () => {
 									onChange={handleChange}
 								/>
 								<Center>
-								<Button onClick={handleCreatePlaylist}size="lg"mt="20px"colorScheme="green">Create</Button>
+									<a href={`https://accounts.spotify.com/authorize?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=http://localhost:3000/Closing/&response_type=token&scope=playlist-modify-public`}>
+										<Button onClick={handleCreatePlaylist}size="lg"mt="20px"colorScheme="green">Create</Button>
+									</a>
 								</Center>
 							</ModalBody>
 						</ModalContent>
                 </Modal>
             </Center>
+            
         </>
     )
 }

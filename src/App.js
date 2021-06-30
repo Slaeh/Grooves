@@ -1,5 +1,6 @@
 import './App.css';
 import Home from './components/Home'
+import Closing from './Closing'
 import Stats from './components/Stats/Stats';
 import Discover from './components/Discover/Discover'
 import Playlist from './components/Playlist/Playlist'
@@ -22,6 +23,9 @@ function App() {
   //State to hold access token
   const [ token , setToken ] = useState('')
 
+  //State to hold playlist name
+  const [ playlistName, setPlaylistName] = useState('')
+
   //Global states to pass to all components
   const globalStates = {
     display: displayName,
@@ -34,6 +38,8 @@ function App() {
     setArtist: setArtists,
     userPlaylist: playlist,
     setUserPlaylist: setPlaylist,
+    playlistName: playlistName,
+    setPlaylistName: setPlaylistName
   }
 
   return (
@@ -44,6 +50,7 @@ function App() {
           <Route path='/Stats' render={() => <Stats />} />
           <Route path='/Discover' render={() => <Discover />} />
           <Route path='/CreatePlaylist' render={() => <Playlist />} />
+          <Route path="/Closing" render={() => <Closing />} />
         </Switch>
       </Router>
     </AppContext.Provider>
