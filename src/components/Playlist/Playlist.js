@@ -26,31 +26,27 @@ const Playlist = () => {
     const { playlistName, setPlaylistName, user, setUser, userPlaylist, setUserPlaylist } = useContext(AppContext)
 	const accessToken = window.sessionStorage.getItem('accessToken')
     
-	//Parses the querystring in the browser and store it into the session
-    const hash = window.location.hash.substring(1).split("&")
-    const playlistToken = hash[0].substring(13)
-    
     // onClick function for Create Playlist button to send API request to create a user playlist
     const handleCreatePlaylist = async () => {
         const createPlaylistResponse = await axios({
 			method: 'post',
 			url: `https://api.spotify.com/v1/users/${user}/playlists`,
 			headers: {
-				'Authorization' : `Bearer ${playlistToken}`
+				'Authorization' : `Bearer ${accessToken}`
 			},
 			data: {
 				name: playlistName
 			}
 		})
+        
 		const playlistId = createPlaylistResponse.data.id
-
         const tracksURI = userPlaylist.map(track => track.uri)
         
         await axios({
             method: 'post',
 			url: `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
 			headers: {
-				'Authorization' : `Bearer ${playlistToken}`,
+				'Authorization' : `Bearer ${accessToken}`,
                 'Content-Type' : 'application/json'
 			},
 			data: {
@@ -60,8 +56,6 @@ const Playlist = () => {
         
     }
     console.log('userID', user)
-	console.log('token', accessToken)
-    // console.log('userPlaylist', userPlaylist)
 
 	// onChange function for controlling playlist title input
 	const handleChange = (e) => setPlaylistName(e.target.value)
@@ -104,9 +98,9 @@ const Playlist = () => {
 									onChange={handleChange}
 								/>
 								<Center>
-									<a href='http://localhost:3000/Closing/'>
+									{/* <a href='http://localhost:3000/Closing/'> */}
 										<Button onClick={handleCreatePlaylist}size="lg"mt="20px"colorScheme="green">Create</Button>
-									</a>
+									{/* </a> */}
 								</Center>
 							</ModalBody>
 						</ModalContent>
