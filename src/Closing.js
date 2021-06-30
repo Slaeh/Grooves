@@ -13,6 +13,7 @@ const Closing = ()=> {
     const { user, setUser, userPlaylist, setUserPlaylist, playlistName, setPlaylistName } = useContext(AppContext)
     console.log(playlistName)
     console.log('user', user)
+    
     // useEffect(() => {
     //     async function getAuthorize() {
     //         await  axios({

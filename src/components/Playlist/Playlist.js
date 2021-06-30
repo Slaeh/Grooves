@@ -31,8 +31,8 @@ const Playlist = () => {
     const playlistToken = hash[0].substring(13)
     
     // onClick function for Create Playlist button to send API request to create a user playlist
-    const handleCreatePlaylist = () => {
-        axios({
+    const handleCreatePlaylist = async () => {
+        const createPlaylistResponse = await axios({
 			method: 'post',
 			url: `https://api.spotify.com/v1/users/${user}/playlists`,
 			headers: {
@@ -42,12 +42,21 @@ const Playlist = () => {
 				name: playlistName
 			}
 		})
-		.then(response => {
-			console.log(response)
-		})
-		.catch(err => {
-			console.log(err)
-		})
+		const playlistId = createPlaylistResponse.data.id
+
+        const tracksURI = userPlaylist.map(track => track.uri)
+        
+        await axios({
+            method: 'post',
+			url: `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+			headers: {
+				'Authorization' : `Bearer ${playlistToken}`,
+                'Content-Type' : 'application/json'
+			},
+			data: {
+				uris: tracksURI
+			}
+        })
         
     }
     console.log('userID', user)
@@ -95,7 +104,7 @@ const Playlist = () => {
 									onChange={handleChange}
 								/>
 								<Center>
-									<a href={`https://accounts.spotify.com/authorize?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=http://localhost:3000/Closing/&response_type=token&scope=playlist-modify-public`}>
+									<a href='http://localhost:3000/Closing/'>
 										<Button onClick={handleCreatePlaylist}size="lg"mt="20px"colorScheme="green">Create</Button>
 									</a>
 								</Center>
