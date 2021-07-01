@@ -1,19 +1,19 @@
-import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios'
-import AppContext from '../AppContext';
-import { Box, Text, Image, Center } from '@chakra-ui/react';
+import React from 'react';
+import { Box, Text, Image, Spacer } from '@chakra-ui/react';
 
 const TrackCard = ({ data }) => {
     return (
         <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-            <Image src={`${data.trackImage}`} draggable='false'/>
-            <Box p="6">
-                <Box d="flex" mt="2" alignItems="center">
-                        <Text>
-                            {data.trackName} - {data.trackArtist}
-                        </Text>
-                </Box>
+            <Image src={`${data.trackImage}`} draggable='false' />
+            <Box d='flex' p="6" mt="2" justifyContent='center' alignItems='center' maxHeight='10px'>
+                <Text
+                    fontWeight="semi-bold"
+                    fontFamily='Signika'
+                >
+                    {data.trackName} - {data.trackArtist}
+                </Text>
             </Box>
+            <Spacer />
         </Box>
     );
 }
