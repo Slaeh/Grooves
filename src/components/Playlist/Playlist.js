@@ -38,7 +38,7 @@ const Playlist = () => {
 				name: playlistName
 			}
 		})
-        
+
 		const playlistId = createPlaylistResponse.data.id
         const tracksURI = userPlaylist.map(track => track.uri)
         
@@ -60,24 +60,34 @@ const Playlist = () => {
 	// onChange function for controlling playlist title input
 	const handleChange = (e) => setPlaylistName(e.target.value)
 
+    // onClick function for trash IconButton
+    // removes a song from userPlaylist when clicked
+    const handleTrashButton = (songToRemove) => {
+        console.log('in handleTrashButton')
+        const playlistAfterSongRemoved = userPlaylist.filter(song => song !== songToRemove)
+
+        setUserPlaylist(playlistAfterSongRemoved)
+    }
+
     return (
         <>
             <Center>
-                <Box width={["100%", "95%", "95%", "90%", "50%"]} mt="75px">
+                <Box width={["100%", "95%", "95%", "90%", "60%"]} mt="75px">
                     <Heading color="green" mb="20px" ml="20">
                         <Text>Your New Playlist</Text>
                     </Heading>
                     <Flex justify="space-between"overflowX="hidden"overflowY="scroll" maxHeight="500px"p="20px"direction="column"  borderRadius="20px" bg="white">
-                        <Divider borderColor="gray.400" orientation="horizontal" colorScheme="primary"/>
+                        <Divider width="95%"borderColor="gray.400" orientation="horizontal" colorScheme="primary"/>
                         { userPlaylist.map(song => {
                             const albumImage = song.album.images[0]
                             // console.log(albumImage)
-                            const albumName = song.name
+                            const songName = song.name
                             const artistName = song.artists[0].name
-                            const songName = song.album.name
+                            const albumName = song.album.name
                             const yearReleased = song.album.release_date.slice(0, 4)
+                            console.log('')
 
-                            return <Song key={song.id} image={albumImage} title={songName} artist={artistName} album={albumName} year={yearReleased}/>
+                            return <Song onClick={() => handleTrashButton(song)} key={song.id} image={albumImage} title={songName} artist={artistName} album={albumName} year={yearReleased}/>
                         })}
                     </Flex>
                 </Box>
