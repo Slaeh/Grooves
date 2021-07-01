@@ -10,7 +10,10 @@ import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '@chakra-ui/
 const Discover = () => {
 
     const [value, setValue] = useState(35)
+
     const handleChange = (value) => setValue(value)
+
+    let audio = new Audio()
 
     const { 
         display,
@@ -27,27 +30,27 @@ const Discover = () => {
     = useContext(AppContext);
 
     // New recommended playlist on each 'artist' state update
-    // useEffect(() => {
-    //     const storage = window.sessionStorage
-    //     const accessToken = storage.getItem('accessToken')
-    //     console.log('state changed')
-    //     console.log(artist)
-    //     const artistIDs = artist.map(a => a.artistId)
-    //     const seeds = artistIDs.join(",")
-    //     axios.get("https://api.spotify.com/v1/recommendations", {
-    //         params: {
-    //             'seed_artists': seeds,
-    //             'limit': value
-    //         },
-    //         headers: {
-    //             'Authorization': 'Bearer ' + accessToken,
-    //         }
-    //     })
-    //     .then(response => {
-    //         console.log(response.data.tracks)
-    //         setUserPlaylist(response.data.tracks)
-    //     })
-    // }, [artist])
+    useEffect(() => {
+        const storage = window.sessionStorage
+        const accessToken = storage.getItem('accessToken')
+        console.log('state changed')
+        console.log(artist)
+        const artistIDs = artist.map(a => a.artistId)
+        const seeds = artistIDs.join(",")
+        axios.get("https://api.spotify.com/v1/recommendations", {
+            params: {
+                'seed_artists': seeds,
+                'limit': value
+            },
+            headers: {
+                'Authorization': 'Bearer ' + accessToken,
+            }
+        })
+        .then(response => {
+            console.log(response.data.tracks)
+            setUserPlaylist(response.data.tracks)
+        })
+    }, [artist])
 
     // Creates final playlist from onClick
     const generatePlaylist = () => {
@@ -114,6 +117,26 @@ const Discover = () => {
                     userPlaylist.map(song => 
                         <div key={song.id}>
                             <p>{song.name}</p>
+                            { song.preview_url == null ?
+                                (<Button isDisabled>
+                                    Unavailable
+                                </Button>)
+                                :
+                                (<Button 
+                                    onMouseOver={() => {
+                                        console.log('hello')
+                                        audio = new Audio(song.preview_url)
+                                        audio.play()
+                                    }}
+                                    onMouseOut={() => {
+                                        console.log('bye')
+                                        audio.pause()
+                                        }}>
+                                    Play
+                                </Button>)
+                            }
+                            <br></br>
+                            <br></br>
                         </div>)
                 ) 
             : null}
