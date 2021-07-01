@@ -1,16 +1,17 @@
-import { Box, useDisclosure } from "@chakra-ui/react"
-import { Heading } from "@chakra-ui/react"
-import { Center, Square, Circle } from "@chakra-ui/react"
-import { Flex, Spacer } from "@chakra-ui/react"
-import { Text } from "@chakra-ui/react"
-import { Button } from "@chakra-ui/react"
-import { Divider } from "@chakra-ui/react"
 import axios from 'axios'
 import Song from './Song'
 import { useContext, useState } from "react"
 import AppContext from '../AppContext'
-import { Input } from "@chakra-ui/react"
-import {
+import { 
+    Box, 
+    useDisclosure,
+    Heading,
+    Center,
+    Flex, 
+    Text,
+    Button,
+    Divider,
+    Input,
     Modal,
     ModalOverlay,
     ModalContent,
@@ -18,16 +19,18 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-  } from "@chakra-ui/react"
+} from "@chakra-ui/react"
+
 
 const Playlist = () => {
-	const REACT_APP_CLIENT_ID = process.env.REACT_APP_CLIENT_ID
+	
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { playlistName, setPlaylistName, user, setUser, userPlaylist, setUserPlaylist } = useContext(AppContext)
 	const accessToken = window.sessionStorage.getItem('accessToken')
     
     // onClick function for Create Playlist button to send API request to create a user playlist
     const handleCreatePlaylist = async () => {
+        // spotify API request to create an Empty playlist to a user's account
         const createPlaylistResponse = await axios({
 			method: 'post',
 			url: `https://api.spotify.com/v1/users/${user}/playlists`,
@@ -42,6 +45,8 @@ const Playlist = () => {
 		const playlistId = createPlaylistResponse.data.id
         const tracksURI = userPlaylist.map(track => track.uri)
         
+        // spotify API request to add a list of songs to the empty playlist created
+        // from the above API request 
         await axios({
             method: 'post',
 			url: `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
@@ -55,8 +60,7 @@ const Playlist = () => {
         })
         
     }
-    console.log('userID', user)
-
+   
 	// onChange function for controlling playlist title input
 	const handleChange = (e) => setPlaylistName(e.target.value)
 
@@ -69,6 +73,17 @@ const Playlist = () => {
         setUserPlaylist(playlistAfterSongRemoved)
     }
 
+    // list of songs to render in main container
+    const listOfSongs = userPlaylist.map(song => {
+        const albumImage = song.album.images[0]
+        const songName = song.name
+        const artistName = song.artists[0].name
+        const albumName = song.album.name
+        const yearReleased = song.album.release_date.slice(0, 4)
+    
+        return <Song onClick={() => handleTrashButton(song)} key={song.id} image={albumImage} title={songName} artist={artistName} album={albumName} year={yearReleased}/>
+    })
+    
     return (
         <>
             <Center>
@@ -78,17 +93,7 @@ const Playlist = () => {
                     </Heading>
                     <Flex justify="space-between"overflowX="hidden"overflowY="scroll" maxHeight="500px"p="20px"direction="column"  borderRadius="20px" bg="white">
                         <Divider width="95%"borderColor="gray.400" orientation="horizontal" colorScheme="primary"/>
-                        { userPlaylist.map(song => {
-                            const albumImage = song.album.images[0]
-                            // console.log(albumImage)
-                            const songName = song.name
-                            const artistName = song.artists[0].name
-                            const albumName = song.album.name
-                            const yearReleased = song.album.release_date.slice(0, 4)
-                            console.log('')
-
-                            return <Song onClick={() => handleTrashButton(song)} key={song.id} image={albumImage} title={songName} artist={artistName} album={albumName} year={yearReleased}/>
-                        })}
+                        {listOfSongs}
                     </Flex>
                 </Box>
             </Center>
@@ -108,9 +113,9 @@ const Playlist = () => {
 									onChange={handleChange}
 								/>
 								<Center>
-									{/* <a href='http://localhost:3000/Closing/'> */}
+									<a href='http://localhost:3000/Closing/'>
 										<Button onClick={handleCreatePlaylist}size="lg"mt="20px"colorScheme="green">Create</Button>
-									{/* </a> */}
+									</a>
 								</Center>
 							</ModalBody>
 						</ModalContent>
