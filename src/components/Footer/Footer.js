@@ -15,6 +15,7 @@ const Footer = () => {
             pr={20}
             pt={20}
             bg='black'
+            bottom='0'
         >
             <Stack spacing="10" divider={<StackDivider />}>
                 <Stack

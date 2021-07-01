@@ -103,6 +103,17 @@ const Stats = () => {
     else {
         return (
             <Box>
+                {/* Return user's display name */}
+                <Center>
+                <Text mb={4}
+                        mt={10}
+                        bgClip="text" fontSize="70px"
+                        bgGradient="linear(to-l, #01baef, #20bf55)"
+                        fontWeight="bold">
+                        Hello, {display}
+                    </Text>
+                </Center>
+
                 {/* Return top tracks */}
                 <Center>
                     <Text mb={4}
@@ -110,14 +121,16 @@ const Stats = () => {
                         bgClip="text" fontSize="70px"
                         bgGradient="linear(to-l, #20bf55, #01baef )"
                         fontWeight="bold">
-                        Your Top Tracks</Text>
+                        Your Top Tracks
+                    </Text>
                 </Center>
-                <Flicking renderOnlyVisible={false}>
-                    {track.slice(0).reverse().map(song =>
-                        <div className="flicking-panel" key={song.trackId}>
-                            <TrackCard class='panel' data={song} />
-                        </div>
 
+                {/* Carousel for songs */}
+                <Flicking renderOnlyVisible={false} circular={true}>
+                    {track.slice(0).reverse().map(song =>
+                        <Flex className="flicking-panel" key={song.trackId} style={{ width: "100%" }} justifyContent={'center'}>
+                            <TrackCard class='panel' data={song} />
+                        </Flex>
                     )}
                 </Flicking>
 
@@ -131,14 +144,16 @@ const Stats = () => {
                         Your Top Artists
                     </Text>
                 </Center>
-                <Flicking renderOnlyVisible={false}>
-                    {artist.slice(0).reverse().map(artists =>
-                        <div className="flicking-panel" key={artists.artistId} >
-                            <ArtistCard class='panel' data={artists} />
-                        </div>
 
+                {/* Carousel for artists */}
+                <Flicking renderOnlyVisible={false} circular={true}>
+                    {artist.slice(0).reverse().map(artists =>
+                        <Flex className="flicking-panel" key={artists.artistId} style={{ width: "100%" }} justifyContent={'center'} >
+                            <ArtistCard class='panel' data={artists} />
+                        </Flex>
                     )}
                 </Flicking>
+
                 <Center pt={10} pb={10}>
                     <Link to="/Discover">
                         <Button label="Discover" bgGradient="linear(to-l, #01baef, #20bf55)" fontWeight="bold">

@@ -1,19 +1,21 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Box, Center, Image, Text } from '@chakra-ui/react';
+import React from 'react';
+import { Box, Image, Text, Spacer } from '@chakra-ui/react';
 
 const ArtistCard = ({ data }) => {
     return (
         <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" >
-            <Image src={`${data.artistImage}`} draggable='false'/>
-            <Box p='6'>
-                <Box d="flex" mt="2" alignItems="center">
-                    <Text>
-                        {data.artistName}
-                    </Text>
-                </Box>
+            <Image src={`${data.artistImage}`} draggable='false' />
+            <Box d="flex" p='6' mt="2" justifyContent='center' alignItems='center' maxHeight='10px'>
+                <Text
+                    fontWeight="semi-bold"
+                    fontFamily='Signika'
+                >
+                    {data.artistName}
+                </Text>
             </Box>
+            <Spacer />
         </Box>
-    )
+    );
 }
 
 
