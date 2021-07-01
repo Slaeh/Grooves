@@ -9,10 +9,12 @@ const Navbar = () => {
                 <Heading size="lg" color='white'>Spotify Project</Heading>
             </Box>
             <Spacer />
+            <Flex>
             <Box p='2'>
                 <Button colorScheme="green" mr="5" size="md">About</Button>
                 <Button colorScheme="green" size="md">Log in</Button>
             </Box>
+            </Flex>
         </Flex>
 
     );

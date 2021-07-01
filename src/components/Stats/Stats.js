@@ -4,7 +4,8 @@ import AppContext from '../AppContext';
 import ArtistCard from './ArtistCard';
 import TrackCard from './TrackCard';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Button, Text, Box, Flex, Center } from '@chakra-ui/react';
+import { Button, Text, Box, Flex, Center, Tooltip } from '@chakra-ui/react';
+import { InfoIcon } from '@chakra-ui/icons';
 import Flicking from "@egjs/react-flicking";
 import "@egjs/react-flicking/dist/flicking.css";
 
@@ -91,7 +92,7 @@ const Stats = () => {
             })
     }, [])
 
-    { console.log(track) }
+
     //Make sure we have atleast track data before we render
     if (track.length !== 5 || artist.length !== 5) {
         return (
@@ -105,28 +106,46 @@ const Stats = () => {
             <Box>
                 {/* Return user's display name */}
                 <Center>
-                <Text mb={4}
+                    
+                    <Text 
+                        mb={4}
                         mt={10}
                         bgClip="text" fontSize="70px"
                         bgGradient="linear(to-l, #01baef, #20bf55)"
-                        fontWeight="bold">
+                        fontWeight="bold"
+                    >
                         Hello, {display}
                     </Text>
+                    
                 </Center>
 
                 {/* Return top tracks */}
                 <Center>
-                    <Text mb={4}
+                    <Text 
+                        mb={4}
                         mt={10}
                         bgClip="text" fontSize="70px"
                         bgGradient="linear(to-l, #20bf55, #01baef )"
-                        fontWeight="bold">
+                        fontWeight="bold"
+                    >
                         Your Top Tracks
                     </Text>
+                    
+                </Center>
+                
+                {/* Tooltip for tracks */}
+                <Center pt={2} pb={10}>
+                    <Tooltip 
+                        hasArrow label="Swipe to see more tracks" 
+                        bg="gray.300" 
+                        color="black"
+                    >
+                        <InfoIcon />
+                    </Tooltip>
                 </Center>
 
                 {/* Carousel for songs */}
-                <Flicking renderOnlyVisible={false} circular={true}>
+                <Flicking renderOnlyVisible={false}>
                     {track.slice(0).reverse().map(song =>
                         <Flex className="flicking-panel" key={song.trackId} style={{ width: "100%" }} justifyContent={'center'}>
                             <TrackCard class='panel' data={song} />
@@ -140,20 +159,30 @@ const Stats = () => {
                         mt={10}
                         bgClip="text" fontSize="70px"
                         bgGradient="linear(to-l, #01baef, #20bf55)"
-                        fontWeight="bold">
+                        fontWeight="bold"
+                    >
                         Your Top Artists
                     </Text>
                 </Center>
 
+                {/* Tooltip for artists */}
+                <Center pt={2} pb={10}>
+                    <Tooltip label='right' hasArrow label="Swipe to see more artists" bg="gray.300" color="black">
+                        <InfoIcon />
+                    </Tooltip>
+                </Center>
+
                 {/* Carousel for artists */}
-                <Flicking renderOnlyVisible={false} circular={true}>
-                    {artist.slice(0).reverse().map(artists =>
+                <Flicking renderOnlyVisible={false}>
+                    {artist.slice(0).reverse().map((artists, index) =>
                         <Flex className="flicking-panel" key={artists.artistId} style={{ width: "100%" }} justifyContent={'center'} >
-                            <ArtistCard class='panel' data={artists} />
+                            <ArtistCard class='panel' data={artists} ranking={(artist.length - index)} />
                         </Flex>
+                        
                     )}
                 </Flicking>
-
+                
+                {/* Redirect to discover page */}
                 <Center pt={10} pb={10}>
                     <Link to="/Discover">
                         <Button label="Discover" bgGradient="linear(to-l, #01baef, #20bf55)" fontWeight="bold">
