@@ -57,6 +57,7 @@ export default function ArtistImage({ a }) {
                     <Text>{a.artistName}</Text>
                 </Center>
                 <Image
+                    draggable={false}
                     _hover={{ background: '#1DB954', opacity: '50%' }}
                     maxWidth={'360px'}
                     maxHeight={'360px'}
@@ -64,9 +65,11 @@ export default function ArtistImage({ a }) {
                 />
             </Box>
             <br></br>
-            <Center>
+            { artist.length === 1 ? null :
+            (<Center>
                 <Button onClick={removeArtist}>Remove Artist</Button>
-            </Center>
+            </Center>)
+            }
         </div>
     );
 }

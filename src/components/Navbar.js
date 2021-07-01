@@ -3,6 +3,9 @@ import { Flex, Box, Spacer, Heading, } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/button';
 
 const Navbar = () => {
+    const storage = window.sessionStorage
+    const accessToken = storage.getItem('accessToken')
+    console.log(accessToken)
     return (
         <Flex pt={5} pl={5} pr={5} pb={10} bg='black'>
             <Box p='2'>
@@ -11,7 +14,12 @@ const Navbar = () => {
             <Spacer />
             <Box p='2'>
                 <Button colorScheme="green" mr="5" size="md">About</Button>
-                <Button colorScheme="green" size="md">Log in</Button>
+                {
+                accessToken == null ? 
+                    (<Button colorScheme="green" size="md">Login</Button>)
+                        :
+                    (<Button colorScheme="green" size="md">Logout</Button>)
+                }
             </Box>
         </Flex>
 

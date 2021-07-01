@@ -9,7 +9,7 @@ import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '@chakra-ui/
 
 const Discover = () => {
 
-    const [value, setValue] = useState(20)
+    const [value, setValue] = useState(35)
     const handleChange = (value) => setValue(value)
 
     const { 
@@ -27,7 +27,30 @@ const Discover = () => {
     = useContext(AppContext);
 
     // New recommended playlist on each 'artist' state update
-    useEffect(() => {
+    // useEffect(() => {
+    //     const storage = window.sessionStorage
+    //     const accessToken = storage.getItem('accessToken')
+    //     console.log('state changed')
+    //     console.log(artist)
+    //     const artistIDs = artist.map(a => a.artistId)
+    //     const seeds = artistIDs.join(",")
+    //     axios.get("https://api.spotify.com/v1/recommendations", {
+    //         params: {
+    //             'seed_artists': seeds,
+    //             'limit': value
+    //         },
+    //         headers: {
+    //             'Authorization': 'Bearer ' + accessToken,
+    //         }
+    //     })
+    //     .then(response => {
+    //         console.log(response.data.tracks)
+    //         setUserPlaylist(response.data.tracks)
+    //     })
+    // }, [artist])
+
+    // Creates final playlist from onClick
+    const generatePlaylist = () => {
         const storage = window.sessionStorage
         const accessToken = storage.getItem('accessToken')
         console.log('state changed')
@@ -37,7 +60,7 @@ const Discover = () => {
         axios.get("https://api.spotify.com/v1/recommendations", {
             params: {
                 'seed_artists': seeds,
-                'limit': 20
+                'limit': value
             },
             headers: {
                 'Authorization': 'Bearer ' + accessToken,
@@ -46,12 +69,16 @@ const Discover = () => {
         .then(response => {
             console.log(response.data.tracks)
             setUserPlaylist(response.data.tracks)
-        })
-    }, [artist])
+        })    
+    }
 
     return (
         <div>   
             <div>
+            <Center>
+            <Heading>Pick Your Artists</Heading>
+            </Center>
+
             <Center>
                 <SimpleGrid py={6} columns={3} spacingX="15px" spacingY="15px">
                     {artist.map(a =>
@@ -64,7 +91,7 @@ const Discover = () => {
 
             <Container centerContent>
             <Heading>Select Amount of Songs</Heading>
-            <Slider flex="1" defaultValue={20} min={20} max={100} step={10} onChange={handleChange}>
+            <Slider flex="1" defaultValue={35} min={20} max={50} step={5} onChange={handleChange}>
                 <SliderTrack bg="lightgreen">
                     <SliderFilledTrack bg="green" />
                 </SliderTrack>
@@ -75,7 +102,7 @@ const Discover = () => {
 
             <div>
                 <Center>
-                <Link to="/CreatePlaylist">
+                <Link to="/CreatePlaylist" onClick={generatePlaylist}>
                     <Button label="CreatePlaylist">
                         Generate A Playlist
                     </Button>
