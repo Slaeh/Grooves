@@ -3,7 +3,6 @@ import * as React from 'react'
 import { Copyright } from './Copyright'
 import { LinkGrid } from './LinkGrid'
 import { Logo } from './Logo'
-import { SocialMediaLinks } from './SocialMediaLinks'
 
 const Footer = () => {
     return (

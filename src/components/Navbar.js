@@ -12,6 +12,7 @@ const Navbar = () => {
                 <Heading size="lg" color='white'>Spotify Project</Heading>
             </Box>
             <Spacer />
+            <Flex>
             <Box p='2'>
                 <Button colorScheme="green" mr="5" size="md">About</Button>
                 {
@@ -21,6 +22,7 @@ const Navbar = () => {
                     (<Button colorScheme="green" size="md">Logout</Button>)
                 }
             </Box>
+            </Flex>
         </Flex>
 
     );
