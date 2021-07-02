@@ -57,6 +57,7 @@ const Stats = () => {
                         artistName: response.data.items[i].name,
                         artistImage: response.data.items[i].images[0].url,
                         artistId: response.data.items[i].id,
+                        artistLink: response.data.items[i].external_urls.spotify
                     }
                     artistArr.push(artistObject)
                 }

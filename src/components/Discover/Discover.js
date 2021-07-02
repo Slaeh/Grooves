@@ -10,8 +10,11 @@ import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '@chakra-ui/
 const Discover = () => {
 
     const [value, setValue] = useState(35)
+    const [hovering, setHovering] = useState(false)
 
     const handleChange = (value) => setValue(value)
+
+    const handleHover = () => setHovering(!hovering)
 
     let audio = new Audio()
 
@@ -113,7 +116,7 @@ const Discover = () => {
                 </Center>
             </div>
 
-            {userPlaylist.length ? (
+            {/* {userPlaylist.length ? (
                     userPlaylist.map(song => 
                         <div key={song.id}>
                             <p>{song.name}</p>
@@ -139,7 +142,7 @@ const Discover = () => {
                             <br></br>
                         </div>)
                 ) 
-            : null}
+            : null} */}
         </div>
     );
 }
