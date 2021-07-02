@@ -21,7 +21,7 @@ const Home = () =>  {
     } 
     = useContext(AppContext);
     return (
-        <Box>
+        <Box >
             <Stack spacing="-30px">
                 <Center>
                     <Text mb={4}

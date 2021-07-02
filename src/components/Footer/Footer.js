@@ -1,67 +1,50 @@
-import { Box, Stack, StackDivider } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import * as React from 'react'
 import { Copyright } from './Copyright'
 import { LinkGrid } from './LinkGrid'
 import { Logo } from './Logo'
+import { motion } from "framer-motion"
 
 const Footer = () => {
     return (
-        <Box
+        <Flex
             as="footer"
             role="contentinfo"
             mx="auto"
-            pl={20}
-            pr={20}
-            pt={20}
             bg='black'
             bottom='0'
+            justifyContent='space-between'
+            alignItems='center'
+            direction={['column', 'column', 'row', 'row']}
         >
-            <Stack spacing="10" divider={<StackDivider />}>
-                <Stack
-                    direction={{
-                        base: 'column',
-                        lg: 'row',
-                    }}
+            <Box pl={20}
+                pr={20}
+                mt={['25px', '25px', '0px']}
+            >
+                <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                >
+                    <a href='https://spotify.com/' target='_blank'>
+                        <Logo />
+                    </a>
+                </motion.button>
+            </Box>
+            <Flex>
+                <LinkGrid
+                    alignSelf='flex-end'
+                    pl={20}
+                    pr={20}
+                    pt={20}
+                    pb={20}
                     spacing={{
                         base: '10',
+                        md: '20',
                         lg: '28',
                     }}
-                >
-                    <Box flex="1">
-                        <Logo />
-                    </Box>
-                    <Stack
-                        direction={{
-                            base: 'column',
-                            md: 'row',
-                        }}
-                        spacing={{
-                            base: '10',
-                            md: '20',
-                        }}
-                    >
-                        <LinkGrid
-                            spacing={{
-                                base: '10',
-                                md: '20',
-                                lg: '28',
-                            }}
-                            flex="1"
-                        />
-                    </Stack>
-                </Stack>
-                <Stack
-                    direction={{
-                        base: 'column-reverse',
-                        md: 'row',
-                    }}
-                    justifyContent="space-between"
-                    alignItems="center"
-                >
-                    <Copyright />
-                </Stack>
-            </Stack>
-        </Box>
+                />
+            </Flex>
+        </Flex>
     )
 }
 

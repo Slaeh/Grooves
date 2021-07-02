@@ -2,8 +2,9 @@ import { chakra, useColorModeValue, useToken, Image } from '@chakra-ui/react'
 import * as React from 'react'
 
 export const Logo = (props) => {
-  const [white, black] = useToken('colors', ['white', 'gray.800'])
   return (
-    <Image src='../Spotify.svg' boxSize='200px'/> 
+    
+      <Image src='../Spotify.svg' maxHeight='100px' maxWidth='200px' borderRadius='full' draggable='false'/>
+    
   )
 }

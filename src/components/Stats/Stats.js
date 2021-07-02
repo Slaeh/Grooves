@@ -96,7 +96,7 @@ const Stats = () => {
     //Make sure we have atleast track data before we render
     if (track.length !== 5 || artist.length !== 5) {
         return (
-            <div>
+            <div style={{backgroundImage: 'url(../spotify_waves_black_bg.png)', backgroundRepeat: 'no-repeat',}} >
                 Still Loading
             </div>
         )
@@ -106,8 +106,8 @@ const Stats = () => {
             <Box>
                 {/* Return user's display name */}
                 <Center>
-                    
-                    <Text 
+
+                    <Text
                         mb={4}
                         mt={10}
                         bgClip="text" fontSize="70px"
@@ -116,12 +116,12 @@ const Stats = () => {
                     >
                         Hello, {display}
                     </Text>
-                    
+
                 </Center>
 
                 {/* Return top tracks */}
                 <Center>
-                    <Text 
+                    <Text
                         mb={4}
                         mt={10}
                         bgClip="text" fontSize="70px"
@@ -130,14 +130,14 @@ const Stats = () => {
                     >
                         Your Top Tracks
                     </Text>
-                    
+
                 </Center>
-                
+
                 {/* Tooltip for tracks */}
                 <Center pt={2} pb={10}>
-                    <Tooltip 
-                        hasArrow label="Swipe to see more tracks" 
-                        bg="gray.300" 
+                    <Tooltip
+                        hasArrow label="Swipe to see more tracks"
+                        bg="gray.300"
                         color="black"
                     >
                         <InfoIcon />
@@ -146,9 +146,9 @@ const Stats = () => {
 
                 {/* Carousel for songs */}
                 <Flicking renderOnlyVisible={false}>
-                    {track.slice(0).reverse().map(song =>
+                    {track.slice(0).reverse().map((song, index) =>
                         <Flex className="flicking-panel" key={song.trackId} style={{ width: "100%" }} justifyContent={'center'}>
-                            <TrackCard class='panel' data={song} />
+                            <TrackCard class='panel' data={song} ranking={track.length - index} />
                         </Flex>
                     )}
                 </Flicking>
@@ -178,14 +178,31 @@ const Stats = () => {
                         <Flex className="flicking-panel" key={artists.artistId} style={{ width: "100%" }} justifyContent={'center'} >
                             <ArtistCard class='panel' data={artists} ranking={(artist.length - index)} />
                         </Flex>
-                        
+
                     )}
                 </Flicking>
-                
+
                 {/* Redirect to discover page */}
+                <Center>
+                    <Text
+                        mb={4}
+                        mt={10}
+                        bgClip="text" fontSize="70px"
+                        bgGradient="linear(to-l, #20bf55, #01baef )"
+                        fontWeight="bold"
+                    >
+                        Get a playlist personalized for you
+                    </Text>
+                </Center>
                 <Center pt={10} pb={10}>
                     <Link to="/Discover">
-                        <Button label="Discover" bgGradient="linear(to-l, #01baef, #20bf55)" fontWeight="bold">
+                        <Button
+                            label="Discover"
+                            bgGradient="linear(to-l, #01baef, #20bf55)"
+                            fontWeight="bold"
+                            size="lg"
+                            variant="solid"
+                        >
                             Discover
                         </Button>
                     </Link>
