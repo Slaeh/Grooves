@@ -4,9 +4,10 @@ import {
     Text,
     Center,
     Heading,
-    Button
+    Button,
+    Flex,
+    Stack
 } from '@chakra-ui/react';
-import axios from 'axios';
 import AppContext from '../AppContext';
 import React, { useState, useEffect, useContext } from 'react';
 
@@ -46,30 +47,37 @@ export default function ArtistImage({ a }) {
 
     return (
         <div>
-            <Box
-                boxShadow="dark-lg"
-                as="button"
-                onClick={handleClick}
-                _hover={{ fontWeight: 'bold', color: 'white', background: '#1DB954', opacity: '50%', visibility: 'visible' }}
-                onMouseOver={handleMouse}
-            >
-                <Center>
-                    <Text>{a.artistName}</Text>
-                </Center>
-                <Image
-                    draggable={false}
-                    _hover={{ background: '#1DB954', opacity: '50%' }}
-                    maxWidth={'360px'}
-                    maxHeight={'360px'}
-                    src={a.artistImage}
-                />
-            </Box>
-            <br></br>
-            { artist.length === 1 ? null :
-            (<Center>
-                <Button onClick={removeArtist}>Remove Artist</Button>
-            </Center>)
-            }
+            <Flex w="360px" pos="relative" overflow="hidden">
+                <Flex h="360px" w="full">
+                    <Box boxSize="full" shadow="md" flex="none">
+                        <Image
+                            draggable={false}
+                            // _hover={{ background: '#1DB954', opacity: '20%' }}
+                            maxWidth={'360px'}
+                            maxHeight={'360px'}
+                            src={a.artistImage}
+                        />
+                        <Stack
+                            p="2px 12px"
+                            pos="absolute"
+                            bottom="24px"
+                            textAlign="center"
+                            w="full"
+                            color="white"
+                        >
+                            <Text fontSize="2xl">{a.artistName}</Text>
+                            <a href={a.artistLink}>
+                                <Text color="green.300">Learn More</Text>
+                            </a>
+                            {artist.length === 1 ? null :
+                                (
+                                    <Text style={{cursor: "pointer"}} color="red.300" onClick={removeArtist}>Remove Artist</Text>
+                                )
+                            }
+                        </Stack>
+                    </Box>
+                </Flex>
+            </Flex>
         </div>
     );
 }
