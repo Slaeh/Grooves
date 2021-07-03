@@ -7,7 +7,7 @@ const Navbar = () => {
     const accessToken = storage.getItem('accessToken')
     console.log(accessToken)
     return (
-        <Flex pt={5} pl={5} pr={5} pb={10} bg='black'>
+        <Flex pt={5} pl={5} pr={5} pb={10} bg='black' top='0'>
             <Box p='2'>
                 <Heading size="lg" color='white'>Spotify Project</Heading>
             </Box>

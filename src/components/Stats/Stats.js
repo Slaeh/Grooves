@@ -4,7 +4,7 @@ import AppContext from '../AppContext';
 import ArtistCard from './ArtistCard';
 import TrackCard from './TrackCard';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Button, Text, Box, Flex, Center, Tooltip } from '@chakra-ui/react';
+import { Button, Text, Box, Flex, Center, Tooltip, Spinner } from '@chakra-ui/react';
 import { InfoIcon } from '@chakra-ui/icons';
 import Flicking from "@egjs/react-flicking";
 import "@egjs/react-flicking/dist/flicking.css";
@@ -97,9 +97,10 @@ const Stats = () => {
     //Make sure we have atleast track data before we render
     if (track.length !== 5 || artist.length !== 5) {
         return (
-            <div style={{backgroundImage: 'url(../spotify_waves_black_bg.png)', backgroundRepeat: 'no-repeat',}} >
-                Still Loading
-            </div>
+            <Center pt={20} pb={20}>
+                <Spinner size="xl" color='green'>
+                </Spinner>
+            </Center>
         )
     }
     else {
@@ -146,7 +147,7 @@ const Stats = () => {
                 </Center>
 
                 {/* Carousel for songs */}
-                <Flicking renderOnlyVisible={false}>
+                <Flicking renderOnlyVisible={false} >
                     {track.slice(0).reverse().map((song, index) =>
                         <Flex className="flicking-panel" key={song.trackId} style={{ width: "100%" }} justifyContent={'center'}>
                             <TrackCard class='panel' data={song} ranking={track.length - index} />
