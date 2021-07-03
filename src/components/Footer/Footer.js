@@ -10,7 +10,6 @@ const Footer = () => {
         <Flex
             as="footer"
             role="contentinfo"
-            mx="auto"
             bg='black'
             bottom='0'
             justifyContent='space-between'

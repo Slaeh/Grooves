@@ -1,9 +1,11 @@
-import { ButtonGroup, IconButton } from '@chakra-ui/react'
+import { Link } from '@chakra-ui/react'
 import * as React from 'react'
 import { FaGithub } from 'react-icons/fa'
 
-export const SocialMediaLinks = (props) => (
-  <ButtonGroup variant="ghost" color="white" {...props}>
-    <IconButton as="a" href="#" aria-label="GitHub" icon={<FaGithub fontSize="50px" />} />
-  </ButtonGroup>
+export const SocialMediaLinks = () => (
+  <Link
+    color='white'
+    _hover={{ color: "#1DB954" }}>
+    <FaGithub fontSize="60px" borderRadius='0' />
+  </Link>
 )
