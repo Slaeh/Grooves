@@ -6,6 +6,8 @@ import Discover from './components/Discover/Discover'
 import Playlist from './components/Playlist/Playlist'
 import React, { useState } from 'react';
 import AppContext from './components/AppContext';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer/Footer'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
@@ -45,6 +47,7 @@ function App() {
   return (
     <AppContext.Provider value={globalStates}>
       <Router>
+      <Navbar />
         <Switch>
           <Route exact path='/' render={() => <Home />} />
           <Route path='/Stats' render={() => <Stats />} />
@@ -53,6 +56,7 @@ function App() {
           <Route path="/Closing" render={() => <Closing />} />
         </Switch>
       </Router>
+      <Footer />
     </AppContext.Provider>
   );
 }
