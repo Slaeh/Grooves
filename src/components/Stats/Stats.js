@@ -8,6 +8,7 @@ import { Button, Text, Box, Flex, Center, Tooltip, Spinner } from '@chakra-ui/re
 import { InfoIcon } from '@chakra-ui/icons';
 import Flicking from "@egjs/react-flicking";
 import "@egjs/react-flicking/dist/flicking.css";
+import { motion } from "framer-motion"
 
 const Stats = () => {
     const {
@@ -76,6 +77,7 @@ const Stats = () => {
             }
         })
             .then(response => {
+                console.log(response)
                 const tracksArr = []
                 for (let i = 0; i < 5; i++) {
                     const trackObject = {
@@ -150,13 +152,16 @@ const Stats = () => {
                 <Flicking renderOnlyVisible={false} >
                     {track.slice(0).reverse().map((song, index) =>
                         <Flex className="flicking-panel" key={song.trackId} style={{ width: "100%" }} justifyContent={'center'}>
-                            <TrackCard class='panel' data={song} ranking={track.length - index} />
+                            <TrackCard class='panel' data={song} ranking={track.length - index}></TrackCard>
                         </Flex>
                     )}
                 </Flicking>
 
                 {/* Return top artists */}
                 <Center>
+                    <motion.div
+                        transition={{ duration: 0.5 }}
+                    >
                     <Text mb={4}
                         mt={10}
                         bgClip="text" fontSize="70px"
@@ -165,6 +170,7 @@ const Stats = () => {
                     >
                         Your Top Artists
                     </Text>
+                    </motion.div>
                 </Center>
 
                 {/* Tooltip for artists */}
