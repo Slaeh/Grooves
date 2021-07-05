@@ -6,6 +6,6 @@ export const SocialMediaLinks = () => (
   <Link
     color='white'
     _hover={{ color: "#1DB954" }}>
-    <FaGithub fontSize="60px" borderRadius='0' />
+    <FaGithub fontSize="60px" />
   </Link>
 )

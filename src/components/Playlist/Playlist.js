@@ -82,8 +82,9 @@ const Playlist = () => {
         const artistName = song.artists[0].name
         const albumName = song.album.name
         const yearReleased = song.album.release_date.slice(0, 4)
+        const previewAudio = song.preview_url
     
-        return <Song onClick={() => handleTrashButton(song)} key={song.id} image={albumImage} title={songName} artist={artistName} album={albumName} year={yearReleased}/>
+        return <Song onClick={() => handleTrashButton(song)} key={song.id} image={albumImage} title={songName} artist={artistName} album={albumName} year={yearReleased} previewAudio={previewAudio} />
     })
     
     return (

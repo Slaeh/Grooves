@@ -6,18 +6,42 @@ import { Center } from "@chakra-ui/react"
 import { Image, Box } from "@chakra-ui/react"
 import { Flex, Spacer } from "@chakra-ui/react"
 
-const Song = ({ onClick, image, title, artist, album, year }) =>  ( 
+const Song = ({ onClick, image, title, artist, album, year, previewAudio }) => {
+    let audio = new Audio()
+    return ( 
     <>
     <Flex p="10px"align="center">
-        <Image
-            src={image.url} 
-            alt="album"
-            boxSize={['50px', '79px']}
-            draggable="false"
-        />
-        <Box m={['5px', '5px']}width='100px' textAlign="left">
-            <Text fontWeight="bold" fontSize={['11px', '14px']}>{title}</Text>
-        </Box>
+        {
+            previewAudio != null ?
+            (
+                <Image
+                src={image.url} 
+                alt="album"
+                boxSize={['50px', '79px']}
+                draggable="false"
+                onMouseOver={() => {
+                    console.log('hello')
+                    audio = new Audio(previewAudio)
+                    audio.play()
+                }}
+                onMouseOut={() => {
+                    console.log('bye')
+                    audio.pause()
+                }}
+                />
+            )
+            :
+            (
+                <Image
+                src={image.url} 
+                alt="album"
+                boxSize={['50px', '79px']}
+                draggable="false"
+                opacity="25%"
+                />
+            )
+        }
+        <Box m={['5px', '5px']}width='100px' textAlign="left"><Text fontWeight="bold" fontSize={['11px', '14px']}>{title}</Text></Box>
         <Spacer />
         <Box  m={['5px', '5px']}width="100px" textAlign="center">
             <Text fontWeight="bold" fontSize={['11px', '14px']}>{artist}</Text>
@@ -39,6 +63,7 @@ const Song = ({ onClick, image, title, artist, album, year }) =>  (
         <Divider size="50px"width="90%"borderColor="gray.500" orientation="horizontal"/>
     </Center>
     </>
-)
+    )
+}
 
 export default Song
