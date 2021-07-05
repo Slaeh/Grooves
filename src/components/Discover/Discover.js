@@ -10,13 +10,8 @@ import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '@chakra-ui/
 const Discover = () => {
 
     const [value, setValue] = useState(35)
-    const [hovering, setHovering] = useState(false)
 
     const handleChange = (value) => setValue(value)
-
-    const handleHover = () => setHovering(!hovering)
-
-    let audio = new Audio()
 
     const { 
         display,
@@ -115,34 +110,6 @@ const Discover = () => {
                 </Link>
                 </Center>
             </div>
-
-            {/* {userPlaylist.length ? (
-                    userPlaylist.map(song => 
-                        <div key={song.id}>
-                            <p>{song.name}</p>
-                            { song.preview_url == null ?
-                                (<Button isDisabled>
-                                    Unavailable
-                                </Button>)
-                                :
-                                (<Button 
-                                    onMouseOver={() => {
-                                        console.log('hello')
-                                        audio = new Audio(song.preview_url)
-                                        audio.play()
-                                    }}
-                                    onMouseOut={() => {
-                                        console.log('bye')
-                                        audio.pause()
-                                        }}>
-                                    Play
-                                </Button>)
-                            }
-                            <br></br>
-                            <br></br>
-                        </div>)
-                ) 
-            : null} */}
         </div>
     );
 }
