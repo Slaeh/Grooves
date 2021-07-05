@@ -2,6 +2,8 @@ import axios from 'axios'
 import Song from './Song'
 import { useContext, useState } from "react"
 import AppContext from '../AppContext'
+import bgImage from '../../images/spotify-black-bg.png'
+import whiteBgImage from '../../images/spotify-white2-bg.png'
 import { 
     Box, 
     useDisclosure,
@@ -86,21 +88,22 @@ const Playlist = () => {
     })
     
     return (
-        <>
+        <Box backgroundImage={`url(${whiteBgImage})`} backgroundRepeat="no-repeat" bgSize="contain 100%" bgPosition="right">
             <Center>
-                <Box width={["100%", "95%", "95%", "90%", "60%"]} mt="75px">
+                <Box width={["95%", "95%", "95%", "90%", "59%"]} mt="75px">
+                    {/* <Center></Center> */}
                     <Heading color="green" mb="20px" ml="20">
-                        <Text>Your New Playlist</Text>
+                        <Text mr="30px" color="black">Your New Playlist</Text>
                     </Heading>
-                    <Flex justify="space-between"overflowX="hidden"overflowY="scroll" maxHeight="500px"p="20px"direction="column"  borderRadius="20px" bg="white">
+                    <Flex  justify="space-between"overflowX="hidden"overflowY="scroll" maxHeight="500px"p="20px" pr="0px"direction="column"  borderRadius="30px" bg="#e6e6e6" boxShadow="dark-lg">
                         <Divider width="95%"borderColor="gray.400" orientation="horizontal" colorScheme="primary"/>
                         {listOfSongs}
                     </Flex>
                 </Box>
             </Center>
             <Center>
-                <Button mb="50px"mt="75px"size="lg"colorScheme="green" borderRadius="20px" onClick={onOpen}>
-                    <Text fontSize="24px">Create Playlist</Text>
+                <Button mb="50px"mt="75px"size="lg"bg="#1DB954" borderRadius="20px" onClick={onOpen}>
+                    <Text fontSize="24px" color="white">Create Playlist</Text>
                 </Button>
                 <Modal isOpen={isOpen} onClose={onClose}>
                         <ModalOverlay />
@@ -123,7 +126,7 @@ const Playlist = () => {
                 </Modal>
             </Center>
             
-        </>
+        </Box>
     )
 }
 

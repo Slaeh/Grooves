@@ -1,30 +1,27 @@
-import React from 'react';
+import { React } from 'react';
+import { useContext } from 'react'
 import { Flex, Box, Spacer, Heading, } from '@chakra-ui/layout';
-import { Button } from '@chakra-ui/button';
+import { Button, ButtonGroup } from '@chakra-ui/button';
+import AppContext from './AppContext';
 
 const Navbar = () => {
-    const storage = window.sessionStorage
-    const accessToken = storage.getItem('accessToken')
-    console.log(accessToken)
+    const { user } = useContext(AppContext)
+
     return (
-        <Flex pt={5} pl={5} pr={5} pb={10} bg='black' top='0'>
+        <Flex justify="center" align="center" p="20px" bg='black' top='0'>
             <Box p='2'>
                 <Heading size="lg" color='white'>Spotify Project</Heading>
             </Box>
             <Spacer />
-            <Flex>
-            <Box p='2'>
-                <Button colorScheme="green" mr="5" size="md">About</Button>
+            <ButtonGroup size="md">
+                {user !== '' ? null : <Button bg="#1DB954" mr="5" color="white">About</Button>}
                 {
-                accessToken == null ? 
-                    (<Button colorScheme="green" size="md">Login</Button>)
-                        :
-                    (<Button colorScheme="green" size="md">Logout</Button>)
+                    user === '' 
+                        ? (<Button bg="#1DB954" color="white">Login</Button>)
+                        : (<Button bg="#1DB954" color="white">Logout</Button>)
                 }
-            </Box>
-            </Flex>
+            </ButtonGroup>
         </Flex>
-
     );
 }
 
