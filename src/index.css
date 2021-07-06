@@ -8,3 +8,7 @@ body {
 code {
   font-family: "Signika", sans-serif;
 }
+
+li { 
+  list-style: none;
+}
