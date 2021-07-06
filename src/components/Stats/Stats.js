@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import axios from 'axios'
 import AppContext from '../AppContext';
 import ArtistCard from './ArtistCard';
 import TrackCard from './TrackCard';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button, Text, Box, Flex, Center, Tooltip, Spinner } from '@chakra-ui/react';
 import { InfoIcon } from '@chakra-ui/icons';
 import Flicking from "@egjs/react-flicking";
 import "@egjs/react-flicking/dist/flicking.css";
 import { motion } from "framer-motion"
+import whiteBgImage from '../../images/spotify-white2-bg.png'
 
 const Stats = () => {
     const {
@@ -52,13 +53,15 @@ const Stats = () => {
             }
         })
             .then(response => {
+                console.log(response)
                 const artistArr = []
                 for (let i = 0; i < 5; i++) {
                     const artistObject = {
                         artistName: response.data.items[i].name,
                         artistImage: response.data.items[i].images[0].url,
                         artistId: response.data.items[i].id,
-                        artistLink: response.data.items[i].external_urls.spotify
+                        artistLink: response.data.items[i].external_urls.spotify,
+                        artistFollowers: response.data.items[i].followers.total,
                     }
                     artistArr.push(artistObject)
                 }
@@ -95,7 +98,25 @@ const Stats = () => {
             })
     }, [])
 
-
+    //Get an artists top tracks
+    // const [ artistTopTracks, setArtistTopTracks ] = useState('')
+    // artist.map(id => 
+    // axios.get(`https://api.spotify.com/v1/artists/${id.artistId}/top-tracks?market=US`, {
+    //     headers: {
+    //         'Authorization': 'Bearer ' + token,
+    //     }
+    // })
+    //     .then(response => {
+    //         const artistTopTracks = []
+    //         console.log(response)
+    //     })
+    //     setArtistTopTracks(response.data.tracks)
+    //     )
+    //     .catch(err => {
+    //         console.log(err)
+    //     })
+    // )
+    
     //Make sure we have atleast track data before we render
     if (track.length !== 5 || artist.length !== 5) {
         return (
@@ -107,7 +128,7 @@ const Stats = () => {
     }
     else {
         return (
-            <Box>
+            <Box backgroundImage={`url(${whiteBgImage})`} backgroundRepeat="no-repeat" bgSize="contain 100%" bgPosition="right">
                 {/* Return user's display name */}
                 <Center>
 
@@ -115,7 +136,7 @@ const Stats = () => {
                         mb={4}
                         mt={10}
                         bgClip="text" fontSize="70px"
-                        bgGradient="linear(to-l, #01baef, #20bf55)"
+                        bgGradient="linear(to-l, #2c3e50, #000000)"
                         fontWeight="bold"
                     >
                         Hello, {display}
@@ -129,7 +150,7 @@ const Stats = () => {
                         mb={4}
                         mt={10}
                         bgClip="text" fontSize="70px"
-                        bgGradient="linear(to-l, #20bf55, #01baef )"
+                        bgGradient="linear(to-l, #000000, #2c3e50 )"
                         fontWeight="bold"
                     >
                         Your Top Tracks
@@ -165,7 +186,7 @@ const Stats = () => {
                     <Text mb={4}
                         mt={10}
                         bgClip="text" fontSize="70px"
-                        bgGradient="linear(to-l, #01baef, #20bf55)"
+                        bgGradient="linear(to-l, #2c3e50, #000000)"
                         fontWeight="bold"
                     >
                         Your Top Artists
@@ -175,7 +196,7 @@ const Stats = () => {
 
                 {/* Tooltip for artists */}
                 <Center pt={2} pb={10}>
-                    <Tooltip label='right' hasArrow label="Swipe to see more artists" bg="gray.300" color="black">
+                    <Tooltip hasArrow label="Swipe to see more artists" bg="gray.300" color="black">
                         <InfoIcon />
                     </Tooltip>
                 </Center>
@@ -196,7 +217,7 @@ const Stats = () => {
                         mb={4}
                         mt={10}
                         bgClip="text" fontSize="70px"
-                        bgGradient="linear(to-l, #20bf55, #01baef )"
+                        bgGradient="linear(to-l, #000000, #2c3e50)"
                         fontWeight="bold"
                     >
                         Get a playlist personalized for you

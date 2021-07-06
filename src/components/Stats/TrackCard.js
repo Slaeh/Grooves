@@ -1,6 +1,5 @@
-import { React, useState } from 'react';
-import { chakra, Box, Text, Image, Spacer, Center, Badge, Stack, Heading, Flex, useColorModeValue, background } from '@chakra-ui/react';
-import { RepeatIcon } from '@chakra-ui/icons';
+import { React } from 'react';
+import { chakra, Box, Image, Flex } from '@chakra-ui/react';
 
 // Returns a track card with the album image & artist name
 const TrackCard = ({ data, ranking }) => {
@@ -71,13 +70,11 @@ export default TrackCard;
 // const [hover, setHover] = useState(false);
 
     // const showHover = e => {
-    //     // e.preventDefault()
     //     console.log(hover)
     //     setHover(true)
     // }
 
     // const hideHover = e => {
-    //     // e.preventDefault()
     //     console.log(hover)
     //     setHover(false)
     // }
@@ -115,7 +112,6 @@ export default TrackCard;
 
     //         {/* <Stack
     //             p="2px 12px"
-    //             // pos="absolute"
     //             bottom="24px"
     //             textAlign="center"
     //             w="full"
