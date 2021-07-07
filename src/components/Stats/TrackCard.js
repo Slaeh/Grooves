@@ -27,6 +27,7 @@ const TrackCard = ({ data, ranking }) => {
                 bgSize="cover"
                 bgPos="center"
                 draggable='false'
+                border='2px solid #000000'
                 // _hover={{
                 //     background: 'black',
                 //     opacity: '0.13',
