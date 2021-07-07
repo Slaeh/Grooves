@@ -1,45 +1,46 @@
-import { useEffect, useContext } from 'react'
-import axios from 'axios'
+import { useContext } from 'react'
 import AppContext from './components/AppContext'
+import { motion } from "framer-motion"
+import { 
+    Box,
+    Text,
+    Button,
+    Center,
+    Flex,
+    Heading
+} from "@chakra-ui/react"
+
 
 const Closing = ()=> {
-    const REACT_APP_CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 
     //Parses the querystring in the browser and store it into the session
     const hash = window.location.hash.substring(1).split("&")
     const playlistToken = hash[0].substring(13)
-    console.log(playlistToken)
 
-    const { user, setUser, userPlaylist, setUserPlaylist, playlistName, setPlaylistName } = useContext(AppContext)
-    console.log(playlistName)
-    console.log('user', user)
+    const { display, user, setUser, userPlaylist, setUserPlaylist, playlistName, setPlaylistName } = useContext(AppContext)
+    console.log('display', display)
+    console.log('userPlayist', user)
     
-    // useEffect(() => {
-    //     async function getAuthorize() {
-    //         await  axios({
-    //             method: 'post',
-    //             url: `https://api.spotify.com/v1/users/${user}/playlists`,
-    //             headers: {
-    //                 'Authorization' : `Bearer ${playlistToken}`
-    //             },
-    //             data: {
-    //                 name: playlistName
-    //             }
-    //         })
-    //         .then(response => {
-    //             console.log(response)
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         })
-    //     }
-    //      getAuthorize()
-    // }, [])
-
     return (
-        <div>
-            Thank you
-        </div>
+        <Flex bg="gray.500" h="100vh"justify="center" align="center" flexDir="column">
+            {/* <Center> */}
+            <Heading color="#000" size="4xl">Thank you for using our application!</Heading>
+            <Text fontSize="5xl" color="black"> 
+                We do not save your spotify information. 
+                <br/> However, if you want to remove our application's  
+                <br/> permission to your account, click on the 
+                <br/>button below.
+            </Text>
+            <Button 
+                size="lg" 
+                bg="#000" 
+                color="white" 
+                _hover={{bg: '#000'}}
+            >
+                Click me
+            </Button>
+            {/* </Center> */}
+        </Flex>
     )
 }
 

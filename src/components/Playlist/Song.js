@@ -56,7 +56,7 @@ const Song = ({ onClick, image, title, artist, album, year, previewAudio }) => {
         </Box>
         <Spacer />
         <Box  mr={['5px', '5px']}textAlign={['right', 'right', 'right', 'right', 'left']}width="100px">
-            <IconButton size={['sm', 'md']}variant="unstyled" onClick={onClick} bg="white"icon={<FaTrash />}/>
+            <IconButton size={['sm', 'md']}variant="unstyled" onClick={onClick} bg="#e6e6e6"icon={<FaTrash />}/>
         </Box>
     </Flex>
     <Center>
