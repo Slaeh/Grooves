@@ -1,9 +1,10 @@
 import axios from 'axios'
 import Song from './Song'
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import AppContext from '../AppContext'
-import bgImage from '../../images/spotify-black-bg.png'
 import whiteBgImage from '../../images/spotify-white2-bg.png'
+import { InfoIcon } from '@chakra-ui/icons';
+import { motion } from "framer-motion"
 import { 
     Box, 
     useDisclosure,
@@ -18,16 +19,16 @@ import {
     ModalOverlay,
     ModalContent,
     ModalHeader,
-    ModalFooter,
     ModalBody,
     ModalCloseButton,
+    Tooltip
 } from "@chakra-ui/react"
 
 
 const Playlist = () => {
 	
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { playlistName, setPlaylistName, user, setUser, userPlaylist, setUserPlaylist } = useContext(AppContext)
+    const { playlistName, setPlaylistName, user, userPlaylist, setUserPlaylist } = useContext(AppContext)
 	const accessToken = window.sessionStorage.getItem('accessToken')
     
     // onClick function for Create Playlist button to send API request to create a user playlist
@@ -86,15 +87,21 @@ const Playlist = () => {
     
         return <Song onClick={() => handleTrashButton(song)} key={song.id} image={albumImage} title={songName} artist={artistName} album={albumName} year={yearReleased} previewAudio={previewAudio} />
     })
-    
+
+    // text for the tool tip label
+    const toolTipLabel = <Text>Hover over album art to hear a preview of the song (if available) <br/> WARNING - LOWER VOLUME</Text>
     return (
+        
         <Box backgroundImage={`url(${whiteBgImage})`} backgroundRepeat="no-repeat" bgSize="contain 100%" bgPosition="right">
             <Center>
                 <Box width={["95%", "95%", "95%", "90%", "59%"]} mt="75px">
-                    {/* <Center></Center> */}
-                    <Heading color="green" mb="20px" ml="20">
-                        <Text mr="30px" color="black">Your New Playlist</Text>
+                    {/* <Center></Center>  */}
+                    <Heading d="inline-block" bgGradient="linear(to-l, #2c3e50, #000000 )" fontWeight="bold" mb="20px" ml={['40px']} bgClip="text">
+                        Your New Playlist 
                     </Heading>
+                    <Tooltip placement="right" hasArrow label={toolTipLabel} bg="gray.300" color="black">
+                        <InfoIcon mb="15px" ml="10px" w="8" h="8"/>
+                    </Tooltip>
                     <Flex  justify="space-between"overflowX="hidden"overflowY="scroll" maxHeight="500px"p="20px" pr="0px"direction="column"  borderRadius="30px" bg="#e6e6e6" boxShadow="dark-lg">
                         <Divider width="95%"borderColor="gray.400" orientation="horizontal" colorScheme="primary"/>
                         {listOfSongs}
@@ -102,30 +109,41 @@ const Playlist = () => {
                 </Box>
             </Center>
             <Center>
-                <Button mb="50px"mt="75px"size="lg"bg="#1DB954" borderRadius="20px" onClick={onOpen}>
-                    <Text fontSize="24px" color="white">Create Playlist</Text>
-                </Button>
-                <Modal isOpen={isOpen} onClose={onClose}>
-                        <ModalOverlay />
-						<ModalContent>
-							<ModalHeader>Enter Playlist Name</ModalHeader>
-							<ModalCloseButton />
-							<ModalBody>
-								<Input 
-									placeholder="Enter Playlist Name"
-									value={playlistName}
-									onChange={handleChange}
-								/>
-								<Center>
-									<a href='http://localhost:3000/Closing/'>
-										<Button onClick={handleCreatePlaylist}size="lg"mt="20px"colorScheme="green">Create</Button>
-									</a>
-								</Center>
-							</ModalBody>
-						</ModalContent>
+                {/* <motion.button 
+                    whileHover={{ 
+                        scale: 1.1,
+                        textShadow: "0px 0px 8px rgb(255, 255, 255)",
+                    }}
+                > */}
+                    <Button mb="50px"mt="75px"size="lg" bgColor="#000" _hover={{ bgColor: '#000'}} borderRadius="20px" onClick={onOpen}>
+                        <Text fontSize="24px" color="white">Create Playlist</Text>
+                    </Button>
+                {/* </motion.button> */}
+                <Modal 
+                    isOpen={isOpen} 
+                    onClose={onClose} 
+                    isCentered
+                    motionPreset="slideInBottom"
+                >
+                    <ModalOverlay />
+					<ModalContent>
+						<ModalHeader>Enter Playlist Name</ModalHeader>
+						<ModalCloseButton />
+						<ModalBody>
+                            <Input 
+                                placeholder="Enter Playlist Name"
+                                value={playlistName}
+                                onChange={handleChange}
+                            />
+                            <Center>
+                                <a href='http://localhost:3000/Closing/'>
+                                    <Button onClick={handleCreatePlaylist}size="lg"mt="20px"colorScheme="green">Create</Button>
+                                </a>
+                            </Center>
+                        </ModalBody>
+                    </ModalContent>
                 </Modal>
-            </Center>
-            
+            </Center>    
         </Box>
     )
 }
