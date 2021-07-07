@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import axios from 'axios'
 import AppContext from '../AppContext';
 import ArtistCard from './ArtistCard';
@@ -9,7 +9,7 @@ import { InfoIcon } from '@chakra-ui/icons';
 import Flicking from "@egjs/react-flicking";
 import "@egjs/react-flicking/dist/flicking.css";
 import { motion } from "framer-motion"
-import whiteBgImage from '../../images/spotify-white2-bg.png'
+// import whiteBgImage from '../../images/spotify-white2-bg.png'
 
 const Stats = () => {
     const {
@@ -28,6 +28,24 @@ const Stats = () => {
     const hash = window.location.hash.substring(1).split("&")
     const token = hash[0].substring(13)
     window.sessionStorage.setItem("accessToken", token)
+
+    //Color states for background and text colors
+    const [color, setColor] = useState('#1DB954');
+    const [textColorTransition, setTextColorTransition] = useState('transparent')
+
+    const listenScrollEvent = e => {
+        if (window.scrollY > 700) {
+            setColor('#000000')
+            setTextColorTransition('white')
+        }
+        else if (window.scrollY < 700) {
+            setColor('#1DB954')
+            setTextColorTransition('transparent')
+        }
+    }
+
+    window.addEventListener('scroll', listenScrollEvent)
+
 
     //Api request to get users information - User Id & Display name and stores them in states
     useEffect(() => {
@@ -80,7 +98,6 @@ const Stats = () => {
             }
         })
             .then(response => {
-                console.log(response)
                 const tracksArr = []
                 for (let i = 0; i < 5; i++) {
                     const trackObject = {
@@ -98,25 +115,6 @@ const Stats = () => {
             })
     }, [])
 
-    //Get an artists top tracks
-    // const [ artistTopTracks, setArtistTopTracks ] = useState('')
-    // artist.map(id => 
-    // axios.get(`https://api.spotify.com/v1/artists/${id.artistId}/top-tracks?market=US`, {
-    //     headers: {
-    //         'Authorization': 'Bearer ' + token,
-    //     }
-    // })
-    //     .then(response => {
-    //         const artistTopTracks = []
-    //         console.log(response)
-    //     })
-    //     setArtistTopTracks(response.data.tracks)
-    //     )
-    //     .catch(err => {
-    //         console.log(err)
-    //     })
-    // )
-    
     //Make sure we have atleast track data before we render
     if (track.length !== 5 || artist.length !== 5) {
         return (
@@ -128,10 +126,10 @@ const Stats = () => {
     }
     else {
         return (
-            <Box backgroundImage={`url(${whiteBgImage})`} backgroundRepeat="no-repeat" bgSize="contain 100%" bgPosition="right">
+            // <Box backgroundImage={`url(${whiteBgImage})`} backgroundRepeat="no-repeat" bgSize="contain 100%" bgPosition="right">
+            <Box style={{ backgroundColor: color, transition: '0.6s ease' }}>
                 {/* Return user's display name */}
                 <Center>
-
                     <Text
                         mb={4}
                         mt={10}
@@ -183,21 +181,22 @@ const Stats = () => {
                     <motion.div
                         transition={{ duration: 0.5 }}
                     >
-                    <Text mb={4}
-                        mt={10}
-                        bgClip="text" fontSize="70px"
-                        bgGradient="linear(to-l, #2c3e50, #000000)"
-                        fontWeight="bold"
-                    >
-                        Your Top Artists
-                    </Text>
+                        <Text
+                            style={{ backgroundColor: textColorTransition, transition: '0.6s ease' }}
+                            mb={4}
+                            mt={10}
+                            bgClip="text" fontSize="70px"
+                            fontWeight="bold"
+                        >
+                            Your Top Artists
+                        </Text>
                     </motion.div>
                 </Center>
 
                 {/* Tooltip for artists */}
                 <Center pt={2} pb={10}>
-                    <Tooltip hasArrow label="Swipe to see more artists" bg="gray.300" color="black">
-                        <InfoIcon />
+                    <Tooltip hasArrow label="Swipe to see more artists">
+                        <InfoIcon color={textColorTransition} style={{ transition: '0.6s ease' }} />
                     </Tooltip>
                 </Center>
 
@@ -214,26 +213,35 @@ const Stats = () => {
                 {/* Redirect to discover page */}
                 <Center>
                     <Text
-                        mb={4}
-                        mt={10}
+                        // mb={10}
+                        mt={15}
                         bgClip="text" fontSize="70px"
-                        bgGradient="linear(to-l, #000000, #2c3e50)"
                         fontWeight="bold"
+                        style={{ backgroundColor: textColorTransition, transition: '0.6s ease' }}
                     >
-                        Get a playlist personalized for you
+                        A playlist personalized for you
                     </Text>
                 </Center>
                 <Center pt={10} pb={10}>
                     <Link to="/Discover">
+                        <motion.div
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 , bgColor: '#1DB954'}}
+                        >
                         <Button
                             label="Discover"
-                            bgGradient="linear(to-l, #01baef, #20bf55)"
+                            rounded='lg'
+                            bgColor='#1DB954'
                             fontWeight="bold"
                             size="lg"
                             variant="solid"
+                            _hover= {{ 
+                                bgColor : '#1DB954'
+                            }}
                         >
                             Discover
                         </Button>
+                        </motion.div>
                     </Link>
                 </Center>
             </Box>

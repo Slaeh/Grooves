@@ -1,39 +1,9 @@
-import { React, useState, useEffect } from 'react';
-import axios from 'axios';
-import { Box, Image, Flex, chakra, Popover, PopoverTrigger, PopoverContent, Center, Spinner, PopoverHeader, PopoverBody, Text, AlertTitle } from '@chakra-ui/react';
+import { React } from 'react';
+import { Box, Image, Flex, chakra, } from '@chakra-ui/react';
 
 // Returns a artist card with the artist image & name
 const ArtistCard = ({ data, ranking }) => {
-    const [artistTopTracks, setArtistTopTracks] = useState([])
-    const token = window.sessionStorage.getItem('accessToken')
-
-    useEffect(() => {
-        axios.get(`https://api.spotify.com/v1/artists/${data.artistId}/top-tracks?market=US`, {
-            headers: {
-                'Authorization': 'Bearer ' + token,
-            }
-        })
-            .then(response => {
-                const topArr = []
-                for (let i = 0; i < 3; i++) {
-                    topArr.push(response.data.tracks[i])
-                }
-                console.log(response)
-                setArtistTopTracks(topArr)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }, [])
-
-    while (typeof (artistTopTracks) === 'undefined') {
-        return (
-            <Center pt={20} pb={20}>
-                <Spinner size="xl" color='green'>
-                </Spinner>
-            </Center>
-        )
-    }
+    
     return (
         <Flex
             direction="column"
@@ -41,14 +11,8 @@ const ArtistCard = ({ data, ranking }) => {
             alignItems="center"
             w="sm"
             // mx="auto"
-            cursor='pointer'
+            // cursor='pointer'
         >
-            <Popover
-                placement='right'
-                boxShadow = 'none'
-            >
-
-                <PopoverTrigger boxShadow = 'none'>
                     <Image
                         src={`${data.artistImage}`}
                         rounded="lg"
@@ -56,40 +20,9 @@ const ArtistCard = ({ data, ranking }) => {
                         bgSize="cover"
                         bgPos="center"
                         draggable='false'
+                        border='2px solid #1DB954'
                     />
-                </PopoverTrigger>
-                <PopoverContent
-                    width='sm'
-                    fontWeight='semibold'
-                    bgGradient="linear(to-l, #fffcff, #d5fefd)"
-                    boxShadow = 'none'
-                >
-                    <PopoverBody boxShadow = 'none'>
-                        <Center>
-                            <Text fontWeight='bold'>
-                        {data.artistName}'s Top Tracks
-                        </Text>
-                        </Center>
-                    </PopoverBody>
-                    
-                    <PopoverBody border = 'none' textAlign='center'>
-                        <>
-                            {artistTopTracks.map((title, index) =>
-                                <li key={title.name}>
-                                    #{index + 1} {title.name}
-                                </li>
-
-                            )}
-                        </>
-                    </PopoverBody>
-                    <Center>
-                        <PopoverBody>
-                        Followers : {data.artistFollowers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                        </PopoverBody>
-
-                    </Center>
-                </PopoverContent>
-            </Popover>
+                
 
             <Box
                 w={{ base: 56, md: 64 }}
@@ -113,46 +46,129 @@ const ArtistCard = ({ data, ranking }) => {
                 </chakra.h3>
             </Box>
         </Flex>
-
     );
+
+        
+
 
 }
 export default ArtistCard;
 
-        // <Box maxW="sm" maxH='lg' borderWidth="1px" borderRadius="lg" overflow="hidden" bgGradient="linear(to-l, #01baef, #20bf55) // _hover={{
-        //     background: 'black',
-        //     opacity: '0.13',
-        //     zindex: '10',
-        //     transition: '0.3s'
-        // }}">
-        //     <Image src={`${data.artistImage}`} draggable='false' />
-        //     <Center pt={3}>
-        //         <Badge
-        //             colorScheme="white"
-        //             variant="solid"
-        //             fontSize="30px"
+//Api request to get an artists top tracks - works but scrapped idea
 
-        //         >
-        //             #{ranking}
-        //         </Badge>
-        //     </Center>
-        //     <Box d="flex" p='6' justifyContent='center' alignItems='center'
-        //_hover={{
-        //     background: 'black',
-        //     opacity: '90%',
-        //     zindex: '10',
-        //     transition: '0.1s ease-in',
-        //     rounded:"lg",
+// const [artistTopTracks, setArtistTopTracks] = useState([])
+    // const token = window.sessionStorage.getItem('accessToken')
 
-        //}}>
-        //         <Text
-        //             fontSize='20px'
-        //             textColor='white'
-        //             fontWeight="bold"
-        //             fontFamily='Montserrat'
-        //         >
-        //             {data.artistName}
-        //         </Text>
-        //     </Box>
-        //     <Spacer />
-        // </Box>
+    // useEffect(() => {
+    //     axios.get(`https://api.spotify.com/v1/artists/${data.artistId}/top-tracks?market=US`, {
+    //         headers: {
+    //             'Authorization': 'Bearer ' + token,
+    //         }
+    //     })
+    //         .then(response => {
+    //             const topArr = []
+    //             for (let i = 0; i < 3; i++) {
+    //                 topArr.push(response.data.tracks[i])
+    //             }
+    //             console.log(response)
+    //             setArtistTopTracks(topArr)
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
+    // }, [])
+
+    // while (typeof (artistTopTracks) === 'undefined') {
+    //     return (
+    //         <Center pt={20} pb={20}>
+    //             <Spinner size="xl" color='green'>
+    //             </Spinner>
+    //         </Center>
+    //     )
+    // }
+
+// PopOver Code - scrapped because of responsiveness flaw
+
+// <Popover
+//         placement='right'
+//         boxShadow = 'none'
+//     >
+
+//         <PopoverTrigger boxShadow = 'none'>
+
+//         </PopoverTrigger>
+//         </PopoverTrigger>
+//         <PopoverContent
+//             width='sm'
+//             fontWeight='semibold'
+//             bgGradient="linear(to-l, #fffcff, #d5fefd)"
+//             boxShadow = 'none'
+//         >
+//             <PopoverBody boxShadow = 'none'>
+//                 <Center>
+//                     <Text fontWeight='bold'>
+//                 {data.artistName}'s Top Tracks
+//                 </Text>
+//                 </Center>
+//             </PopoverBody>
+            
+//             <PopoverBody border = 'none' textAlign='center'>
+//                 <>
+//                     {artistTopTracks.map((title, index) =>
+//                         <li key={title.name}>
+//                             #{index + 1} {title.name}
+//                         </li>
+
+//                     )}
+//                 </>
+//             </PopoverBody>
+//             <Center>
+//                 <PopoverBody>
+//                 Followers : {data.artistFollowers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+//                 </PopoverBody>
+
+//             </Center>
+//         </PopoverContent>
+//     </Popover>
+
+
+
+// Old Card layout - Scrapped 
+
+//         <Box maxW="sm" maxH='lg' borderWidth="1px" borderRadius="lg" overflow="hidden" bgGradient="linear(to-l, #01baef, #20bf55) // _hover={{
+//             background: 'black',
+//             opacity: '0.13',
+//             zindex: '10',
+//             transition: '0.3s'
+//         }}">
+//             <Image src={`${data.artistImage}`} draggable='false' />
+//             <Center pt={3}>
+//                 <Badge
+//                     colorScheme="white"
+//                     variant="solid"
+//                     fontSize="30px"
+
+//                 >
+//                     #{ranking}
+//                 </Badge>
+//             </Center>
+//             <Box d="flex" p='6' justifyContent='center' alignItems='center'
+//         _hover={{
+//             background: 'black',
+//             opacity: '90%',
+//             zindex: '10',
+//             transition: '0.1s ease-in',
+//             rounded:"lg",
+
+//         }}>
+//                 <Text
+//                     fontSize='20px'
+//                     textColor='white'
+//                     fontWeight="bold"
+//                     fontFamily='Montserrat'
+//                 >
+//                     {data.artistName}
+//                 </Text>
+//             </Box>
+//             <Spacer />
+//         </Box>

@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import AppContext from './components/AppContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer/Footer'
+import About from './components/About';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
           <Route path='/Discover' render={() => <Discover />} />
           <Route path='/CreatePlaylist' render={() => <Playlist />} />
           <Route path="/Closing" render={() => <Closing />} />
+          <Route exact path='/About' render={() => <About />} />
         </Switch>
       </Router>
       <Footer />
