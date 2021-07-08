@@ -170,7 +170,7 @@ const Stats = () => {
             bg="gray.300"
             color="black"
           >
-            <InfoIcon />
+            <InfoIcon w="8" h="8" />
           </Tooltip>
         </Center>
 
@@ -218,6 +218,8 @@ const Stats = () => {
         <Center pt={2} pb={10}>
           <Tooltip hasArrow label="Swipe to see more artists">
             <InfoIcon
+              w="8"
+              h="8"
               color={textColorTransition}
               style={{ transition: "0.6s ease" }}
             />
