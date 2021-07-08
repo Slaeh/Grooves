@@ -2,9 +2,8 @@ import axios from "axios";
 import Song from "./Song";
 import { useContext } from "react";
 import AppContext from "../AppContext";
-import whiteBgImage from "../../images/spotify-white2-bg.png";
+import blackBgImage from "../../images/spotify-black-bg.png";
 import { InfoIcon } from "@chakra-ui/icons";
-import { motion } from "framer-motion";
 import {
   Box,
   useDisclosure,
@@ -108,33 +107,36 @@ const Playlist = () => {
   );
   return (
     <Box
-      backgroundImage={`url(${whiteBgImage})`}
+      backgroundImage={`url(${blackBgImage})`}
       backgroundRepeat="no-repeat"
       bgSize="contain 100%"
       bgPosition="right"
     >
       <Center>
         <Box width={["95%", "95%", "95%", "90%", "59%"]} mt="75px">
-          {/* <Center></Center>  */}
-          <Heading
-            d="inline-block"
-            bgGradient="linear(to-l, #2c3e50, #000000 )"
-            fontWeight="bold"
-            mb="20px"
-            ml={["40px"]}
-            bgClip="text"
-          >
-            Your New Playlist
-          </Heading>
-          <Tooltip
-            placement="right"
-            hasArrow
-            label={toolTipLabel}
-            bg="gray.300"
-            color="black"
-          >
-            <InfoIcon mb="15px" ml="10px" w="8" h="8" />
-          </Tooltip>
+          <Center>
+            <Heading
+              d="inline-block"
+              // bgGradient="linear(to-l, #2c3e50, #000000 )"
+              color="#fff"
+              fontWeight="bold"
+              mb="20px"
+              size="2xl"
+              // ml={['40px']}
+              // bgClip="text"
+            >
+              Your New Playlist
+            </Heading>
+            <Tooltip
+              placement="right"
+              hasArrow
+              label={toolTipLabel}
+              bg="#fff"
+              color="black"
+            >
+              <InfoIcon color="white" mb="15px" ml="10px" w="8" h="8" />
+            </Tooltip>
+          </Center>
           <Flex
             justify="space-between"
             overflowX="hidden"
@@ -168,12 +170,12 @@ const Playlist = () => {
           mb="50px"
           mt="75px"
           size="lg"
-          bgColor="#000"
-          _hover={{ bgColor: "#000" }}
+          bgColor="#fff"
+          _hover={{ bgColor: "#fff" }}
           borderRadius="20px"
           onClick={onOpen}
         >
-          <Text fontSize="24px" color="white">
+          <Text fontSize="24px" color="#1DB954">
             Create Playlist
           </Text>
         </Button>

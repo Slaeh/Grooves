@@ -1,91 +1,80 @@
-import { React } from 'react';
-import { Box, Image, Flex, chakra, } from '@chakra-ui/react';
+import { React } from "react";
+import { Box, Image, Flex, chakra } from "@chakra-ui/react";
 
 // Returns a artist card with the artist image & name
 const ArtistCard = ({ data, ranking }) => {
-    
-    return (
-        <Flex
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            w="sm"
-            // mx="auto"
-            // cursor='pointer'
+  return (
+    <Flex direction="column" justifyContent="center" alignItems="center" w="sm">
+      <Image
+        src={`${data.artistImage}`}
+        rounded="lg"
+        boxShadow="md"
+        bgSize="cover"
+        bgPos="center"
+        draggable="false"
+        border="2px solid #1DB954"
+        maxH="384px"
+        w="384px"
+      />
+
+      <Box
+        w={{ base: 56, md: 64 }}
+        bgColor="lightgray"
+        mt={2}
+        shadow="lg"
+        rounded="lg"
+        overflow="hidden"
+      >
+        <chakra.h3
+          py={2}
+          textAlign="center"
+          fontWeight="bold"
+          bgGradient="linear(to-l, #ffffff, #d7e1ec)"
+          textAlign="center"
+          fontSize="15px"
         >
-                    <Image
-                        src={`${data.artistImage}`}
-                        rounded="lg"
-                        boxShadow="md"
-                        bgSize="cover"
-                        bgPos="center"
-                        draggable='false'
-                        border='2px solid #1DB954'
-                    />
-                
-
-            <Box
-                w={{ base: 56, md: 64 }}
-                bgColor='lightgray'
-                mt={2}
-                shadow="lg"
-                rounded="lg"
-                overflow="hidden"
-            >
-                <chakra.h3
-                    py={2}
-                    textAlign="center"
-                    fontWeight="bold"
-                    bgGradient="linear(to-l, #ffffff, #d7e1ec)"
-                    textAlign="center"
-                    fontSize='15px'
-                >
-                    #{ranking}
-                    <br></br>
-                    {data.artistName}
-                </chakra.h3>
-            </Box>
-        </Flex>
-    );
-
-        
-
-
-}
+          #{ranking}
+          <br></br>
+          {data.artistName}
+        </chakra.h3>
+      </Box>
+    </Flex>
+  );
+};
 export default ArtistCard;
 
 //Api request to get an artists top tracks - works but scrapped idea
 
 // const [artistTopTracks, setArtistTopTracks] = useState([])
-    // const token = window.sessionStorage.getItem('accessToken')
+// const token = window.sessionStorage.getItem('accessToken')
 
-    // useEffect(() => {
-    //     axios.get(`https://api.spotify.com/v1/artists/${data.artistId}/top-tracks?market=US`, {
-    //         headers: {
-    //             'Authorization': 'Bearer ' + token,
-    //         }
-    //     })
-    //         .then(response => {
-    //             const topArr = []
-    //             for (let i = 0; i < 3; i++) {
-    //                 topArr.push(response.data.tracks[i])
-    //             }
-    //             console.log(response)
-    //             setArtistTopTracks(topArr)
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         })
-    // }, [])
+// useEffect(() => {
+//     axios.get(`https://api.spotify.com/v1/artists/${data.artistId}/top-tracks?market=US`, {
+//         headers: {
+//             'Authorization': 'Bearer ' + token,
+//         }
+//     })
+//         .then(response => {
+//             const topArr = []
+//             for (let i = 0; i < 3; i++) {
+//                 topArr.push(response.data.tracks[i])
+//             }
+//             console.log(response)
+//             setArtistTopTracks(topArr)
+//         })
+//         .catch(err => {
+//             console.log(err)
+//         })
+// }, [])
 
-    // while (typeof (artistTopTracks) === 'undefined') {
-    //     return (
-    //         <Center pt={20} pb={20}>
-    //             <Spinner size="xl" color='green'>
-    //             </Spinner>
-    //         </Center>
-    //     )
-    // }
+// while (typeof (artistTopTracks) === 'undefined') {
+//     return (
+//         <Center pt={20} pb={20}>
+//             <Spinner size="xl" color='green'>
+//             </Spinner>
+//         </Center>
+//     )
+// }
 
 // PopOver Code - scrapped because of responsiveness flaw
 
@@ -111,7 +100,7 @@ export default ArtistCard;
 //                 </Text>
 //                 </Center>
 //             </PopoverBody>
-            
+
 //             <PopoverBody border = 'none' textAlign='center'>
 //                 <>
 //                     {artistTopTracks.map((title, index) =>
@@ -131,9 +120,7 @@ export default ArtistCard;
 //         </PopoverContent>
 //     </Popover>
 
-
-
-// Old Card layout - Scrapped 
+// Old Card layout - Scrapped
 
 //         <Box maxW="sm" maxH='lg' borderWidth="1px" borderRadius="lg" overflow="hidden" bgGradient="linear(to-l, #01baef, #20bf55) // _hover={{
 //             background: 'black',

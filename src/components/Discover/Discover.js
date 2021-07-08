@@ -86,7 +86,12 @@ const Discover = () => {
         </Center>
 
         <Center>
-          <SimpleGrid py={6} columns={3} spacingX="15px" spacingY="15px">
+          <SimpleGrid
+            py={6}
+            columns={[1, 2, 2, 2, 3]}
+            spacingX="15px"
+            spacingY="15px"
+          >
             {artist.map((a) => (
               <div key={a.artistId}>
                 <ArtistImage a={a} />
