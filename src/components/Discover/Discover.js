@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import ArtistImage from "./ArtistImage";
 import axios from "axios";
-import { SimpleGrid, Center, Container, Heading } from "@chakra-ui/layout";
+import { SimpleGrid, Center, Container, Heading, Box } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 import AppContext from "../AppContext";
 import { Link } from "react-router-dom";
@@ -79,10 +79,12 @@ const Discover = () => {
   };
 
   return (
-    <div>
-      <div>
+    <Box backgroundColor="#000000">
+      <Box>
         <Center>
-          <Heading py={10}>Pick Your Artists</Heading>
+          <Heading textColor="white" py={10}>
+            Pick Your Artists
+          </Heading>
         </Center>
 
         <Center>
@@ -96,7 +98,9 @@ const Discover = () => {
         </Center>
 
         <Container centerContent pt={10} pb={5}>
-          <Heading pb={5}>Select Amount of Songs</Heading>
+          <Heading pb={5} textColor="white">
+            Select Amount of Songs
+          </Heading>
           <Slider
             flex="1"
             defaultValue={35}
@@ -111,16 +115,18 @@ const Discover = () => {
             <SliderThumb boxSize={6} textColor="black" children={value} />
           </Slider>
         </Container>
-      </div>
+      </Box>
 
-      <div>
+      <Box>
         <Center pb={300}>
           <Link to="/CreatePlaylist" onClick={generatePlaylist}>
-            <Button label="CreatePlaylist">Generate A Playlist</Button>
+            <Button label="CreatePlaylist" size="lg" mt="20px" color="#1DB954">
+              Generate A Playlist
+            </Button>
           </Link>
         </Center>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

@@ -26,10 +26,10 @@ const Footer = () => {
       <Flex>
         <LinkGrid
           alignSelf="flex-end"
-          pl={20}
-          pr={20}
-          pt={20}
-          pb={20}
+          pl={5}
+          pr={5}
+          pt={10}
+          pb={5}
           spacing={{
             base: "10",
             md: "20",
