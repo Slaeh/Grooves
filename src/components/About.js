@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { Box, Text, Center } from "@chakra-ui/layout";
 import { TriangleDownIcon } from "@chakra-ui/icons";
 import AboutCards from "./AboutCards";
+import { SimpleGrid } from "@chakra-ui/react";
 
 const About = () => {
   const [color, setColor] = useState("#000000");
@@ -110,9 +111,11 @@ const About = () => {
         <TriangleDownIcon color={textColorTransition} boxSize="100px" />
       </Center>
 
-      <AboutCards person={devs.brendan} />
-      <AboutCards person={devs.edward} />
-      <AboutCards person={devs.harjit} />
+      <SimpleGrid columns={3}>
+        <AboutCards person={devs.brendan} />
+        <AboutCards person={devs.edward} />
+        <AboutCards person={devs.harjit} />
+      </SimpleGrid>
     </Box>
   );
 };

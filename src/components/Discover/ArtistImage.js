@@ -10,11 +10,13 @@ import {
   IconButton,
   Spacer,
   Tooltip,
+  Link,
 } from "@chakra-ui/react";
 import AppContext from "../AppContext";
 import React, { useState, useEffect, useContext } from "react";
 import { useToast } from "@chakra-ui/react";
 import { RepeatClockIcon } from "@chakra-ui/icons";
+import "./styles.css";
 
 export default function ArtistImage({ a }) {
   const toast = useToast();
@@ -53,7 +55,7 @@ export default function ArtistImage({ a }) {
 
     toast({
       position: "bottom-left",
-      duration: "3600",
+      duration: "3000",
       isClosable: true,
       render: () => (
         <Tooltip hasArrow bg="gray.300" label="Undo" placement="right-start">
@@ -80,7 +82,27 @@ export default function ArtistImage({ a }) {
 
   return (
     <div>
-      <a href={a.artistLink} target="_blank" rel="noreferrer">
+      <div className="img__wrap">
+        <Image className="img__img" src={a.artistImage} />
+        <div class="img__description_layer">
+          <Heading py={2} size="lg">
+            {a.artistName}
+          </Heading>
+          <Link py={2} isExternal color="#1DB954" href={a.artistLink}>
+            Learn More
+          </Link>
+          {artist.length === 1 ? null : (
+            <Text
+              style={{ cursor: "pointer" }}
+              color="red.500"
+              onClick={removeArtist}
+            >
+              Remove Artist
+            </Text>
+          )}
+        </div>
+      </div>
+      {/* <a href={a.artistLink} target="_blank" rel="noreferrer">
         <Flex w="360px" pos="relative" overflow="hidden">
           <Flex h="360px" w="full">
             <Box
@@ -120,7 +142,7 @@ export default function ArtistImage({ a }) {
             Remove Artist
           </Text>
         )}
-      </Stack>
+      </Stack> */}
     </div>
   );
 }

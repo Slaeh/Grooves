@@ -82,16 +82,11 @@ const Discover = () => {
     <div>
       <div>
         <Center>
-          <Heading>Pick Your Artists</Heading>
+          <Heading py={10}>Pick Your Artists</Heading>
         </Center>
 
         <Center>
-          <SimpleGrid
-            py={6}
-            columns={[1, 2, 2, 2, 3]}
-            spacingX="15px"
-            spacingY="15px"
-          >
+          <SimpleGrid columns={[1, 2, 2, 2, 3]} spacingX="15px" spacingY="15px">
             {artist.map((a) => (
               <div key={a.artistId}>
                 <ArtistImage a={a} />
@@ -100,8 +95,8 @@ const Discover = () => {
           </SimpleGrid>
         </Center>
 
-        <Container centerContent>
-          <Heading>Select Amount of Songs</Heading>
+        <Container centerContent pt={10} pb={5}>
+          <Heading pb={5}>Select Amount of Songs</Heading>
           <Slider
             flex="1"
             defaultValue={35}
@@ -119,7 +114,7 @@ const Discover = () => {
       </div>
 
       <div>
-        <Center>
+        <Center pb={300}>
           <Link to="/CreatePlaylist" onClick={generatePlaylist}>
             <Button label="CreatePlaylist">Generate A Playlist</Button>
           </Link>
