@@ -37,7 +37,7 @@ const Closing = () => {
       flexDir="column"
     >
       {/* <Center> */}
-      <Heading color="#000" size="4xl" mb="50px">
+      <Heading color="#000" size={['sm', '4xl']} mb="50px">
         Thank you for using our application!
       </Heading>
       <Text fontSize="5xl" color="black">

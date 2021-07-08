@@ -1,8 +1,10 @@
-import { React } from "react";
-import { useContext } from "react";
-import { Flex, Box, Spacer, Heading } from "@chakra-ui/layout";
-import { Button, ButtonGroup } from "@chakra-ui/button";
-import AppContext from "./AppContext";
+import { React } from 'react';
+import { useContext } from 'react';
+import { Flex, Box, Spacer, Heading } from '@chakra-ui/layout';
+import { Link } from '@chakra-ui/react';
+import { Button, ButtonGroup } from '@chakra-ui/button';
+
+import AppContext from './AppContext';
 
 const Navbar = () => {
   const { user } = useContext(AppContext);
@@ -16,38 +18,40 @@ const Navbar = () => {
       </Box>
       <Spacer />
       <ButtonGroup size="md">
-        {user !== "" ? null : (
+        {user !== '' ? null : (
           <Button
             bg="#1DB954"
             mr="5"
             color="white"
             _hover={{
-              bgColor: "#1DB954",
+              bgColor: '#1DB954',
             }}
           >
             About
           </Button>
         )}
-        {user === "" ? (
+        {user === '' ? (
           <Button
             bg="#1DB954"
             color="white"
             _hover={{
-              bgColor: "#1DB954",
+              bgColor: '#1DB954',
             }}
           >
             Login
           </Button>
         ) : (
-          <Button
-            bg="#1DB954"
-            color="white"
-            _hover={{
-              bgColor: "#1DB954",
-            }}
-          >
-            Logout
-          </Button>
+          <Link href="https://www.spotify.com/us/account/apps/" target="_blank">
+            <Button
+              bg="#1DB954"
+              color="white"
+              _hover={{
+                bgColor: '#1DB954',
+              }}
+            >
+              Logout
+            </Button>
+          </Link>
         )}
       </ButtonGroup>
     </Flex>
