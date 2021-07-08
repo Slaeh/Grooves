@@ -58,12 +58,20 @@ export default function ArtistImage({ a }) {
       duration: "3000",
       isClosable: true,
       render: () => (
-        <Tooltip hasArrow bg="gray.300" label="Undo" placement="right-start">
-          <Box color="white" p={3} bg="#1DB954">
+        <Tooltip
+          hasArrow
+          bg="gray.300"
+          label="Undo"
+          placement="right-start"
+          color="#1DB954"
+        >
+          <Box color="black" p={3} bg="#1DB954" fontWeight="bold">
             <Flex alignContent="center" alignItems="center">
               <Text>Deleted {a.artistName}</Text>
               <Spacer />
               <IconButton
+                colorScheme="#1DB954"
+                bgColor="#1DB954"
                 isRound
                 size="lg"
                 onClick={() => {
@@ -71,7 +79,7 @@ export default function ArtistImage({ a }) {
                   close();
                 }}
               >
-                <RepeatClockIcon color="white" />
+                <RepeatClockIcon color="black" />
               </IconButton>
             </Flex>
           </Box>

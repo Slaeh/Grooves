@@ -5,8 +5,11 @@ import { FaTrash } from "react-icons/fa";
 import { Center } from "@chakra-ui/react";
 import { Image, Box } from "@chakra-ui/react";
 import { Flex, Spacer } from "@chakra-ui/react";
+import AppContext from "../AppContext";
+import { useContext } from "react";
 
 const Song = ({ onClick, image, title, artist, album, year, previewAudio }) => {
+  const { userPlaylist } = useContext(AppContext);
   let audio = new Audio();
   return (
     <>
