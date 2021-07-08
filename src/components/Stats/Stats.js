@@ -123,7 +123,7 @@ const Stats = () => {
       });
   }, []);
 
-  //Make sure we have atleast track data before we render
+  //Make sure we have at least track data before we render
   if (track.length !== 5 || artist.length !== 5) {
     return (
       <Center pt={20} pb={20}>
@@ -141,7 +141,7 @@ const Stats = () => {
             mt={10}
             bgClip="text"
             fontSize="70px"
-            bgGradient="linear(to-l, #2c3e50, #000000)"
+            color="black"
             fontWeight="bold"
           >
             Hello, {display}
@@ -155,7 +155,7 @@ const Stats = () => {
             mt={10}
             bgClip="text"
             fontSize="70px"
-            bgGradient="linear(to-l, #000000, #2c3e50 )"
+            color="black"
             fontWeight="bold"
           >
             Your Top Tracks

@@ -40,7 +40,7 @@ const TrackCard = ({ data, ranking }) => {
       </Box>
       <Box
         w={{ base: 56, md: 64 }}
-        bgColor="lightgray"
+        // bgColor="lightgray"
         mt={2}
         shadow="lg"
         rounded="lg"

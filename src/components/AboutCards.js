@@ -10,6 +10,7 @@ import {
   Text,
   Code,
   useColorModeValue,
+  Image,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import React from "react";
@@ -20,9 +21,10 @@ const AboutCards = ({ person }) => {
     <Flex
       //bg={useColorModeValue("#F9FAFB", "gray.600")}
       p={50}
-      w="full"
+      // w="full"
+      justifyContent="space-between"
       alignItems="center"
-      justifyContent="center"
+      direction={["column", "column", "row"]}
     >
       <Flex
         direction="column"
@@ -39,12 +41,11 @@ const AboutCards = ({ person }) => {
           shadow="md"
           bgSize="cover"
           bgPos="center"
-          style={{
-            backgroundImage:
-              "url(https://st4.depositphotos.com/5575514/23597/v/600/depositphotos_235978748-stock-illustration-neutral-profile-picture.jpg)",
-          }}
           boxShadow="dark-lg"
-        ></Box>
+          boxSize={["150px", "250px", "300px", "360px"]}
+        >
+          <Image src={person.backgroundImage} />
+        </Box>
 
         <Box
           w={{ base: 56, md: 360 }}
@@ -106,7 +107,7 @@ const AboutCards = ({ person }) => {
                   whileTap={{ scale: 0.9 }}
                 >
                   <Link
-                    color="white"
+                    color="black"
                     opacity="75%"
                     _hover={{ opacity: "100%" }}
                     href={person.github}
@@ -122,7 +123,7 @@ const AboutCards = ({ person }) => {
                   whileTap={{ scale: 0.9 }}
                 >
                   <a href={person.email} target="_blank" rel="noreferrer">
-                    <EmailIcon fontSize="25px" />
+                    <EmailIcon fontSize="30px" />
                   </a>
                 </motion.button>
               </Box>
