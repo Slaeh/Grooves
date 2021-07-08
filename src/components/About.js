@@ -1,9 +1,35 @@
 import { React, useState } from "react";
 import { Box, Text, Center } from "@chakra-ui/layout";
 import { TriangleDownIcon } from "@chakra-ui/icons";
+import AboutCards from "./AboutCards";
+
 const About = () => {
   const [color, setColor] = useState("#000000");
   const [textColorTransition, setTextColorTransition] = useState("white");
+
+  const devs = {
+    brendan: {
+      name: "Brendan Gubbins",
+      bio: "fillertext fillertext fillertext fillertext fillertext fillertext",
+      github: "https://www.github.com/brendangubbins",
+      linkedin: "https://www.linkedin.com/in/brendan-gubbins",
+      email: "mailto:brendansg97@gmail.com",
+    },
+    edward: {
+      name: "Edward Paez",
+      bio: "fillertext fillertext fillertext fillertext fillertext fillertext",
+      github: "https://www.github.com/epaez1996",
+      linkedin: "https://www.linkedin.com/in/edward-paez",
+      email: "mailto:paez.edward5@gmail.com",
+    },
+    harjit: {
+      name: "Harjit Liyal",
+      bio: "fillertext fillertext fillertext fillertext fillertext fillertext",
+      github: "https://www.github.com/Slaeh",
+      linkedin: "https://www.linkedin.com/in/harjitliyal",
+      email: "mailto:harjitliyal@gmail.com",
+    },
+  };
 
   //Changes the background color once scroll reaches a certain point
   const listenScrollEvent = (e) => {
@@ -83,6 +109,10 @@ const About = () => {
       <Center>
         <TriangleDownIcon color={textColorTransition} boxSize="100px" />
       </Center>
+
+      <AboutCards person={devs.brendan} />
+      <AboutCards person={devs.edward} />
+      <AboutCards person={devs.harjit} />
     </Box>
   );
 };

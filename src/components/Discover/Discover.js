@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useContext } from 'react';
-import ArtistImage from './ArtistImage';
-import axios from 'axios';
-import { SimpleGrid, Center, Container, Heading } from '@chakra-ui/layout';
-import { Button } from '@chakra-ui/button';
-import AppContext from '../AppContext';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from "react";
+import ArtistImage from "./ArtistImage";
+import axios from "axios";
+import { SimpleGrid, Center, Container, Heading } from "@chakra-ui/layout";
+import { Button } from "@chakra-ui/button";
+import AppContext from "../AppContext";
+import { Link } from "react-router-dom";
 import {
   Slider,
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
-} from '@chakra-ui/slider';
+} from "@chakra-ui/slider";
 
 const Discover = () => {
   const [value, setValue] = useState(35);
@@ -33,19 +33,19 @@ const Discover = () => {
   // New recommended playlist on each 'artist' state update
   useEffect(() => {
     const storage = window.sessionStorage;
-    const accessToken = storage.getItem('accessToken');
-    console.log('state changed');
+    const accessToken = storage.getItem("accessToken");
+    console.log("state changed");
     console.log(artist);
     const artistIDs = artist.map((a) => a.artistId);
-    const seeds = artistIDs.join(',');
+    const seeds = artistIDs.join(",");
     axios
-      .get('https://api.spotify.com/v1/recommendations', {
+      .get("https://api.spotify.com/v1/recommendations", {
         params: {
           seed_artists: seeds,
           limit: value,
         },
         headers: {
-          Authorization: 'Bearer ' + accessToken,
+          Authorization: "Bearer " + accessToken,
         },
       })
       .then((response) => {
@@ -57,19 +57,19 @@ const Discover = () => {
   // Creates final playlist from onClick
   const generatePlaylist = () => {
     const storage = window.sessionStorage;
-    const accessToken = storage.getItem('accessToken');
-    console.log('state changed');
+    const accessToken = storage.getItem("accessToken");
+    console.log("state changed");
     console.log(artist);
     const artistIDs = artist.map((a) => a.artistId);
-    const seeds = artistIDs.join(',');
+    const seeds = artistIDs.join(",");
     axios
-      .get('https://api.spotify.com/v1/recommendations', {
+      .get("https://api.spotify.com/v1/recommendations", {
         params: {
           seed_artists: seeds,
           limit: value,
         },
         headers: {
-          Authorization: 'Bearer ' + accessToken,
+          Authorization: "Bearer " + accessToken,
         },
       })
       .then((response) => {

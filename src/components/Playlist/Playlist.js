@@ -1,10 +1,9 @@
-import axios from 'axios';
-import Song from './Song';
-import { useContext } from 'react';
-import AppContext from '../AppContext';
-import whiteBgImage from '../../images/spotify-white2-bg.png';
-import blackBgImage from '../../images/spotify-black-bg.png';
-import { InfoIcon } from '@chakra-ui/icons';
+import axios from "axios";
+import Song from "./Song";
+import { useContext } from "react";
+import AppContext from "../AppContext";
+import blackBgImage from "../../images/spotify-black-bg.png";
+import { InfoIcon } from "@chakra-ui/icons";
 import {
   Box,
   useDisclosure,
@@ -22,19 +21,19 @@ import {
   ModalBody,
   ModalCloseButton,
   Tooltip,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
 const Playlist = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { playlistName, setPlaylistName, user, userPlaylist, setUserPlaylist } =
     useContext(AppContext);
-  const accessToken = window.sessionStorage.getItem('accessToken');
+  const accessToken = window.sessionStorage.getItem("accessToken");
 
   // onClick function for Create Playlist button to send API request to create a user playlist
   const handleCreatePlaylist = async () => {
     // spotify API request to create an Empty playlist to a user's account
     const createPlaylistResponse = await axios({
-      method: 'post',
+      method: "post",
       url: `https://api.spotify.com/v1/users/${user}/playlists`,
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -50,11 +49,11 @@ const Playlist = () => {
     // spotify API request to add a list of songs to the empty playlist created
     // from the above API request
     await axios({
-      method: 'post',
+      method: "post",
       url: `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
       headers: {
         Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       data: {
         uris: tracksURI,
@@ -68,7 +67,7 @@ const Playlist = () => {
   // onClick function for trash IconButton
   // removes a song from userPlaylist when clicked
   const handleTrashButton = (songToRemove) => {
-    console.log('in handleTrashButton');
+    console.log("in handleTrashButton");
     const playlistAfterSongRemoved = userPlaylist.filter(
       (song) => song !== songToRemove
     );
@@ -102,7 +101,7 @@ const Playlist = () => {
   // text for the tool tip label
   const toolTipLabel = (
     <Text>
-      Hover over album art to hear a preview of the song (if available) <br />{' '}
+      Hover over album art to hear a preview of the song (if available) <br />{" "}
       WARNING - LOWER VOLUME
     </Text>
   );
@@ -114,7 +113,7 @@ const Playlist = () => {
       bgPosition="right"
     >
       <Center>
-        <Box width={['95%', '95%', '95%', '90%', '59%']} mt="75px">
+        <Box width={["95%", "95%", "95%", "90%", "59%"]} mt="75px">
           <Center>
             <Heading
               d="inline-block"
@@ -172,7 +171,7 @@ const Playlist = () => {
           mt="75px"
           size="lg"
           bgColor="#fff"
-          _hover={{ bgColor: '#fff' }}
+          _hover={{ bgColor: "#fff" }}
           borderRadius="20px"
           onClick={onOpen}
         >
