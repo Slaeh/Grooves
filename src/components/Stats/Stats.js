@@ -40,6 +40,7 @@ const Stats = () => {
   const [color, setColor] = useState("#1DB954");
   const [textColorTransition, setTextColorTransition] = useState("transparent");
 
+  //Changes the background color once scroll reaches a certain point
   const listenScrollEvent = (e) => {
     if (window.scrollY > 700) {
       setColor("#000000");
