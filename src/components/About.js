@@ -78,19 +78,26 @@ const About = () => {
     >
       {/* Speech / inspiration / motivation behind the project */}
       <Center>
-        <Text color="white" fontSize="70px" fontWeight="bold">
+        <Text
+          color="white"
+          fontSize={["20px", "50px", "70px"]}
+          fontWeight="bold"
+        >
           Inspiration & Motivation
         </Text>
       </Center>
       <Center>
-        <TriangleDownIcon color={textColorTransition} boxSize="100px" />
+        <TriangleDownIcon
+          color={textColorTransition}
+          boxSize={["50px", "80px", "100px"]}
+        />
       </Center>
       <Center>
         <Box width={"80%"}>
           <Text
             pt={10}
             color="white"
-            fontSize="25px"
+            fontSize={["15px", "20px", "25px"]}
             fontWeight="bold"
             textAlign="center"
           >
@@ -98,36 +105,53 @@ const About = () => {
             but there's one problem - It only comes once a year.
           </Text>
           <ul>
-            <Text
-              pt={5}
-              color="white"
-              fontSize="25px"
-              fontWeight="bold"
-              textAlign="flex-start"
-            >
-              With Grooves:
-            </Text>
-            <li>
+            <Center>
+              <Text
+                pt={5}
+                color="white"
+                fontSize={["15px", "20px", "25px"]}
+                fontWeight="bold"
+              >
+                With Grooves:
+              </Text>
+            </Center>
+            <Center>
               <Text
                 pt={10}
-                color="white"
-                fontSize="25px"
+                color="#1DB954"
+                fontSize={["15px", "20px", "25px"]}
                 fontWeight="bold"
-                textAlign="center"
               >
-                you're able to see your top five tracks & artists anytime you
-                want.
+                <li>
+                  You're able to see your top five tracks & artists anytime you
+                  want.
+                </li>
               </Text>
-            </li>
-            <li>
-              It also gives you a playlist with songs we think you'll like.
-            </li>
-            <li>
-              If you don't like some of the recommendations, no worries! Feel
-              free to delete it and keep picking what you want.
-            </li>
+            </Center>
+            <Center>
+              <Text
+                pt={10}
+                color="#1DB954"
+                fontSize={["15px", "20px", "25px"]}
+                fontWeight="bold"
+              >
+                <li>You get a playlist with songs we think you'll like.</li>
+              </Text>
+            </Center>
+            <Center>
+              <Text
+                pt={10}
+                color="#1DB954"
+                fontSize={["15px", "20px", "25px"]}
+                fontWeight="bold"
+              >
+                <li>
+                  If you don't like a song, no worries! Remove it and keep what
+                  you want.
+                </li>
+              </Text>
+            </Center>
           </ul>
-          We hope you enjoy our project!
         </Box>
       </Center>
 
@@ -136,17 +160,26 @@ const About = () => {
         <Text
           textColor={textColorTransition}
           pt={100}
-          fontSize="75px"
+          fontSize={["20px", "50px", "70px"]}
           fontWeight="bold"
         >
           Our Team
         </Text>
       </Center>
       <Center>
-        <TriangleDownIcon color={textColorTransition} boxSize="100px" />
+        <TriangleDownIcon
+          color={textColorTransition}
+          boxSize={["50px", "80px", "100px"]}
+        />
       </Center>
       <Center>
-        <SimpleGrid columns={[1, 1, 1, 1, 3]} pt={100} hidden={transparent}>
+        <SimpleGrid
+          columns={[1, 1, 1, 1, 3]}
+          pt={100}
+          hidden={transparent}
+          justifyItems="center"
+          alignItems="center"
+        >
           <Center>
             <AboutCards person={devs.brendan} />
           </Center>
@@ -163,7 +196,7 @@ const About = () => {
       <Center>
         <Text
           color={textColorTransition}
-          fontSize="70px"
+          fontSize={["20px", "50px", "70px"]}
           fontWeight="bold"
           pt={20}
         >
@@ -171,12 +204,15 @@ const About = () => {
         </Text>
       </Center>
       <Center>
-        <TriangleDownIcon color={textColorTransition} boxSize="100px" />
+        <TriangleDownIcon
+          color={textColorTransition}
+          boxSize={["50px", "80px", "100px"]}
+        />
       </Center>
       <Center>
         <Text
           color={textColorTransition}
-          fontSize="50px"
+          fontSize={["20px", "30px", "50px"]}
           fontWeight="bold"
           pt={20}
           pb={20}
@@ -313,6 +349,24 @@ const About = () => {
           </motion.div>
         </SimpleGrid>
       </Center>
+      <Text
+        pt={20}
+        color="#1DB954"
+        fontSize="30px"
+        fontWeight="bold"
+        textAlign="center"
+      >
+        Thank you for using Grooves!
+      </Text>
+      <Text
+        pt={20}
+        color="#1DB954"
+        fontSize="20px"
+        fontWeight="bold"
+        textAlign="center"
+      >
+        All rights belong to Spotify
+      </Text>
     </Box>
   );
 };
