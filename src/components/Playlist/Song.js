@@ -73,13 +73,15 @@ const Song = ({ onClick, image, title, artist, album, year, previewAudio }) => {
           textAlign={["right", "right", "right", "right", "left"]}
           width="100px"
         >
-          <IconButton
-            size={["sm", "md"]}
-            variant="unstyled"
-            onClick={onClick}
-            bg="#e6e6e6"
-            icon={<FaTrash />}
-          />
+          {userPlaylist.length > 10 ? (
+            <IconButton
+              size={["sm", "md"]}
+              variant="unstyled"
+              onClick={onClick}
+              bg="#e6e6e6"
+              icon={<FaTrash />}
+            />
+          ) : null}
         </Box>
       </Flex>
       <Center>
