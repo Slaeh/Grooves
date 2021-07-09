@@ -13,7 +13,7 @@ const Navbar = () => {
     <Flex justify="center" align="center" p="20px" bg="black" top="0">
       <Box p="2">
         <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-          <Link href="/">
+          <Link href="/" style={{ textDecoration: 'none' }}>
             <Heading size="xl" color="white" _hover={{ color: '#1DB954' }}>
               Grooves
             </Heading>
@@ -22,8 +22,12 @@ const Navbar = () => {
       </Box>
       <Spacer />
       <ButtonGroup size="md">
-        {user === '' ? null : (
-          <Link href="/About" target="_blank">
+        {user !== '' ? null : (
+          <Link
+            href="/About"
+            target="_blank"
+            style={{ textDecoration: 'none' }}
+          >
             <Button
               bg="#1DB954"
               mr="5"
@@ -36,18 +40,12 @@ const Navbar = () => {
             </Button>
           </Link>
         )}
-        {user === '' ? (
-          <Button
-            bg="#1DB954"
-            color="white"
-            _hover={{
-              bgColor: '#1DB954',
-            }}
+        {user === '' ? null : (
+          <Link
+            href="https://www.spotify.com/us/account/apps/"
+            target="_blank"
+            style={{ textDecoration: 'none' }}
           >
-            Login
-          </Button>
-        ) : (
-          <Link href="https://www.spotify.com/us/account/apps/" target="_blank">
             <Button
               bg="#1DB954"
               color="white"

@@ -1,6 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react";
 import * as React from "react";
-import { Copyright } from "./Copyright";
 import { LinkGrid } from "./LinkGrid";
 import { Logo } from "./Logo";
 import { motion } from "framer-motion";

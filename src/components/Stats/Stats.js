@@ -12,6 +12,9 @@ import {
   Center,
   Tooltip,
   Spinner,
+  Heading,
+  UnorderedList,
+  ListItem,
 } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
 import Flicking from "@egjs/react-flicking";
@@ -123,16 +126,30 @@ const Stats = () => {
       });
   }, []);
 
-  //Make sure we have at least track data before we render
-  if (track.length !== 5 || artist.length !== 5) {
+  const [loading, setLoading] = useState(true);
+
+  if (artist.length !== 5 || track.length !== 5) {
     return (
-      <Center pt={20} pb={20}>
-        <Spinner size="xl" color="green"></Spinner>
-      </Center>
+      <Box>
+        <Center pt={280} pb={10}>
+          <Spinner size="xl" color="green"></Spinner>
+        </Center>
+        <Center pb={10}>
+          <Heading color="#1DB954">Something went wrong</Heading>
+        </Center>
+        <Center pb={500}>
+          <UnorderedList>
+            <ListItem>
+              Your Spotify account may not have enough artist & track data
+            </ListItem>
+            <ListItem>Spotify's Developer API may be down</ListItem>
+            <ListItem>Our deployment needs to be fixed</ListItem>
+          </UnorderedList>
+        </Center>
+      </Box>
     );
   } else {
     return (
-      // <Box backgroundImage={`url(${whiteBgImage})`} backgroundRepeat="no-repeat" bgSize="contain 100%" bgPosition="right">
       <Box style={{ backgroundColor: color, transition: "0.6s ease" }}>
         {/* Return user's display name */}
         <Center>
@@ -170,7 +187,7 @@ const Stats = () => {
             bg="gray.300"
             color="black"
           >
-            <InfoIcon />
+            <InfoIcon w="8" h="8" />
           </Tooltip>
         </Center>
 
@@ -218,6 +235,8 @@ const Stats = () => {
         <Center pt={2} pb={10}>
           <Tooltip hasArrow label="Swipe to see more artists">
             <InfoIcon
+              w="8"
+              h="8"
               color={textColorTransition}
               style={{ transition: "0.6s ease" }}
             />

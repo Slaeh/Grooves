@@ -5,12 +5,15 @@ import { SimpleGrid, Center, Container, Heading, Box } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 import AppContext from "../AppContext";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   Slider,
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
 } from "@chakra-ui/slider";
+import { InfoIcon } from "@chakra-ui/icons";
+import { Tooltip, Text } from "@chakra-ui/react";
 
 const Discover = () => {
   const [value, setValue] = useState(35);
@@ -78,15 +81,36 @@ const Discover = () => {
       });
   };
 
+  const toolTipLabel = (
+    <Text>
+      These artists will be used to generate a recommended playlist for you to
+      listen to. <br />
+      <br /> If you don't want certain artists to affect your results, hover
+      over the artists and remove them.
+      {/* Hover over album art to hear a preview of the song (if available) <br />{" "}
+      WARNING - LOWER VOLUME */}
+    </Text>
+  );
+
   return (
     <Box backgroundColor="#000000">
       <Box>
         <Center>
-          <Heading textColor="white" py={10}>
+          <Heading textColor="white" pt={10} pb={5}>
             Pick Your Artists
           </Heading>
         </Center>
-
+        <Center pb={5}>
+          <Tooltip
+            placement="right"
+            hasArrow
+            label={toolTipLabel}
+            bg="#fff"
+            color="black"
+          >
+            <InfoIcon color="white" mb="15px" ml="10px" w="8" h="8" />
+          </Tooltip>
+        </Center>
         <Center>
           <SimpleGrid columns={[1, 2, 2, 2, 3]} spacingX="15px" spacingY="15px">
             {artist.map((a) => (
@@ -119,11 +143,21 @@ const Discover = () => {
 
       <Box>
         <Center pb={300}>
-          <Link to="/CreatePlaylist" onClick={generatePlaylist}>
-            <Button label="CreatePlaylist" size="lg" mt="20px" color="#1DB954">
-              Generate A Playlist
-            </Button>
-          </Link>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9, bgColor: "#1DB954" }}
+          >
+            <Link to="/CreatePlaylist" onClick={generatePlaylist}>
+              <Button
+                label="CreatePlaylist"
+                size="lg"
+                mt="20px"
+                color="#1DB954"
+              >
+                Generate A Playlist
+              </Button>
+            </Link>
+          </motion.div>
         </Center>
       </Box>
     </Box>
