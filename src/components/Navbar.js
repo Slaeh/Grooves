@@ -22,24 +22,18 @@ const Navbar = () => {
       </Box>
       <Spacer />
       <ButtonGroup size="md">
-        {user !== "" ? null : (
-          <Link
-            href="/About"
-            target="_blank"
-            style={{ textDecoration: "none" }}
+        <Link href="/About" target="_blank" style={{ textDecoration: "none" }}>
+          <Button
+            bg="#1DB954"
+            mr="5"
+            color="white"
+            _hover={{
+              bgColor: "#1DB954",
+            }}
           >
-            <Button
-              bg="#1DB954"
-              mr="5"
-              color="white"
-              _hover={{
-                bgColor: "#1DB954",
-              }}
-            >
-              About
-            </Button>
-          </Link>
-        )}
+            About
+          </Button>
+        </Link>
         {user === "" ? null : (
           <Link
             href="https://www.spotify.com/us/account/apps/"
