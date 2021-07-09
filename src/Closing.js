@@ -1,6 +1,6 @@
-import { useContext } from 'react';
-import AppContext from './components/AppContext';
-import { motion } from 'framer-motion';
+import LightSpeed from 'react-reveal/LightSpeed';
+import Tada from 'react-reveal/Tada';
+import Slide from 'react-reveal/Slide';
 import {
   Box,
   Text,
@@ -14,7 +14,7 @@ import {
 const Closing = () => {
   return (
     <Flex
-      bg="#56f070"
+      bg="#1DB954"
       h="100vh"
       justify={['center', 'center', 'center', 'center', 'center']}
       align="center"
@@ -24,14 +24,17 @@ const Closing = () => {
       <Heading color="#000" size={['sm', '4xl']} mb="50px">
         Thank you for using our application!
       </Heading> */}
-      <Text
-        color="#000"
-        mb="40px"
-        fontSize={['xl', '2xl', '4xl', '5xl', '6xl']}
-        fontWeight="bold"
-      >
-        Thank you for using Grooves!
-      </Text>
+      <Tada left>
+        <Text
+          color="#000"
+          mb="40px"
+          fontSize={['xl', '2xl', '4xl', '5xl', '6xl']}
+          fontWeight="bold"
+        >
+          Thank you for using Grooves!
+        </Text>
+      </Tada>
+      {/* <Slide bottom> */}
       <Text
         w={['80%', '70%', '70%', '70%', '51%']}
         fontSize={['md', 'lg', '3xl', '4xl']}
@@ -48,6 +51,7 @@ const Closing = () => {
         our application's permission to your account, click on the button below
         and click on remove access for Grooves.
       </Text>
+      {/* </Slide> */}
       <Link href="https://www.spotify.com/us/account/apps/" target="_blank">
         <Button
           size={['lg']}
