@@ -2,10 +2,21 @@ import { React, useState } from "react";
 import { Box, Text, Center } from "@chakra-ui/layout";
 import { TriangleDownIcon } from "@chakra-ui/icons";
 import AboutCards from "./AboutCards";
-import { SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid, Image, Tooltip } from "@chakra-ui/react";
 import Harjit from "../images/Harjit.png";
 import Brendan from "../images/Brendan.JPG";
 import Edward from "../images/Edward.jpeg";
+import CSS from "../images/cssLogo.svg";
+import Figma from "../images/figmaLogo.svg";
+import Heroku from "../images/herokuLogo.svg";
+import JavaScript from "../images/javascriptLogo.svg";
+import Node from "../images/nodejsLogo.svg";
+import Npm from "../images/npmLogo.svg";
+import ReactLogo from "../images/reactLogo.svg";
+import ChakraLogo from "../images/chakraLogo.jpg";
+import Github from "../images/githubLogo.svg";
+import FramerMotion from "../images/framer-motion.png";
+import { motion } from "framer-motion";
 
 const About = () => {
   const [color, setColor] = useState("#000000");
@@ -39,17 +50,19 @@ const About = () => {
     },
   };
 
-  //Changes the background color once scroll reaches a certain point
+  //Changes the background color, card transparency, & text color once scroll reaches a certain point
   const listenScrollEvent = (e) => {
-    if (window.scrollY > 450 && window.scrollY <= 600) {
-      setColor("#1DB954");
-      setTextColorTransition("black");
-      setTransparent(false);
-    } else if (window.scrollY < 450) {
+    if (window.scrollY < 450) {
       setColor("#000000");
       setTextColorTransition("white");
       setTransparent(true);
-    } else if (window.scrollY > 600) {
+    } else if (window.scrollY > 450 && window.scrollY <= 1200) {
+      setColor("#1DB954");
+      setTextColorTransition("black");
+      setTransparent(false);
+    } else if (window.scrollY > 1200) {
+      setColor("#000000");
+      setTextColorTransition("white");
       setTransparent(false);
     }
   };
@@ -59,10 +72,11 @@ const About = () => {
     <Box
       style={{ backgroundColor: color, transition: "0.6s ease" }}
       pt={10}
-      pb={900}
+      pb={300}
       pl={10}
       pr={10}
     >
+      {/* Speech / inspiration / motivation behind the project */}
       <Center>
         <Text color="white" fontSize="70px" fontWeight="bold">
           Inspiration & Motivation
@@ -72,44 +86,52 @@ const About = () => {
         <TriangleDownIcon color={textColorTransition} boxSize="100px" />
       </Center>
       <Center>
-        <Text
-          pt={10}
-          pr={10}
-          pl={10}
-          color="white"
-          fontSize="25px"
-          fontWeight="bold"
-        >
-          Spotify's Year in Review is one of our favorite times of the year, but
-          there's one problem - It only comes once a year.
-        </Text>
-      </Center>
-
-      <Center>
-        <Text pr={10} pl={10} color="white" fontSize="25px" fontWeight="bold">
-          With Grooves, you're able to see your top five tracks & artists
-          anytime you want.
-        </Text>
-      </Center>
-
-      <Center>
-        <Text pr={10} pl={10} color="white" fontSize="25px" fontWeight="bold">
-          It also gives you a playlist with songs we think you'll like.
-        </Text>
-      </Center>
-
-      <Center>
-        <Text pr={10} pl={10} color="white" fontSize="25px" fontWeight="bold">
-          If you don't like some of the recommendations, no worries! Feel free
-          to delete it and keep picking what you want.
-        </Text>
-      </Center>
-
-      <Center>
-        <Text pr={10} pl={10} color="white" fontSize="25px" fontWeight="bold">
+        <Box width={"80%"}>
+          <Text
+            pt={10}
+            color="white"
+            fontSize="25px"
+            fontWeight="bold"
+            textAlign="center"
+          >
+            Spotify's Year in Review is one of our favorite times of the year,
+            but there's one problem - It only comes once a year.
+          </Text>
+          <ul>
+            <Text
+              pt={5}
+              color="white"
+              fontSize="25px"
+              fontWeight="bold"
+              textAlign="flex-start"
+            >
+              With Grooves:
+            </Text>
+            <li>
+              <Text
+                pt={10}
+                color="white"
+                fontSize="25px"
+                fontWeight="bold"
+                textAlign="center"
+              >
+                you're able to see your top five tracks & artists anytime you
+                want.
+              </Text>
+            </li>
+            <li>
+              It also gives you a playlist with songs we think you'll like.
+            </li>
+            <li>
+              If you don't like some of the recommendations, no worries! Feel
+              free to delete it and keep picking what you want.
+            </li>
+          </ul>
           We hope you enjoy our project!
-        </Text>
+        </Box>
       </Center>
+
+      {/* Section with our profile cards & social links  */}
       <Center>
         <Text
           textColor={textColorTransition}
@@ -123,20 +145,173 @@ const About = () => {
       <Center>
         <TriangleDownIcon color={textColorTransition} boxSize="100px" />
       </Center>
-
-      <SimpleGrid columns={[1, 1, 1, 1, 3]} pt={100} hidden={transparent}>
-        <AboutCards person={devs.brendan} />
-        <AboutCards person={devs.edward} />
-        <AboutCards person={devs.harjit} />
-      </SimpleGrid>
-
       <Center>
-        <Text color="white" fontSize="70px" fontWeight="bold" pt={20}>
+        <SimpleGrid columns={[1, 1, 1, 1, 3]} pt={100} hidden={transparent}>
+          <Center>
+            <AboutCards person={devs.brendan} />
+          </Center>
+          <Center>
+            <AboutCards person={devs.edward} />
+          </Center>
+          <Center>
+            <AboutCards person={devs.harjit} />
+          </Center>
+        </SimpleGrid>
+      </Center>
+
+      {/* Section about Technologies we used in our project - I went blind doing this */}
+      <Center>
+        <Text
+          color={textColorTransition}
+          fontSize="70px"
+          fontWeight="bold"
+          pt={20}
+        >
           Technologies
         </Text>
       </Center>
       <Center>
         <TriangleDownIcon color={textColorTransition} boxSize="100px" />
+      </Center>
+      <Center>
+        <Text
+          color={textColorTransition}
+          fontSize="50px"
+          fontWeight="bold"
+          pt={20}
+          pb={20}
+        >
+          Made with ❤️ using
+        </Text>
+      </Center>
+      <Center>
+        <SimpleGrid columns={[2, 2, 3, 5]} spacing={20}>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Tooltip
+              hasArrow
+              label="React"
+              bg="gray.300"
+              color="black"
+              arrowSize={15}
+              gutter="20"
+            >
+              <Image src={ReactLogo} boxSize="100px" />
+            </Tooltip>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Tooltip
+              hasArrow
+              label="JavaScript"
+              bg="gray.300"
+              color="black"
+              arrowSize={15}
+              gutter="20"
+            >
+              <Image src={JavaScript} boxSize="100px" />
+            </Tooltip>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Tooltip
+              hasArrow
+              label="Node.js"
+              bg="gray.300"
+              color="black"
+              arrowSize={15}
+              gutter="20"
+            >
+              <Image src={Node} boxSize="100px" />
+            </Tooltip>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Tooltip
+              hasArrow
+              label="Chakra UI"
+              bg="gray.300"
+              color="black"
+              arrowSize={15}
+              gutter="20"
+            >
+              <Image src={ChakraLogo} borderRadius="full" boxSize="100px" />
+            </Tooltip>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Tooltip
+              hasArrow
+              label="Framer Motion"
+              bg="gray.300"
+              color="black"
+              arrowSize={15}
+              gutter="20"
+            >
+              <Image src={FramerMotion} boxSize="100px" />
+            </Tooltip>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Tooltip
+              hasArrow
+              label="Npm"
+              bg="gray.300"
+              color="black"
+              arrowSize={15}
+              gutter="20"
+            >
+              <Image src={Npm} boxSize="100px" />
+            </Tooltip>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Tooltip
+              hasArrow
+              label="Github"
+              bg="gray.300"
+              color="black"
+              arrowSize={15}
+              gutter="20"
+            >
+              <Image
+                src={Github}
+                boxSize="100px"
+                bgColor="white"
+                rounded="xl"
+              />
+            </Tooltip>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Tooltip
+              hasArrow
+              label="Heroku"
+              bg="gray.300"
+              color="black"
+              arrowSize={15}
+              gutter="20"
+            >
+              <Image src={Heroku} boxSize="100px" />
+            </Tooltip>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Tooltip
+              hasArrow
+              label="CSS3"
+              bg="gray.300"
+              color="black"
+              arrowSize={15}
+              gutter="20"
+            >
+              <Image src={CSS} boxSize="100px" />
+            </Tooltip>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Tooltip
+              hasArrow
+              label="Figma"
+              bg="gray.300"
+              color="black"
+              arrowSize={15}
+              gutter="20"
+            >
+              <Image src={Figma} boxSize="100px" />
+            </Tooltip>
+          </motion.div>
+        </SimpleGrid>
       </Center>
     </Box>
   );
