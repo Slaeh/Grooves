@@ -1,4 +1,4 @@
-import { EmailIcon } from "@chakra-ui/icons";
+import { EmailIcon } from '@chakra-ui/icons';
 import {
   Box,
   Center,
@@ -9,10 +9,10 @@ import {
   Code,
   useColorModeValue,
   Image,
-} from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import React from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+} from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+import React from 'react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const AboutCards = ({ person }) => {
   return (
@@ -23,7 +23,7 @@ const AboutCards = ({ person }) => {
         // w="full"
         justifyContent="space-between"
         alignItems="center"
-        direction={["column", "column", "row", "row"]}
+        direction={['column', 'column', 'row', 'row']}
       >
         <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
           <Flex
@@ -44,23 +44,23 @@ const AboutCards = ({ person }) => {
               bgSize="cover"
               bgPos="center"
               boxShadow="dark-lg"
-              boxSize={["150px", "250px", "300px", "360px"]}
+              boxSize={['150px', '250px', '300px', '360px']}
             >
               <Image
                 src={person.backgroundImage}
                 draggable="false"
                 rounded="lg"
-                maxH={["250px", "300px", "360px"]}
-                maxW={["250px", "300px", "360px"]}
+                maxH={['250px', '300px', '360px']}
+                maxW={['156px', '300px', '300px', '360px']}
               />
             </Box>
 
             <Center>
               <Box
                 // w={{ base: 56, md: 360 }}
-                w={["250px", "300px", "360px"]}
-                mt={["100px", "10px", "5px", "10px"]}
-                bg={useColorModeValue("white", "gray.800")}
+                w={['200px', '300px', '360px']}
+                mt={['5px', '10px', '5px', '10px']}
+                bg={useColorModeValue('white', 'gray.800')}
                 zIndex="base"
                 shadow="lg"
                 rounded="lg"
@@ -73,7 +73,7 @@ const AboutCards = ({ person }) => {
                   textAlign="center"
                   fontWeight="bold"
                   textTransform="uppercase"
-                  color={useColorModeValue("gray.800", "white")}
+                  color={useColorModeValue('gray.800', 'white')}
                   letterSpacing={1}
                 >
                   {person.name}
@@ -84,7 +84,7 @@ const AboutCards = ({ person }) => {
                   justifyContent="center"
                   py={2}
                   px={3}
-                  bg={useColorModeValue("gray.200", "gray.700")}
+                  bg={useColorModeValue('gray.200', 'gray.700')}
                 >
                   <Code>{person.bio}</Code>
                 </Flex>
@@ -106,7 +106,7 @@ const AboutCards = ({ person }) => {
                         color="#2867B2"
                         opacity="75%"
                         _hover={{
-                          color: "#1DB954",
+                          color: '#1DB954',
                         }}
                         href={person.linkedin}
                         isExternal
@@ -124,7 +124,7 @@ const AboutCards = ({ person }) => {
                         color="black"
                         opacity="75%"
                         _hover={{
-                          color: "#1DB954",
+                          color: '#1DB954',
                         }}
                         href={person.github}
                         isExternal
@@ -142,7 +142,7 @@ const AboutCards = ({ person }) => {
                         <EmailIcon
                           fontSize="30px"
                           _hover={{
-                            color: "#1DB954",
+                            color: '#1DB954',
                           }}
                         />
                       </a>

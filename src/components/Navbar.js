@@ -10,8 +10,8 @@ const Navbar = () => {
   const { user } = useContext(AppContext);
 
   return (
-    <Flex justify="center" align="center" p="20px" bg="black" top="0">
-      <Box p="2">
+    <Flex w="100%" justify="center" align="center" p="0" bg="black" top="0">
+      <Box p={['4']}>
         <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
           <Link href="/" style={{ textDecoration: 'none' }}>
             <Heading size="xl" color="white" _hover={{ color: '#1DB954' }}>
