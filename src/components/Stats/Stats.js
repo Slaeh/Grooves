@@ -157,7 +157,7 @@ const Stats = () => {
             mb={4}
             mt={10}
             bgClip="text"
-            fontSize="70px"
+            fontSize={{ base: "40px", md: "50px", lg: "70px" }}
             color="black"
             fontWeight="bold"
           >
@@ -171,7 +171,7 @@ const Stats = () => {
             mb={4}
             mt={10}
             bgClip="text"
-            fontSize="70px"
+            fontSize={{ base: "40px", md: "50px", lg: "60px" }}
             color="black"
             fontWeight="bold"
           >
@@ -223,7 +223,7 @@ const Stats = () => {
               mb={4}
               mt={10}
               bgClip="text"
-              fontSize="70px"
+              fontSize={{ base: "40px", md: "50px", lg: "60px" }}
               fontWeight="bold"
             >
               Your Top Artists
@@ -270,7 +270,7 @@ const Stats = () => {
             // mb={10}
             mt={15}
             bgClip="text"
-            fontSize="70px"
+            fontSize={{ base: "30px", md: "50px", lg: "60px" }}
             fontWeight="bold"
             style={{
               backgroundColor: textColorTransition,
