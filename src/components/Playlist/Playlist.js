@@ -114,6 +114,7 @@ const Playlist = () => {
       WARNING - LOWER VOLUME
     </Text>
   );
+
   return (
     <Box
       backgroundImage={`url(${blackBgImage})`}
@@ -218,21 +219,17 @@ const Playlist = () => {
               </Center>
             </ModalBody>
             <ModalFooter>
-              <Button
-                hidden={hideClose}
-                colorScheme="blue"
-                mr={3}
-                onClick={onClose}
+              <Link
+                href="https://grooves-app.herokuapp.com/Closing"
+                style={{ textDecoration: "none" }}
               >
-                Close
-              </Button>
+                <Button hidden={hideClose} colorScheme="blue" mr={3}>
+                  Finish
+                </Button>
+              </Link>
             </ModalFooter>
           </ModalContent>
         </Modal>
-
-        <Link href="https://grooves-app.herokuapp.com/Closing">
-          <Button>Next</Button>
-        </Link>
       </Center>
     </Box>
   );
