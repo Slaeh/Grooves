@@ -64,6 +64,21 @@ const Playlist = () => {
     });
   };
 
+  const closingPageDelay = () => {
+    setTimeout(() => {
+      <a href="https://grooves-app.herokuapp.com/Closing/">
+        <Button
+          onClick={handleCreatePlaylist}
+          size="lg"
+          mt="20px"
+          colorScheme="green"
+        >
+          Create
+        </Button>
+      </a>;
+    }, 1000);
+  };
+
   // onChange function for controlling playlist title input
   const handleChange = (e) => setPlaylistName(e.target.value);
 
@@ -204,18 +219,7 @@ const Playlist = () => {
               <Text mt="20px">
                 Note: Once you create your playlist, it will be on your Spotify.
               </Text>
-              <Center>
-                {/* <a href="https://grooves-app.herokuapp.com/Closing/"> */}
-                <Button
-                  onClick={handleCreatePlaylist}
-                  size="lg"
-                  mt="20px"
-                  colorScheme="green"
-                >
-                  Create
-                </Button>
-                {/* </a> */}
-              </Center>
+              <Center>{closingPageDelay}</Center>
             </ModalBody>
             {/* <ModalFooter>
             </ModalFooter> */}
