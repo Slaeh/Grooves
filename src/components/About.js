@@ -1,51 +1,51 @@
-import { React, useState } from 'react';
-import { Box, Text, Center } from '@chakra-ui/layout';
-import { TriangleDownIcon } from '@chakra-ui/icons';
-import AboutCards from './AboutCards';
-import { SimpleGrid, Image, Tooltip } from '@chakra-ui/react';
-import Harjit from '../images/Harjit.png';
-import Brendan from '../images/Brendan.JPG';
-import Edward from '../images/Edward.jpeg';
-import CSS from '../images/cssLogo.svg';
-import Figma from '../images/figmaLogo.svg';
-import Heroku from '../images/herokuLogo.svg';
-import JavaScript from '../images/javascriptLogo.svg';
-import Node from '../images/nodejsLogo.svg';
-import Npm from '../images/npmLogo.svg';
-import ReactLogo from '../images/reactLogo.svg';
-import ChakraLogo from '../images/chakraLogo.jpg';
-import Github from '../images/githubLogo.svg';
-import FramerMotion from '../images/framer-motion.png';
-import { motion } from 'framer-motion';
+import { React, useState } from "react";
+import { Box, Text, Center } from "@chakra-ui/layout";
+import { TriangleDownIcon } from "@chakra-ui/icons";
+import AboutCards from "./AboutCards";
+import { SimpleGrid, Image, Tooltip } from "@chakra-ui/react";
+import Harjit from "../images/Harjit.png";
+import Brendan from "../images/Brendan.JPG";
+import Edward from "../images/Edward.jpeg";
+import CSS from "../images/cssLogo.svg";
+import Figma from "../images/figmaLogo.svg";
+import Heroku from "../images/herokuLogo.svg";
+import JavaScript from "../images/javascriptLogo.svg";
+import Node from "../images/nodejsLogo.svg";
+import Npm from "../images/npmLogo.svg";
+import ReactLogo from "../images/reactLogo.svg";
+import ChakraLogo from "../images/chakraLogo.jpg";
+import Github from "../images/githubLogo.svg";
+import FramerMotion from "../images/framer-motion.png";
+import { motion } from "framer-motion";
 
 const About = () => {
-  const [color, setColor] = useState('#000000');
-  const [textColorTransition, setTextColorTransition] = useState('white');
+  const [color, setColor] = useState("#000000");
+  const [textColorTransition, setTextColorTransition] = useState("white");
   const [transparent, setTransparent] = useState(true);
 
   const devs = {
     brendan: {
-      name: 'Brendan Gubbins',
-      bio: 'fillertext fillertext fillertext fillertext fillertext fillertext',
-      github: 'https://www.github.com/brendangubbins',
-      linkedin: 'https://www.linkedin.com/in/brendan-gubbins',
-      email: 'mailto:brendansg97@gmail.com',
+      name: "Brendan Gubbins",
+      bio: "Hey, I'm Brendan and I'm a junior at Queens College studying Mathematics and Computer Science. I like discovering new artists to add to my playlists so I took on the role of creating and displaying the discover page. ",
+      github: "https://www.github.com/brendangubbins",
+      linkedin: "https://www.linkedin.com/in/brendan-gubbins",
+      email: "mailto:brendansg97@gmail.com",
       backgroundImage: Brendan,
     },
     edward: {
-      name: 'Edward Paez',
-      bio: 'fillertext fillertext fillertext fillertext fillertext fillertext',
-      github: 'https://www.github.com/epaez1996',
-      linkedin: 'https://www.linkedin.com/in/edward-paez',
-      email: 'mailto:paez.edward5@gmail.com',
+      name: "Edward Paez",
+      bio: "Hello, I'm Edward and I'm a senior at CUNY Queens College studying Computer Science. Personally, I have playlists for any scenario, such as working out, studying, or chilling with my friends. I created and displayed the playlist page.",
+      github: "https://www.github.com/epaez1996",
+      linkedin: "https://www.linkedin.com/in/edward-paez",
+      email: "mailto:paez.edward5@gmail.com",
       backgroundImage: Edward,
     },
     harjit: {
-      name: 'Harjit Liyal',
-      bio: 'fillertext fillertext fillertext fillertext fillertext fillertext',
-      github: 'https://www.github.com/Slaeh',
-      linkedin: 'https://www.linkedin.com/in/harjitliyal',
-      email: 'mailto:harjitliyal@gmail.com',
+      name: "Harjit Liyal",
+      bio: "Hi! I'm Harjit and I'm a senior at CUNY Queens College studying Computer Science. Outside of class, you can always catch me listening to my favorite music on Spotify. I helped bring your top tracks & artists to the statistics page.",
+      github: "https://www.github.com/Slaeh",
+      linkedin: "https://www.linkedin.com/in/harjitliyal",
+      email: "mailto:harjitliyal@gmail.com",
       backgroundImage: Harjit,
     },
   };
@@ -53,24 +53,24 @@ const About = () => {
   //Changes the background color, card transparency, & text color once scroll reaches a certain point
   const listenScrollEvent = (e) => {
     if (window.scrollY < 450) {
-      setColor('#000000');
-      setTextColorTransition('white');
+      setColor("#000000");
+      setTextColorTransition("white");
       setTransparent(true);
     } else if (window.scrollY > 450 && window.scrollY <= 1200) {
-      setColor('#1DB954');
-      setTextColorTransition('black');
+      setColor("#1DB954");
+      setTextColorTransition("black");
       setTransparent(false);
     } else if (window.scrollY > 1200) {
-      setColor('#000000');
-      setTextColorTransition('white');
+      setColor("#000000");
+      setTextColorTransition("white");
       setTransparent(false);
     }
   };
 
-  window.addEventListener('scroll', listenScrollEvent);
+  window.addEventListener("scroll", listenScrollEvent);
   return (
     <Box
-      style={{ backgroundColor: color, transition: '0.6s ease' }}
+      style={{ backgroundColor: color, transition: "0.6s ease" }}
       pt={10}
       pb={300}
       pl={10}
@@ -81,7 +81,7 @@ const About = () => {
         <Text
           textAlign="center"
           color="white"
-          fontSize={['20px', '50px', '70px']}
+          fontSize={["20px", "50px", "70px"]}
           fontWeight="bold"
         >
           Inspiration & Motivation
@@ -90,15 +90,15 @@ const About = () => {
       <Center>
         <TriangleDownIcon
           color={textColorTransition}
-          boxSize={['50px', '80px', '100px']}
+          boxSize={["50px", "80px", "100px"]}
         />
       </Center>
       <Center>
-        <Box width={'80%'}>
+        <Box width={"80%"}>
           <Text
             pt={10}
             color="white"
-            fontSize={['15px', '20px', '25px']}
+            fontSize={["15px", "20px", "25px"]}
             fontWeight="bold"
             textAlign="center"
           >
@@ -110,7 +110,7 @@ const About = () => {
               <Text
                 pt={5}
                 color="white"
-                fontSize={['15px', '20px', '25px']}
+                fontSize={["15px", "20px", "25px"]}
                 fontWeight="bold"
               >
                 With Grooves:
@@ -120,7 +120,7 @@ const About = () => {
               <Text
                 pt={10}
                 color="#1DB954"
-                fontSize={['15px', '20px', '25px']}
+                fontSize={["15px", "20px", "25px"]}
                 fontWeight="bold"
               >
                 <li>
@@ -133,7 +133,7 @@ const About = () => {
               <Text
                 pt={10}
                 color="#1DB954"
-                fontSize={['15px', '20px', '25px']}
+                fontSize={["15px", "20px", "25px"]}
                 fontWeight="bold"
               >
                 <li>You get a playlist with songs we think you'll like.</li>
@@ -143,7 +143,7 @@ const About = () => {
               <Text
                 pt={10}
                 color="#1DB954"
-                fontSize={['15px', '20px', '25px']}
+                fontSize={["15px", "20px", "25px"]}
                 fontWeight="bold"
               >
                 <li>
@@ -161,7 +161,7 @@ const About = () => {
         <Text
           textColor={textColorTransition}
           pt={100}
-          fontSize={['20px', '50px', '70px']}
+          fontSize={["20px", "50px", "70px"]}
           fontWeight="bold"
         >
           Our Team
@@ -170,7 +170,7 @@ const About = () => {
       <Center>
         <TriangleDownIcon
           color={textColorTransition}
-          boxSize={['50px', '80px', '100px']}
+          boxSize={["50px", "80px", "100px"]}
         />
       </Center>
       <Center>
@@ -197,7 +197,7 @@ const About = () => {
       <Center>
         <Text
           color={textColorTransition}
-          fontSize={['20px', '50px', '70px']}
+          fontSize={["20px", "50px", "70px"]}
           fontWeight="bold"
           pt={20}
         >
@@ -207,13 +207,13 @@ const About = () => {
       <Center>
         <TriangleDownIcon
           color={textColorTransition}
-          boxSize={['50px', '80px', '100px']}
+          boxSize={["50px", "80px", "100px"]}
         />
       </Center>
       <Center>
         <Text
           color={textColorTransition}
-          fontSize={['20px', '30px', '50px']}
+          fontSize={["20px", "30px", "50px"]}
           fontWeight="bold"
           pt={20}
           pb={20}
