@@ -13,7 +13,6 @@ import {
 import { useStyles } from "@chakra-ui/system";
 import AppContext from "./AppContext";
 const REACT_APP_CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-const REACT_APP_CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
 
 const Home = () => {
   const {
@@ -83,7 +82,7 @@ const Home = () => {
       </LightSpeed>
       <Zoom bottom>
         <a
-          href={`https://accounts.spotify.com/authorize?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=http://localhost:3000/Stats/&response_type=token&scope=user-top-read playlist-modify-public user-modify-playback-state`}
+          href={`https://accounts.spotify.com/authorize?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=https://grooves-app.herokuapp.com/Stats/&response_type=token&scope=user-top-read playlist-modify-public user-modify-playback-state`}
         >
           <Button
             mb={["100px", "0px"]}
