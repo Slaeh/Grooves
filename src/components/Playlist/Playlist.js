@@ -24,6 +24,7 @@ import {
   ModalCloseButton,
   ModalFooter,
   Tooltip,
+  Link,
 } from '@chakra-ui/react';
 
 const Playlist = () => {
@@ -63,12 +64,6 @@ const Playlist = () => {
         uris: tracksURI,
       },
     });
-  };
-
-  const closingPageDelay = () => {
-    setTimeout(() => {
-      <ModalButton />;
-    }, 3000);
   };
 
   // onChange function for controlling playlist title input
@@ -211,12 +206,21 @@ const Playlist = () => {
               <Text mt="20px">
                 Note: Once you create your playlist, it will be on your Spotify.
               </Text>
-              <Center>{closingPageDelay}</Center>
+              <Center>
+                <ModalButton handleCreatePlaylist={handleCreatePlaylist} />
+              </Center>
             </ModalBody>
-            {/* <ModalFooter>
-            </ModalFooter> */}
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={onClose}>
+                Close
+              </Button>
+            </ModalFooter>
           </ModalContent>
         </Modal>
+
+        <Link href="https://grooves-app.herokuapp.com/Closing">
+          <Button>Next</Button>
+        </Link>
       </Center>
     </Box>
   );
