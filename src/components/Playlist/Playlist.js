@@ -5,6 +5,7 @@ import AppContext from '../AppContext';
 import blackBgImage from '../../images/spotify-black-bg.png';
 import RubberBand from 'react-reveal/RubberBand';
 import { InfoIcon } from '@chakra-ui/icons';
+import ModalButton from './ModalButton';
 import {
   Box,
   useDisclosure,
@@ -66,17 +67,8 @@ const Playlist = () => {
 
   const closingPageDelay = () => {
     setTimeout(() => {
-      <a href="https://grooves-app.herokuapp.com/Closing/">
-        <Button
-          onClick={handleCreatePlaylist}
-          size="lg"
-          mt="20px"
-          colorScheme="green"
-        >
-          Create
-        </Button>
-      </a>;
-    }, 1000);
+      <ModalButton />;
+    }, 3000);
   };
 
   // onChange function for controlling playlist title input
