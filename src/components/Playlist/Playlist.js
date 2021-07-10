@@ -1,6 +1,6 @@
 import axios from "axios";
 import Song from "./Song";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AppContext from "../AppContext";
 import blackBgImage from "../../images/spotify-black-bg.png";
 import RubberBand from "react-reveal/RubberBand";
