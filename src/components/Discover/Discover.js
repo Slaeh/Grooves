@@ -34,28 +34,28 @@ const Discover = () => {
   } = useContext(AppContext);
 
   // New recommended playlist on each 'artist' state update
-  useEffect(() => {
-    const storage = window.sessionStorage;
-    const accessToken = storage.getItem("accessToken");
-    console.log("state changed");
-    console.log(artist);
-    const artistIDs = artist.map((a) => a.artistId);
-    const seeds = artistIDs.join(",");
-    axios
-      .get("https://api.spotify.com/v1/recommendations", {
-        params: {
-          seed_artists: seeds,
-          limit: value,
-        },
-        headers: {
-          Authorization: "Bearer " + accessToken,
-        },
-      })
-      .then((response) => {
-        console.log(response.data.tracks);
-        setUserPlaylist(response.data.tracks);
-      });
-  }, [artist]);
+  // useEffect(() => {
+  //   const storage = window.sessionStorage;
+  //   const accessToken = storage.getItem("accessToken");
+  //   console.log("state changed");
+  //   console.log(artist);
+  //   const artistIDs = artist.map((a) => a.artistId);
+  //   const seeds = artistIDs.join(",");
+  //   axios
+  //     .get("https://api.spotify.com/v1/recommendations", {
+  //       params: {
+  //         seed_artists: seeds,
+  //         limit: value,
+  //       },
+  //       headers: {
+  //         Authorization: "Bearer " + accessToken,
+  //       },
+  //     })
+  //     .then((response) => {
+  //       console.log(response.data.tracks);
+  //       setUserPlaylist(response.data.tracks);
+  //     });
+  // }, [artist]);
 
   // Creates final playlist from onClick
   const generatePlaylist = () => {
@@ -112,7 +112,7 @@ const Discover = () => {
           </Tooltip>
         </Center>
         <Center>
-          <SimpleGrid columns={[1, 2, 2, 2, 3]} spacingX="15px" spacingY="15px">
+          <SimpleGrid columns={[1, 1, 2, 2, 3]} spacingX="15px" spacingY="15px">
             {artist.map((a) => (
               <div key={a.artistId}>
                 <ArtistImage a={a} />

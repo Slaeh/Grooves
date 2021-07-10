@@ -192,7 +192,7 @@ const Stats = () => {
         </Center>
 
         {/* Carousel for songs */}
-        <Flicking renderOnlyVisible={false}>
+        <Flicking renderOnlyVisible={false} inputType={["touch", "mouse"]}>
           {track
             .slice(0)
             .reverse()
@@ -244,7 +244,7 @@ const Stats = () => {
         </Center>
 
         {/* Carousel for artists */}
-        <Flicking renderOnlyVisible={false}>
+        <Flicking renderOnlyVisible={false} inputType={["touch", "mouse"]}>
           {artist
             .slice(0)
             .reverse()

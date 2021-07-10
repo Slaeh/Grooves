@@ -91,8 +91,14 @@ export default function ArtistImage({ a }) {
   return (
     <div>
       <div className="img__wrap">
-        <Image className="img__img" src={a.artistImage} />
-        <div class="img__description_layer">
+        <Center>
+          <Image
+            src={a.artistImage}
+            h={["300px", "360px"]}
+            w={["300px", "360px"]}
+          />
+        </Center>
+        <div className="img__description_layer">
           <Heading py={2} size="lg">
             {a.artistName}
           </Heading>
