@@ -50,6 +50,7 @@ const Playlist = () => {
 
     // spotify API request to add a list of songs to the empty playlist created
     // from the above API request
+    console.log(userPlaylist);
     await axios({
       method: "post",
       url: `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
