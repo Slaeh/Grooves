@@ -1,8 +1,9 @@
-import { Button } from '@chakra-ui/react';
+import { Button } from "@chakra-ui/react";
 
-const ModalButton = ({ handleCreatePlaylist }) => {
+const ModalButton = ({ handleCreatePlaylist, hideCreate }) => {
   return (
     <Button
+      hidden={hideCreate}
       onClick={handleCreatePlaylist}
       size="lg"
       mt="20px"

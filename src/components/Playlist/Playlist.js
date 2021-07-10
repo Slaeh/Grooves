@@ -1,11 +1,11 @@
-import axios from 'axios';
-import Song from './Song';
-import { useContext } from 'react';
-import AppContext from '../AppContext';
-import blackBgImage from '../../images/spotify-black-bg.png';
-import RubberBand from 'react-reveal/RubberBand';
-import { InfoIcon } from '@chakra-ui/icons';
-import ModalButton from './ModalButton';
+import axios from "axios";
+import Song from "./Song";
+import { useContext } from "react";
+import AppContext from "../AppContext";
+import blackBgImage from "../../images/spotify-black-bg.png";
+import RubberBand from "react-reveal/RubberBand";
+import { InfoIcon } from "@chakra-ui/icons";
+import ModalButton from "./ModalButton";
 import {
   Box,
   useDisclosure,
@@ -25,19 +25,21 @@ import {
   ModalFooter,
   Tooltip,
   Link,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
 const Playlist = () => {
+  const [hideCreate, setHideCreate] = useState(false);
+  const [hideClose, setHideClose] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { playlistName, setPlaylistName, user, userPlaylist, setUserPlaylist } =
     useContext(AppContext);
-  const accessToken = window.sessionStorage.getItem('accessToken');
+  const accessToken = window.sessionStorage.getItem("accessToken");
 
   // onClick function for Create Playlist button to send API request to create a user playlist
   const handleCreatePlaylist = async () => {
     // spotify API request to create an Empty playlist to a user's account
     const createPlaylistResponse = await axios({
-      method: 'post',
+      method: "post",
       url: `https://api.spotify.com/v1/users/${user}/playlists`,
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -54,16 +56,18 @@ const Playlist = () => {
     // from the above API request
     console.log(userPlaylist);
     await axios({
-      method: 'post',
+      method: "post",
       url: `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
       headers: {
         Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       data: {
         uris: tracksURI,
       },
     });
+    setHideClose(false);
+    setHideCreate(true);
   };
 
   // onChange function for controlling playlist title input
@@ -72,7 +76,7 @@ const Playlist = () => {
   // onClick function for trash IconButton
   // removes a song from userPlaylist when clicked
   const handleTrashButton = (songToRemove) => {
-    console.log('in handleTrashButton');
+    console.log("in handleTrashButton");
     const playlistAfterSongRemoved = userPlaylist.filter(
       (song) => song !== songToRemove
     );
@@ -106,7 +110,7 @@ const Playlist = () => {
   // text for the tool tip label
   const toolTipLabel = (
     <Text>
-      Hover over album art to hear a preview of the song (if available) <br />{' '}
+      Hover over album art to hear a preview of the song (if available) <br />{" "}
       WARNING - LOWER VOLUME
     </Text>
   );
@@ -118,7 +122,7 @@ const Playlist = () => {
       bgPosition="right"
     >
       <Center>
-        <Box width={['95%', '95%', '95%', '90%', '59%']} mt="75px">
+        <Box width={["95%", "95%", "95%", "90%", "59%"]} mt="75px">
           <Center>
             <Heading
               d="inline-block"
@@ -177,7 +181,7 @@ const Playlist = () => {
             mt="75px"
             size="lg"
             bgColor="#fff"
-            _hover={{ bgColor: '#fff' }}
+            _hover={{ bgColor: "#fff" }}
             borderRadius="20px"
             onClick={onOpen}
           >
@@ -207,11 +211,19 @@ const Playlist = () => {
                 Note: Once you create your playlist, it will be on your Spotify.
               </Text>
               <Center>
-                <ModalButton handleCreatePlaylist={handleCreatePlaylist} />
+                <ModalButton
+                  hideCreate={hideCreate}
+                  handleCreatePlaylist={handleCreatePlaylist}
+                />
               </Center>
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
+              <Button
+                hidden={hideClose}
+                colorScheme="blue"
+                mr={3}
+                onClick={onClose}
+              >
                 Close
               </Button>
             </ModalFooter>
