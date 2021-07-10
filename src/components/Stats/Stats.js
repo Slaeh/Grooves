@@ -38,7 +38,7 @@ const Stats = () => {
   const hash = window.location.hash.substring(1).split("&");
   const token = hash[0].substring(13);
   window.sessionStorage.setItem("accessToken", token);
-
+  window.history.pushState({}, null, "/Stats");
   //Color states for background and text colors
   const [color, setColor] = useState("#1DB954");
   const [textColorTransition, setTextColorTransition] = useState("transparent");
