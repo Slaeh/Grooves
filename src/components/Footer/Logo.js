@@ -1,7 +1,7 @@
-import { chakra, useColorModeValue, useToken, Image } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
 import * as React from "react";
 
-export const Logo = (props) => {
+export const Logo = () => {
   return (
     <Image
       src="../Spotify.svg"

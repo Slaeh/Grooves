@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import ArtistImage from "./ArtistImage";
 import axios from "axios";
 import { SimpleGrid, Center, Container, Heading, Box } from "@chakra-ui/layout";
@@ -20,18 +20,7 @@ const Discover = () => {
 
   const handleChange = (value) => setValue(value);
 
-  const {
-    display,
-    setDisplay,
-    user,
-    setUser,
-    track,
-    setTrack,
-    artist,
-    setArtist,
-    userPlaylist,
-    setUserPlaylist,
-  } = useContext(AppContext);
+  const { artist, setUserPlaylist } = useContext(AppContext);
 
   // New recommended playlist on each 'artist' state update
   // useEffect(() => {

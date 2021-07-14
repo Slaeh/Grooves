@@ -1,15 +1,6 @@
-import LightSpeed from "react-reveal/LightSpeed";
 import Tada from "react-reveal/Tada";
-import Slide from "react-reveal/Slide";
-import {
-  Box,
-  Text,
-  Button,
-  Center,
-  Flex,
-  Heading,
-  Link,
-} from "@chakra-ui/react";
+
+import { Text, Button, Center, Flex, Link } from "@chakra-ui/react";
 
 const Closing = () => {
   return (

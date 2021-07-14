@@ -4,16 +4,14 @@ import {
   Text,
   Center,
   Heading,
-  Button,
   Flex,
-  Stack,
   IconButton,
   Spacer,
   Tooltip,
   Link,
 } from "@chakra-ui/react";
 import AppContext from "../AppContext";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useToast } from "@chakra-ui/react";
 import { RepeatClockIcon } from "@chakra-ui/icons";
 import "./styles.css";
@@ -21,35 +19,25 @@ import "./styles.css";
 export default function ArtistImage({ a }) {
   const toast = useToast();
   const [deletedArtist, setDeletedArtist] = useState();
-  const {
-    display,
-    setDisplay,
-    user,
-    setUser,
-    track,
-    setTrack,
-    artist,
-    setArtist,
-    userPlaylist,
-    setUserPlaylist,
-  } = useContext(AppContext);
+  const { artist, setArtist } = useContext(AppContext);
 
   const close = () => {
     toast.closeAll();
   };
 
-  const handleMouse = () => {
-    console.log(`hovered ${a.artistName}`);
-  };
+  // const handleMouse = () => {
+  //   console.log(`hovered ${a.artistName}`);
+  // };
 
-  const handleClick = (event) => {
-    console.log(`clicked ${a.artistName}`);
-  };
+  // const handleClick = (event) => {
+  //   console.log(`clicked ${a.artistName}`);
+  // };
 
   const removeArtist = (event) => {
     event.preventDefault();
 
     setDeletedArtist(a);
+    console.log(`Deleted ${deletedArtist}`);
     console.log(artist.filter((art) => art.artistId !== a.artistId));
     setArtist(artist.filter((art) => art.artistId !== a.artistId));
 

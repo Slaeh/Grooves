@@ -28,8 +28,8 @@ const TrackCard = ({ data, ranking }) => {
           bgPos="center"
           draggable="false"
           border="2px solid #000000"
-          maxH="384px"
-          w="384px"
+          maxH={["300px", "300px", "360px", "384px"]}
+          w={["300px", "300px", "360px", "384px"]}
           // _hover={{
           //     background: 'black',
           //     opacity: '0.13',

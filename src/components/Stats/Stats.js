@@ -23,16 +23,8 @@ import { motion } from "framer-motion";
 // import whiteBgImage from '../../images/spotify-white2-bg.png'
 
 const Stats = () => {
-  const {
-    display,
-    setDisplay,
-    user,
-    setUser,
-    track,
-    setTrack,
-    artist,
-    setArtist,
-  } = useContext(AppContext);
+  const { display, setDisplay, setUser, track, setTrack, artist, setArtist } =
+    useContext(AppContext);
 
   //Parses the querystring in the browser and store it into the session
   const hash = window.location.hash.substring(1).split("&");
@@ -71,7 +63,7 @@ const Stats = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [setDisplay, setUser, token]);
 
   //Make API get request to get user's top artists and store them in state
   useEffect(() => {
@@ -98,7 +90,7 @@ const Stats = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [setArtist, token]);
 
   //Make API get request to get user's top tracks and store them in state
   useEffect(() => {
@@ -124,9 +116,9 @@ const Stats = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [setTrack, token]);
 
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   if (artist.length !== 5 || track.length !== 5) {
     return (
@@ -135,15 +127,19 @@ const Stats = () => {
           <Spinner size="xl" color="green"></Spinner>
         </Center>
         <Center pb={10}>
-          <Heading color="#1DB954">Something went wrong</Heading>
+          <Heading color="#1DB954">Oops! Something went wrong!</Heading>
         </Center>
         <Center pb={500}>
           <UnorderedList>
+            Common Issues
             <ListItem>
-              Your Spotify account may not have enough artist & track data
+              Your Spotify account may not have enough data. Please listen to
+              more music and come back later.
             </ListItem>
-            <ListItem>Spotify's Developer API may be down</ListItem>
-            <ListItem>Our deployment needs to be fixed</ListItem>
+            <ListItem>Spotify's Developer API may be down.</ListItem>
+            <ListItem>
+              Our deployment needs to be fixed - please contact us!
+            </ListItem>
           </UnorderedList>
         </Center>
       </Box>
@@ -270,7 +266,7 @@ const Stats = () => {
             // mb={10}
             mt={15}
             bgClip="text"
-            fontSize={{ base: "30px", md: "50px", lg: "60px" }}
+            fontSize={{ base: "20px", md: "40px", lg: "60px" }}
             fontWeight="bold"
             style={{
               backgroundColor: textColorTransition,
