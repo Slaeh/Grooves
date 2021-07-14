@@ -1,32 +1,11 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import LightSpeed from "react-reveal/LightSpeed";
 import Zoom from "react-reveal/Zoom";
-import {
-  Button,
-  Flex,
-  Heading,
-  Box,
-  Center,
-  Text,
-  Stack,
-} from "@chakra-ui/react";
-import { useStyles } from "@chakra-ui/system";
-import AppContext from "./AppContext";
+import { Button, Flex, Text } from "@chakra-ui/react";
+
 const REACT_APP_CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 
 const Home = () => {
-  const {
-    display,
-    setDisplay,
-    user,
-    setUser,
-    track,
-    setTrack,
-    artist,
-    setArtist,
-    userPlaylist,
-    setUserPlaylist,
-  } = useContext(AppContext);
   return (
     <Flex
       justify="center"
