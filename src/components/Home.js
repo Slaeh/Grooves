@@ -64,7 +64,7 @@ const Home = () => {
           href={`https://accounts.spotify.com/authorize?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=https://grooves-app.herokuapp.com/Stats/&response_type=token&scope=user-top-read playlist-modify-public user-modify-playback-state`}
         >
           <Button
-            mb={["100px", "0px"]}
+            mb={["150px", "100px", "0px"]}
             bgColor="#1DB954"
             _hover={{ bgColor: "#1DB954" }}
           >
