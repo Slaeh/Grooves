@@ -1,17 +1,16 @@
 html,
 body {
   width: 100%;
-  height: 100%;
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
-  font-family: 'Signika', sans-serif;
+  font-family: "Signika", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: 'Signika', sans-serif;
+  font-family: "Signika", sans-serif;
 }
 
 /* li { 

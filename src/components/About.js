@@ -4,6 +4,7 @@ import { TriangleDownIcon } from "@chakra-ui/icons";
 import AboutCards from "./AboutCards";
 import { SimpleGrid, Image, Tooltip } from "@chakra-ui/react";
 import Harjit from "../images/Harjit.png";
+import Daljit from "../images/Daljit.png";
 import Brendan from "../images/Brendan.JPG";
 import Edward from "../images/Edward.jpeg";
 import CSS from "../images/cssLogo.svg";
@@ -16,6 +17,8 @@ import ReactLogo from "../images/reactLogo.svg";
 import ChakraLogo from "../images/chakraLogo.jpg";
 import Github from "../images/githubLogo.svg";
 import FramerMotion from "../images/framer-motion.png";
+import PhotoShop from "../images/adobe-photoshop.svg";
+import AI from "../images/adobe-illustrator.svg";
 import { motion } from "framer-motion";
 
 const About = () => {
@@ -47,6 +50,15 @@ const About = () => {
       linkedin: "https://www.linkedin.com/in/harjitliyal",
       email: "mailto:harjitliyal@gmail.com",
       backgroundImage: Harjit,
+    },
+
+    daljit: {
+      name: "Daljit Liyal",
+      bio: "Hey, I'm Daljit and I'm a junior at CUNY Queens College studying Graphic Design. While creating illustrations, I'm always listening to music on Spotify. I created the logo, favicon, and oversaw the design layout of the site.",
+      github: "https://github.com/WorstTwitchEver",
+      linkedin: "https://www.linkedin.com/in/daljitliyal/",
+      email: "mailto:daljitliyal2@gmail.com",
+      backgroundImage: Daljit,
     },
   };
 
@@ -175,7 +187,7 @@ const About = () => {
       </Center>
       <Center>
         <SimpleGrid
-          columns={[1, 1, 1, 1, 3]}
+          columns={[1, 1, 1, 1, 4]}
           pt={100}
           hidden={transparent}
           justifyItems="center"
@@ -189,6 +201,9 @@ const About = () => {
           </Center>
           <Center>
             <AboutCards person={devs.harjit} />
+          </Center>
+          <Center>
+            <AboutCards person={devs.daljit} />
           </Center>
         </SimpleGrid>
       </Center>
@@ -222,7 +237,7 @@ const About = () => {
         </Text>
       </Center>
       <Center>
-        <SimpleGrid columns={[2, 2, 3, 5]} spacing={20}>
+        <SimpleGrid columns={[2, 2, 3, 6]} spacing={20}>
           <motion.div whileHover={{ scale: 1.1 }}>
             <Tooltip
               hasArrow
@@ -346,6 +361,30 @@ const About = () => {
               gutter="20"
             >
               <Image src={Figma} boxSize="100px" />
+            </Tooltip>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Tooltip
+              hasArrow
+              label="Adobe Photoshop"
+              bg="gray.300"
+              color="black"
+              arrowSize={15}
+              gutter="20"
+            >
+              <Image src={PhotoShop} boxSize="100px" />
+            </Tooltip>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Tooltip
+              hasArrow
+              label="Adobe Illustrator"
+              bg="gray.300"
+              color="black"
+              arrowSize={15}
+              gutter="20"
+            >
+              <Image src={AI} boxSize="100px" />
             </Tooltip>
           </motion.div>
         </SimpleGrid>
