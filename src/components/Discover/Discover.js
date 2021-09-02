@@ -47,6 +47,7 @@ const Discover = () => {
   // }, [artist]);
 
   // Creates final playlist from onClick
+  window.scrollTo(0, 0);
   const generatePlaylist = () => {
     const storage = window.sessionStorage;
     const accessToken = storage.getItem("accessToken");
