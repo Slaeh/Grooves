@@ -12,8 +12,7 @@ import {
   SliderThumb,
   SliderTrack,
 } from "@chakra-ui/slider";
-import { InfoIcon } from "@chakra-ui/icons";
-import { Tooltip, Text } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 const Discover = () => {
   const [value, setValue] = useState(35);
@@ -22,6 +21,9 @@ const Discover = () => {
 
   const { artist, setUserPlaylist } = useContext(AppContext);
 
+  const toast = useToast();
+
+  const [showArtistToast, setShowArtistToast] = useState(true);
   // New recommended playlist on each 'artist' state update
   // useEffect(() => {
   //   const storage = window.sessionStorage;
@@ -71,17 +73,28 @@ const Discover = () => {
       });
   };
 
-  const toolTipLabel = (
-    <Text>
-      These artists will be used to generate a recommended playlist for you to
-      listen to. <br />
-      <br /> If you don't want certain artists to affect your results, hover
-      over the artists and remove them.
-      {/* Hover over album art to hear a preview of the song (if available) <br />{" "}
-      WARNING - LOWER VOLUME */}
-    </Text>
-  );
-
+  // const toolTipLabel = (
+  //   <Text>
+  //     These artists will be used to generate a recommended playlist for you to
+  //     listen to. <br />
+  //     <br /> If you don't want certain artists to affect your results, hover
+  //     over the artists and remove them.
+  //     {/* Hover over album art to hear a preview of the song (if available) <br />{" "}
+  //     WARNING - LOWER VOLUME */}
+  //   </Text>
+  // );
+  if (showArtistToast === true && artist.length > 0) {
+    toast({
+      title: "Successfully loaded your artists!",
+      description:
+        "Choose what artists you want to include in your playlist. We'll recommend you songs similar to their genre.",
+      status: "info",
+      duration: null,
+      isClosable: true,
+      position: "top",
+    });
+    setShowArtistToast(false);
+  }
   return (
     <Box backgroundColor="#000000">
       <Box>
@@ -90,7 +103,7 @@ const Discover = () => {
             Pick Your Artists
           </Heading>
         </Center>
-        <Center pb={5}>
+        {/* <Center pb={5}>
           <Tooltip
             placement="right"
             hasArrow
@@ -100,7 +113,7 @@ const Discover = () => {
           >
             <InfoIcon color="white" mb="15px" ml="10px" w="8" h="8" />
           </Tooltip>
-        </Center>
+        </Center> */}
         <Center>
           <SimpleGrid columns={[1, 1, 2, 2, 3]} spacingX="15px" spacingY="15px">
             {artist.map((a) => (

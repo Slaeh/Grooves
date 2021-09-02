@@ -1,8 +1,16 @@
 import Tada from "react-reveal/Tada";
-
-import { Text, Button, Center, Flex, Link } from "@chakra-ui/react";
+import { Text, Button, Center, Flex, Link, useToast } from "@chakra-ui/react";
 
 const Closing = () => {
+  const toast = useToast();
+  toast({
+    title: "Success!",
+    description: "Your new playlist is posted to your Spotify library.",
+    status: "info",
+    isClosable: true,
+    duration: null,
+    position: "top",
+  });
   return (
     <Flex
       bg="#1DB954"

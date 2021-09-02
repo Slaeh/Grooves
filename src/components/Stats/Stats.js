@@ -40,7 +40,7 @@ const Stats = () => {
     if (window.scrollY > 700) {
       setColor("#000000");
       setTextColorTransition("white");
-    } else if (window.scrollY < 700) {
+    } else if (window.scrollY < 600) {
       setColor("#1DB954");
       setTextColorTransition("transparent");
     }
@@ -116,13 +116,12 @@ const Stats = () => {
         }
         setTrack(tracksArr);
         toast({
-          title: "Success!",
-          description:
-            "We've successfully loaded your stats. Swipe the cards to see more!",
+          title: "Successfully loaded your stats!",
+          description: "Swipe the cards to see more.",
           status: "info",
-          duration: 5000,
+          duration: null,
           isClosable: true,
-          position: "top-right",
+          position: "top",
         });
       })
       .catch((err) => {
@@ -240,7 +239,7 @@ const Stats = () => {
         </Center>
 
         {/* Tooltip for artists */}
-        <Center pt={2} pb={10}>
+        {/* <Center pt={2} pb={10}>
           <Tooltip hasArrow label="Swipe to see more artists">
             <InfoIcon
               w="8"
@@ -249,7 +248,7 @@ const Stats = () => {
               style={{ transition: "0.6s ease" }}
             />
           </Tooltip>
-        </Center>
+        </Center> */}
 
         {/* Carousel for artists */}
         <Flicking renderOnlyVisible={false} inputType={["touch", "mouse"]}>

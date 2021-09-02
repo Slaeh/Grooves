@@ -119,7 +119,7 @@ const Playlist = () => {
   // );
   if (showToast === true && userPlaylist.length > 0) {
     toast({
-      title: "Successfully loaded songs",
+      title: "Successfully loaded playlist",
       description:
         "Hover over the album art to hear a preview of the song. Please lower your volume. Filter your playlist by clicking on the trash icon and create your playlist when you're satisfied with your choices.",
       status: "info",
