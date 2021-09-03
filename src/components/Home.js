@@ -82,9 +82,8 @@ const Home = () => {
       </LightSpeed>
       <Zoom bottom>
         <a
-          href={`https://accounts.spotify.com/authorize?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=http://localhost:3000/Stats/&response_type=token&scope=user-top-read playlist-modify-public user-modify-playback-state`}
+          href={`https://accounts.spotify.com/authorize?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=https://grooves-app.herokuapp.com/Stats/&response_type=token&scope=user-top-read playlist-modify-public user-modify-playback-state`}
         >
-          {/* https://grooves-app.herokuapp.com */}
           <Button
             mb={["100px", "0px"]}
             bgColor="#1DB954"
