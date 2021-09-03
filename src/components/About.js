@@ -405,7 +405,7 @@ const About = () => {
         fontWeight="bold"
         textAlign="center"
       >
-        All rights belong to Spotify
+        All rights belong to Spotify and the respective artists
       </Text>
     </Box>
   );

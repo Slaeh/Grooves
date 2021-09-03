@@ -23,8 +23,11 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalFooter,
-  Tooltip,
+  Skeleton,
+  SkeletonCircle,
+  SkeletonText,
   Link,
+  useToast,
 } from "@chakra-ui/react";
 
 const Playlist = () => {
@@ -34,7 +37,8 @@ const Playlist = () => {
   const { playlistName, setPlaylistName, user, userPlaylist, setUserPlaylist } =
     useContext(AppContext);
   const accessToken = window.sessionStorage.getItem("accessToken");
-
+  const [showToast, setShowToast] = useState(true);
+  const toast = useToast();
   // onClick function for Create Playlist button to send API request to create a user playlist
   const handleCreatePlaylist = async () => {
     // spotify API request to create an Empty playlist to a user's account
@@ -92,7 +96,6 @@ const Playlist = () => {
     const albumName = song.album.name;
     const yearReleased = song.album.release_date.slice(0, 4);
     const previewAudio = song.preview_url;
-
     return (
       <Song
         onClick={() => handleTrashButton(song)}
@@ -108,13 +111,24 @@ const Playlist = () => {
   });
 
   // text for the tool tip label
-  const toolTipLabel = (
-    <Text>
-      Hover over album art to hear a preview of the song (if available) <br />{" "}
-      WARNING - LOWER VOLUME
-    </Text>
-  );
-
+  // const toolTipLabel = (
+  //   <Text>
+  //     Hover over album art to hear a preview of the song (if available) <br />{" "}
+  //     WARNING - LOWER VOLUME
+  //   </Text>
+  // );
+  if (showToast === true && userPlaylist.length > 0) {
+    toast({
+      title: "Successfully loaded playlist",
+      description:
+        "Hover over the album art to hear a preview of the song. Please lower your volume. Filter your playlist by clicking on the trash icon and create your playlist when you're satisfied with your choices.",
+      status: "info",
+      isClosable: true,
+      duration: null,
+      position: "top",
+    });
+    setShowToast(false);
+  }
   return (
     <Box
       backgroundImage={`url(${blackBgImage})`}
@@ -123,6 +137,7 @@ const Playlist = () => {
       bgPosition="right"
     >
       <Center>
+        {/* <Skeleton> */}
         <Box width={["95%", "95%", "95%", "90%", "59%"]} mt="75px">
           <Center>
             <Heading
@@ -137,7 +152,7 @@ const Playlist = () => {
             >
               Your New Playlist
             </Heading>
-            <Tooltip
+            {/* <Tooltip
               placement="right"
               hasArrow
               label={toolTipLabel}
@@ -145,7 +160,7 @@ const Playlist = () => {
               color="black"
             >
               <InfoIcon color="white" mb="15px" ml="10px" w="8" h="8" />
-            </Tooltip>
+            </Tooltip> */}
           </Center>
           <Flex
             justify="space-between"
@@ -168,6 +183,7 @@ const Playlist = () => {
             {listOfSongs}
           </Flex>
         </Box>
+        {/* </Skeleton> */}
       </Center>
       <Center>
         {/* <motion.button 

@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
-import LightSpeed from 'react-reveal/LightSpeed';
-import Zoom from 'react-reveal/Zoom';
+import React, { useState, useContext } from "react";
+import LightSpeed from "react-reveal/LightSpeed";
+import Zoom from "react-reveal/Zoom";
 import {
   Button,
   Flex,
@@ -9,9 +9,9 @@ import {
   Center,
   Text,
   Stack,
-} from '@chakra-ui/react';
-import { useStyles } from '@chakra-ui/system';
-import AppContext from './AppContext';
+} from "@chakra-ui/react";
+import { useStyles } from "@chakra-ui/system";
+import AppContext from "./AppContext";
 const REACT_APP_CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 
 const Home = () => {
@@ -38,10 +38,10 @@ const Home = () => {
       <LightSpeed left>
         <Text
           mb={4}
-          mt={['100px', '0']}
+          mt={["100px", "0"]}
           bgClip="text"
           textAlign="center"
-          fontSize={['70px', '80px', '100px', '100px', '70px', '90px']}
+          fontSize={["70px", "80px", "100px", "100px", "70px", "90px"]}
           // bgGradient="linear(to-l, #43cea2, #185a9d)"
           // bgGradient="linear(to-l, #134e5e, #71b280)"
           bgGradient="linear(to-l, #1d976c, #1DB954)"
@@ -56,7 +56,7 @@ const Home = () => {
           mt={10}
           bgClip="text"
           textAlign="center"
-          fontSize={['70px', '80px', '100px', '100px', '70px', '90px']}
+          fontSize={["70px", "80px", "100px", "100px", "70px", "90px"]}
           // bgGradient="linear(to-l, #43cea2, #185a9d)"
           // bgGradient="linear(to-l, #134e5e, #71b280)"
           bgGradient="linear(to-l, #1d976c, #1DB954)"
@@ -71,7 +71,7 @@ const Home = () => {
           textAlign="center"
           mb={20}
           mt={20}
-          fontSize={['17px', '23px', '30px', '30px', '20px']}
+          fontSize={["17px", "23px", "30px", "30px", "20px"]}
           alignContent="center"
           orientation="horizontal"
           fontWeight="bold"
@@ -85,12 +85,12 @@ const Home = () => {
           href={`https://accounts.spotify.com/authorize?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=https://grooves-app.herokuapp.com/Stats/&response_type=token&scope=user-top-read playlist-modify-public user-modify-playback-state`}
         >
           <Button
-            mb={['100px', '0px']}
+            mb={["100px", "0px"]}
             bgColor="#1DB954"
-            _hover={{ bgColor: '#1DB954' }}
+            _hover={{ bgColor: "#1DB954" }}
           >
-            {' '}
-            Log In With Spotify{' '}
+            {" "}
+            Log In With Spotify{" "}
           </Button>
         </a>
       </Zoom>

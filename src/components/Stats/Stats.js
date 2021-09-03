@@ -15,12 +15,12 @@ import {
   Heading,
   UnorderedList,
   ListItem,
+  useToast,
 } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
 import Flicking from "@egjs/react-flicking";
 import "@egjs/react-flicking/dist/flicking.css";
 import { motion } from "framer-motion";
-// import whiteBgImage from '../../images/spotify-white2-bg.png'
 
 const Stats = () => {
   const { display, setDisplay, setUser, track, setTrack, artist, setArtist } =
@@ -30,7 +30,7 @@ const Stats = () => {
   const hash = window.location.hash.substring(1).split("&");
   const token = hash[0].substring(13);
   window.sessionStorage.setItem("accessToken", token);
-  // window.history.pushState({}, null, "/Stats");
+
   //Color states for background and text colors
   const [color, setColor] = useState("#1DB954");
   const [textColorTransition, setTextColorTransition] = useState("transparent");
@@ -40,13 +40,16 @@ const Stats = () => {
     if (window.scrollY > 700) {
       setColor("#000000");
       setTextColorTransition("white");
-    } else if (window.scrollY < 700) {
+    } else if (window.scrollY < 600) {
       setColor("#1DB954");
       setTextColorTransition("transparent");
     }
   };
 
   window.addEventListener("scroll", listenScrollEvent);
+
+  //toast message for users
+  const toast = useToast();
 
   //Api request to get users information - User Id & Display name and stores them in states
   useEffect(() => {
@@ -112,6 +115,14 @@ const Stats = () => {
           tracksArr.push(trackObject);
         }
         setTrack(tracksArr);
+        toast({
+          title: "Successfully loaded your stats!",
+          description: "Swipe the cards to see more.",
+          status: "info",
+          duration: null,
+          isClosable: true,
+          position: "top",
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -165,7 +176,7 @@ const Stats = () => {
         <Center>
           <Text
             mb={4}
-            mt={10}
+            mt={2}
             bgClip="text"
             fontSize={{ base: "40px", md: "50px", lg: "60px" }}
             color="black"
@@ -176,7 +187,7 @@ const Stats = () => {
         </Center>
 
         {/* Tooltip for tracks */}
-        <Center pt={2} pb={10}>
+        {/* <Center pt={2} pb={10}>
           <Tooltip
             hasArrow
             label="Swipe to see more tracks"
@@ -185,7 +196,7 @@ const Stats = () => {
           >
             <InfoIcon w="8" h="8" />
           </Tooltip>
-        </Center>
+        </Center> */}
 
         {/* Carousel for songs */}
         <Flicking renderOnlyVisible={false} inputType={["touch", "mouse"]}>
@@ -228,7 +239,7 @@ const Stats = () => {
         </Center>
 
         {/* Tooltip for artists */}
-        <Center pt={2} pb={10}>
+        {/* <Center pt={2} pb={10}>
           <Tooltip hasArrow label="Swipe to see more artists">
             <InfoIcon
               w="8"
@@ -237,7 +248,7 @@ const Stats = () => {
               style={{ transition: "0.6s ease" }}
             />
           </Tooltip>
-        </Center>
+        </Center> */}
 
         {/* Carousel for artists */}
         <Flicking renderOnlyVisible={false} inputType={["touch", "mouse"]}>
