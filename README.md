@@ -1,7 +1,8 @@
 # Grooves
 
-A React web application that users can log into their Spotify account with, view their favorite artists and tracks on, and receive a customized recommended playlist to save to their account. [Try it out.](https://grooves-app.herokuapp.com/)
+A React web application that users can log into their Spotify account with, view their favorite artists and tracks on, and receive a customized recommended playlist to save to their account. [Try it out.](https://grooves-app.herokuapp.com/)   
 
+(Note: If the website fails to load, give Grooves some time to wake up and refresh the page) 
 # How it was built
 
 Grooves was implemented using the React JavaScript framework, Spotify's Developer APIs, Chakra UI, and FramerMotion.
