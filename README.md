@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Grooves
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React web application that users can log into their Spotify account with, view their favorite artists and tracks on, and receive a customized recommended playlist to save to their account. [Try it out.](https://grooves-app.herokuapp.com/)   
 
-## Available Scripts
+(Note: If the website fails to load, give Grooves some time to wake up and refresh the page) 
+# How it was built
 
-In the project directory, you can run:
+Grooves was implemented using the React JavaScript framework, Spotify's Developer APIs, Chakra UI, and FramerMotion.
 
-### `npm start`
+The Spotify Authorization flow in developing Grooves is the [Implicit Grant Flow](https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow), where the authentication is carried out in the client-side.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# The Team
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [Harjit](https://www.github.com/Slaeh)
+Authorized Spotify user and displayed their top artists and tracks on the Stats page.
 
-### `npm test`
+- [Edward](https://www.github.com/epaez1996)
+Created the Playlist page and allowed users to upload their customized playlist to their Spotify account by utilizing endpoints in Spotify's Developer API.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Daljit](https://www.github.com/WorstTwitchEver) 
+Created custom artwork for the background, favicon, and logo.
 
-### `npm run build`
+- [Brendan](https://www.github.com/brendangubbins)
+Coded the Discover page to allow users to select which artists to base their customized playlist on. Used endpoints in Spotify's Developer API to generate a recommended playlist. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Demos
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Login/OAuth
+![Login](https://media.giphy.com/media/baDGhp9ZoyR1vcXQvW/giphy.gif)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Top Tracks
+![Tracks](https://media.giphy.com/media/PFfc3lmngktqx7UEjw/giphy.gif)
 
-### `npm run eject`
+### Top Artists
+![Artists](https://media.giphy.com/media/ZKgtIS7Ls8kGW5WsCI/giphy.gif)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Discover
+![Discover](https://media.giphy.com/media/oxek0wD0LMLNk8rBS5/giphy.gif)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Customized Playlist
+![Playlist](https://media.giphy.com/media/UAwCellAXOt5ZXmwvd/giphy.gif)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Saving Playlist to Spotify
+![Post](https://media.giphy.com/media/sUVKoU1i2zOWJcFKXm/giphy.gif)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Takeaways
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Developing Grooves was a great learning experience in becoming better React developers. We learned a lot about OAuth and using third-party APIs to create something of our own, as well as using Context to store important global states to help smoothly transition data from page to page.  
